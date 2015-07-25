@@ -56,4 +56,36 @@ public class UserController {
 				return MapResult.failMap();
 			}
 	}
+	
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public Map<String, Object> update(HttpServletRequest httpServletRequest,
+			@RequestParam(value = "name", required = true)String name,
+			@RequestParam(value = "age", required = false)Integer age,
+			@RequestParam(value = "sex", required = false)String sex,
+			@RequestParam(value = "phone", required = true)String phone,
+			@RequestParam(value = "passwd", required = true)String passwd,
+			@RequestParam(value = "email", required = false)String email,
+			@RequestParam(value = "sign", required = false)String sign,
+			@RequestParam(value = "tag", required = false)String tag,
+			@RequestParam(value = "status", required = false)String status,
+			@RequestParam(value = "appv", required = false)String appv,
+			@RequestParam(value = "src", required = false)String src) {
+		
+			logger.info("user add params--> name:{}, age:{}, sex:{}, phone:{}, "
+				+ "passwd:{}, email:{}, sign:{}, tag:{},status:{}, appv:{},"
+				+ "src:{}", new Object[]{name, age, sex, phone, passwd, email, sign, tag, status, appv,src});
+		
+			if (StringUtils.isEmpty(phone) || StringUtils.isEmpty(passwd)){
+				return MapResult.initMap(1001, "参数错误");
+			}
+			
+			
+			try {
+				return userService.createUser(name, age, sex, phone, passwd, email, sign, tag, status, appv,src);
+			} catch (Exception e) {
+				logger.error("", e);
+				return MapResult.failMap();
+			}
+	}
 }
