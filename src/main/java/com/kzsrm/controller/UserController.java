@@ -88,4 +88,14 @@ public class UserController {
 				return MapResult.failMap();
 			}
 	}
+	
+	
+	@RequestMapping(value = "/query")
+	@ResponseBody
+	public User query(int id) {
+		System.out.println("id    "+id);
+		return userService.selectUser(id);
+	}
+	
+	
 }
