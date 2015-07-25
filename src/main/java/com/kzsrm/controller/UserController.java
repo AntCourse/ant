@@ -40,7 +40,7 @@ public class UserController {
 			@RequestParam(value = "appv", required = false)String appv,
 			@RequestParam(value = "src", required = false)String src) {
 		
-			logger.info("user add params---> name:{}, age:{}, sex:{}, phone:{}, "
+			logger.info("user add params--> name:{}, age:{}, sex:{}, phone:{}, "
 				+ "passwd:{}, email:{}, sign:{}, tag:{},status:{}, appv:{},"
 				+ "src:{}", new Object[]{name, age, sex, phone, passwd, email, sign, tag, status, appv,src});
 		
