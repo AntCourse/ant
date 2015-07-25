@@ -57,4 +57,10 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User,Integer> implem
 		return map;
 	}
 
+
+	@Override
+	public User selectUser(int id) {
+		return (User) this.userDao.getById(id);
+	}
+
 }
