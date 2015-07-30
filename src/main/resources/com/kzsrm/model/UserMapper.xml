@@ -10,13 +10,12 @@
     <result column="passwd" jdbcType="VARCHAR" property="passwd" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="sign" jdbcType="VARCHAR" property="sign" />
-    <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="regtime" jdbcType="TIMESTAMP" property="regtime" />
     <result column="logintime" jdbcType="TIMESTAMP" property="logintime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, age, sex, phone, passwd, email, sign, tag, regtime, logintime, status
+    id, name, age, sex, phone, passwd, email, sign, regtime, logintime, status
   </sql>
   
   <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -58,9 +57,6 @@
       <if test="sign != null">
         sign,
       </if>
-      <if test="tag != null">
-        tag,
-      </if>
        <if test="regtime != null">
         regtime,
       </if>
@@ -96,9 +92,6 @@
       </if>
       <if test="sign != null">
         #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="tag != null">
-        #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regtime != null">
         #{regtime,jdbcType=TIMESTAMP},
@@ -136,9 +129,6 @@
       </if>
       <if test="sign != null">
         sign = #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="tag != null">
-        tag = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regtime != null">
         regtime = #{regtime,jdbcType=TIMESTAMP},
