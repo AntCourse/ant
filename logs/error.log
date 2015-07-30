@@ -1,294 +1,316 @@
-06-21 22:23:39 ERROR com.kzsrm.controller.UserController.add(UserController.java:55) - 
-java.lang.NullPointerException
-	at com.kzsrm.serviceImpl.UserServiceImpl.createUser(UserServiceImpl.java:47)
+07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@3e48983b] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@7968f44a] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@597e648b] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@41079622] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@4c5abdb2] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@636e6f5e] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@6da809b9] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@51e7c3f6] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@12eb6e] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@5ac7c747] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@46f2757c] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@45e83734] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@5edafb00] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@1872a01c] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@23a4a9c3] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@3e164f33] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@64e84fb3] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@22819db8] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@f50b597] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@3cef1c6a] (because a series of 30 acquisition attempts failed.)
+07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
+com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
+	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
+	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
+	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
+07-30 21:45:23 ERROR org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:466) - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService' defined in file [D:\Echo\antproject\ant\target\classes\com\kzsrm\serviceImpl\UserServiceImpl.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [com.kzsrm.serviceImpl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.kzsrm.baseservice cannot be resolved
+	The import com.kzsrm.model.User cannot be resolved
+	The import com.kzsrm.mybatis cannot be resolved
+	The import com.kzsrm.service cannot be resolved
+	The import com.kzsrm.utils cannot be resolved
+	BaseServiceMybatisImpl cannot be resolved to a type
+	User cannot be resolved to a type
+	UserService cannot be resolved to a type
+	EntityDao cannot be resolved to a type
+	User cannot be resolved to a type
+	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
+	User cannot be resolved to a type
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
+	MapResult cannot be resolved
+	The method getById(int) is undefined for the type UserDao
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:461)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:607)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:647)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:598)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:517)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:458)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:138)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:241)
+	at org.mortbay.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:431)
+	at org.mortbay.jetty.servlet.ServletHolder.doStart(ServletHolder.java:263)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler.initialize(ServletHandler.java:676)
+	at org.mortbay.jetty.servlet.Context.startContext(Context.java:140)
+	at org.mortbay.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1239)
+	at org.mortbay.jetty.handler.ContextHandler.doStart(ContextHandler.java:517)
+	at org.mortbay.jetty.webapp.WebAppContext.doStart(WebAppContext.java:466)
+	at org.mortbay.jetty.plugin.Jetty6PluginWebAppContext.doStart(Jetty6PluginWebAppContext.java:124)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.handler.HandlerCollection.doStart(HandlerCollection.java:152)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:156)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.handler.HandlerCollection.doStart(HandlerCollection.java:152)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.handler.HandlerWrapper.doStart(HandlerWrapper.java:130)
+	at org.mortbay.jetty.Server.doStart(Server.java:224)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.plugin.Jetty6PluginServer.start(Jetty6PluginServer.java:132)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:441)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:383)
+	at org.mortbay.jetty.plugin.AbstractJettyRunMojo.execute(AbstractJettyRunMojo.java:210)
+	at org.mortbay.jetty.plugin.Jetty6RunMojo.execute(Jetty6RunMojo.java:184)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:208)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:862)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:286)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:197)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
-	at com.sun.proxy.$Proxy31.createUser(Unknown Source)
-	at com.kzsrm.controller.UserController.add(UserController.java:53)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:439)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:427)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:915)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:811)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:796)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
-	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:502)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1148)
-	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:387)
-	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
-	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
-	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
-	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:417)
-	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
-	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
-	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
-	at org.mortbay.jetty.Server.handle(Server.java:326)
-	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:534)
-	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:864)
-	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
-	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
-	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
-	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
-	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:520)
-06-21 22:26:52 ERROR com.kzsrm.controller.UserController.add(UserController.java:55) - 
-java.lang.NullPointerException
-	at com.kzsrm.serviceImpl.UserServiceImpl.createUser(UserServiceImpl.java:47)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
-	at com.sun.proxy.$Proxy30.createUser(Unknown Source)
-	at com.kzsrm.controller.UserController.add(UserController.java:53)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:439)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:427)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:915)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:811)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:796)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
-	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:502)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1148)
-	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:387)
-	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
-	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
-	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
-	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:417)
-	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
-	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
-	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
-	at org.mortbay.jetty.Server.handle(Server.java:326)
-	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:534)
-	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:864)
-	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
-	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
-	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
-	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
-	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:520)
-06-21 22:31:51 ERROR com.kzsrm.controller.UserController.add(UserController.java:55) - 
-org.springframework.jdbc.UncategorizedSQLException: 
-### Error updating database.  Cause: java.sql.SQLException: Field 'age' doesn't have a default value
-### The error may involve com.kzsrm.model.UserMapper.insert-Inline
-### The error occurred while setting parameters
-### SQL: insert into user      ( name,                                      phone,                       passwd )        values ( ?,                                    ?,                       ? )
-### Cause: java.sql.SQLException: Field 'age' doesn't have a default value
-; uncategorized SQLException for SQL []; SQL state [HY000]; error code [1364]; Field 'age' doesn't have a default value; nested exception is java.sql.SQLException: Field 'age' doesn't have a default value
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:83)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:80)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:80)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:71)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:365)
-	at com.sun.proxy.$Proxy28.insert(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:237)
-	at com.kzsrm.dao.UserDao.save(UserDao.java:32)
-	at com.kzsrm.serviceImpl.UserServiceImpl.createUser(UserServiceImpl.java:49)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
-	at com.sun.proxy.$Proxy31.createUser(Unknown Source)
-	at com.kzsrm.controller.UserController.add(UserController.java:53)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:439)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:427)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:915)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:811)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:796)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
-	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:502)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1148)
-	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:387)
-	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
-	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
-	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
-	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:417)
-	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
-	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
-	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
-	at org.mortbay.jetty.Server.handle(Server.java:326)
-	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:534)
-	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:864)
-	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
-	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
-	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
-	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
-	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:520)
-Caused by: java.sql.SQLException: Field 'age' doesn't have a default value
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1078)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4190)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4122)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2570)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2731)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2818)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2157)
-	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1379)
-	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:823)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
-	at com.sun.proxy.$Proxy36.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:41)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:66)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:45)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:108)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:145)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:134)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:355)
-	... 51 more
-06-21 23:20:50 ERROR com.kzsrm.controller.UserController.add(UserController.java:55) - 
-java.lang.NullPointerException
-	at com.kzsrm.serviceImpl.UserServiceImpl.createUser(UserServiceImpl.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
-	at com.sun.proxy.$Proxy31.createUser(Unknown Source)
-	at com.kzsrm.controller.UserController.add(UserController.java:53)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:439)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:427)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:915)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:811)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:796)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
-	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:502)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1148)
-	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:387)
-	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
-	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
-	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
-	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:417)
-	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
-	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
-	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
-	at org.mortbay.jetty.Server.handle(Server.java:326)
-	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:534)
-	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:864)
-	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
-	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
-	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
-	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
-	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:520)
-06-21 23:21:24 ERROR com.kzsrm.controller.UserController.add(UserController.java:55) - 
-java.lang.NullPointerException
-	at com.kzsrm.baseservice.BaseServiceMybatisImpl.save(BaseServiceMybatisImpl.java:38)
-	at com.kzsrm.serviceImpl.UserServiceImpl.createUser(UserServiceImpl.java:52)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
-	at com.sun.proxy.$Proxy31.createUser(Unknown Source)
-	at com.kzsrm.controller.UserController.add(UserController.java:53)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:439)
-	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:427)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:915)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:811)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:796)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
-	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:502)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1148)
-	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:387)
-	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
-	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
-	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
-	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:417)
-	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
-	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
-	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
-	at org.mortbay.jetty.Server.handle(Server.java:326)
-	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:534)
-	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:864)
-	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
-	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
-	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
-	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
-	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:520)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService' defined in file [D:\Echo\antproject\ant\target\classes\com\kzsrm\serviceImpl\UserServiceImpl.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [com.kzsrm.serviceImpl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.kzsrm.baseservice cannot be resolved
+	The import com.kzsrm.model.User cannot be resolved
+	The import com.kzsrm.mybatis cannot be resolved
+	The import com.kzsrm.service cannot be resolved
+	The import com.kzsrm.utils cannot be resolved
+	BaseServiceMybatisImpl cannot be resolved to a type
+	User cannot be resolved to a type
+	UserService cannot be resolved to a type
+	EntityDao cannot be resolved to a type
+	User cannot be resolved to a type
+	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
+	User cannot be resolved to a type
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
+	MapResult cannot be resolved
+	The method getById(int) is undefined for the type UserDao
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1011)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:957)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:490)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:461)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:270)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:442)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:416)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:550)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:150)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:303)
+	... 62 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [com.kzsrm.serviceImpl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.kzsrm.baseservice cannot be resolved
+	The import com.kzsrm.model.User cannot be resolved
+	The import com.kzsrm.mybatis cannot be resolved
+	The import com.kzsrm.service cannot be resolved
+	The import com.kzsrm.utils cannot be resolved
+	BaseServiceMybatisImpl cannot be resolved to a type
+	User cannot be resolved to a type
+	UserService cannot be resolved to a type
+	EntityDao cannot be resolved to a type
+	User cannot be resolved to a type
+	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
+	User cannot be resolved to a type
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
+	MapResult cannot be resolved
+	The method getById(int) is undefined for the type UserDao
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:163)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1004)
+	... 77 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The import com.kzsrm.baseservice cannot be resolved
+	The import com.kzsrm.model.User cannot be resolved
+	The import com.kzsrm.mybatis cannot be resolved
+	The import com.kzsrm.service cannot be resolved
+	The import com.kzsrm.utils cannot be resolved
+	BaseServiceMybatisImpl cannot be resolved to a type
+	User cannot be resolved to a type
+	UserService cannot be resolved to a type
+	EntityDao cannot be resolved to a type
+	User cannot be resolved to a type
+	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
+	User cannot be resolved to a type
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
+	MapResult cannot be resolved
+	The method getById(int) is undefined for the type UserDao
+	User cannot be resolved to a type
+	MapResult cannot be resolved
+
+	at com.kzsrm.serviceImpl.UserServiceImpl.<init>(UserServiceImpl.java:12)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 79 more

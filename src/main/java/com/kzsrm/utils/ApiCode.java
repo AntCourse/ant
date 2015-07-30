@@ -11,7 +11,7 @@ public class ApiCode {
 	 */
 	public static Integer PARG_ERR = 1001;
 	/*
-	 * 参数错误
+	 * 无数据
 	 */
 	public static Integer NO_DATA = 1002;
 }

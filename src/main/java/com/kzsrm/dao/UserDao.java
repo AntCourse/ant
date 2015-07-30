@@ -28,6 +28,7 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 	
 	public <E> void saveEntity(E entity){
 		Map<String,Object> map = new HashMap<String,Object>();
+		System.out.println(entity);
 		//map.put("name", name);
 		//map.put("phone", phone);
 		//map.put("passwd", passwd);

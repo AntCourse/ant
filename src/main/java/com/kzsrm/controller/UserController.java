@@ -1,5 +1,6 @@
 package com.kzsrm.controller;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kzsrm.model.User;
 import com.kzsrm.service.UserService;
+import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.MapResult;
 
 @Controller
@@ -95,19 +97,47 @@ public class UserController {
 	 * 根据id查询用户的信息
 	 * 
 	 * @param id
-	 * @return
+	 * @return User对象
 	 */
 	@RequestMapping(value = "/queryUser")
 	@ResponseBody
 	public Map<String, Object> queryUser(int id) {
-		System.out.println("id    " + id);
-		User user = userService.selectUser(id);
-		Map<String, Object> result = null;
-		System.out.println(user == null);
-		result = MapResult.initMap();
-		result.put("data", user);
-		System.out.println(result);
+		Map<String, Object> result = MapResult.initMap();
+		result.put("data", userService.selectUser(id));
 		return result;
 	}
 
+	/**
+	 * 用户注册
+	 * 
+	 * @param httpServletRequest
+	 * @param phone
+	 * @param email
+	 * @param yzm
+	 * @param passwd
+	 * @return
+	 */
+	@RequestMapping(value = "/reg")
+	@ResponseBody
+	public Map<String, Object> reg(HttpServletRequest httpServletRequest,
+			@RequestParam(value = "phone", required = false) String phone,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "yzm", required = false) String yzm,
+			@RequestParam(value = "passwd", required = true) String passwd) {
+		logger.info(phone + "   " + email + "   " + yzm + "   " + passwd);
+		if ((StringUtils.isEmpty(phone) || StringUtils.isEmpty(email)) && StringUtils.isEmpty(passwd)) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
+		}
+		User user = new User();
+		user.setPhone(phone);
+		user.setEmail(email);
+		user.setPasswd(passwd);
+		user.setCoin(300);
+		user.setRegtime(new Date());
+		try {
+			return userService.insertUser(user);
+		} catch (Exception e) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
+		}
+	}
 }

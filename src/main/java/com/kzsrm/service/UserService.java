@@ -10,6 +10,8 @@ public interface UserService {
 			String phone, String passwd, String email, String sign, String tag,
 			String status, String appv, String src);
 	
-	public User selectUser(int id);
+	public Map<String, Object> selectUser(int id);
+	
+	public Map<String, Object> insertUser(User user);
 
 }
