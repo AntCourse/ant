@@ -9,10 +9,21 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="passwd" jdbcType="VARCHAR" property="passwd" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
     <result column="sign" jdbcType="VARCHAR" property="sign" />
     <result column="regtime" jdbcType="TIMESTAMP" property="regtime" />
     <result column="logintime" jdbcType="TIMESTAMP" property="logintime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="avator" jdbcType="VARCHAR" property="avator" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="regnum" jdbcType="INTEGER" property="regnum" />
+    <result column="lastreg" jdbcType="VARCHAR" property="lastreg" />
+    <result column="honor" jdbcType="VARCHAR" property="honor" />
+    <result column="learntime" jdbcType="VARCHAR" property="learntime" />
+    <result column="examtype" jdbcType="VARCHAR" property="examtype" />
+    <result column="coin" jdbcType="INTEGER" property="coin" />
+    
   </resultMap>
   <sql id="Base_Column_List">
     id, name, age, sex, phone, passwd, email, sign, regtime, logintime, status
@@ -139,6 +150,37 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="birthday != null">
+      	birthday = #{birthday,jdbcType=VARCHAR}
+      </if>
+       <if test="qq != null">
+      	qq = #{qq,jdbcType=VARCHAR}
+      </if>
+      <if test="avator != null">
+      	avator = #{avator,jdbcType=VARCHAR}
+      </if>
+      <if test="coin != null">
+      	coin = #{coin,jdbcType=INTEGER}
+      </if>
+      <if test="level != null">
+      	level = #{level,jdbcType=VARCHAR}
+      </if>
+      <if test="regnum != null">
+      	regnum = #{regnum,jdbcType=INTEGER}
+      </if>
+      <if test="lastreg != null">
+      	lastreg = #{lastreg,jdbcType=VARCHAR}
+      </if>
+      <if test="honor != null">
+      	honor = #{honor,jdbcType=VARCHAR}
+      </if>
+      <if test="learntime != null">
+      	learntime = #{learntime,jdbcType=VARCHAR}
+      </if>
+      <if test="examtype != null">
+      	examtype = #{examtype,jdbcType=VARCHAR}
+      </if>
+      
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>

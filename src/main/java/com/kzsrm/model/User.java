@@ -10,12 +10,92 @@ public class User {
 	private String phone;
 	private String passwd;
 	private String email;
-	private String sign;
-	private String tag;
+	private Date birthday;
+	private String qq;
 	private Date regtime;
 	private Date logintime;
+	private String avator;
+	private String sign;
+	private String level;
+	private int regnum;
+	private Date lastreg;
+	private String honor;
+	private String learntime;
 	private String status;
+	private String examtype;
 	private int coin;
+
+	public Date getLastreg() {
+		return lastreg;
+	}
+
+	public void setLastreg(Date lastreg) {
+		this.lastreg = lastreg;
+	}
+
+	public String getHonor() {
+		return honor;
+	}
+
+	public void setHonor(String honor) {
+		this.honor = honor;
+	}
+
+	public String getLearntime() {
+		return learntime;
+	}
+
+	public void setLearntime(String learntime) {
+		this.learntime = learntime;
+	}
+
+	public String getExamtype() {
+		return examtype;
+	}
+
+	public void setExamtype(String examtype) {
+		this.examtype = examtype;
+	}
+
+	public int getRegnum() {
+		return regnum;
+	}
+
+	public void setRegnum(int regnum) {
+		this.regnum = regnum;
+	}
+
+	public String getAvator() {
+		return avator;
+	}
+
+	public void setAvator(String avator) {
+		this.avator = avator;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
 	public int getCoin() {
 		return coin;
@@ -89,14 +169,6 @@ public class User {
 		this.sign = sign;
 	}
 
-	public String getTag() {
-		return tag;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
 	public Date getRegtime() {
 		return regtime;
 	}
@@ -124,7 +196,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", passwd="
-				+ passwd + ", email=" + email + ", sign=" + sign + ", regtime=" + regtime + ", logintime=" + logintime
-				+ ", status=" + status + ", coin=" + coin+"]";
+				+ passwd + ", email=" + email + ", birthday=" + birthday + ", qq=" + qq + ", sign=" + sign
+				+ ", regtime=" + regtime + ", logintime=" + logintime + ", status=" + status + ", avator=" + avator
+				+ ", sign=" + sign + ", level=" + level + ", regnum=" + regnum + ", coin=" + coin + ", lastreg="
+				+ lastreg + ", honor=" + honor + ", learntime=" + learntime + ", status=" + status + ", examtype="
+				+ examtype + "]";
 	}
 }

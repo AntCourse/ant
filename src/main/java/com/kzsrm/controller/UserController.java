@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import javax.print.DocFlavor.STRING;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import com.kzsrm.model.User;
 import com.kzsrm.service.UserService;
 import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.MapResult;
+import com.kzsrm.utils.SendMail;
 
 @Controller
 @RequestMapping("/user")
@@ -139,5 +142,47 @@ public class UserController {
 		} catch (Exception e) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 		}
+	}
+
+	/**
+	 * 发送验证码
+	 * 
+	 * @return
+	 * @throws MessagingException
+	 */
+	@RequestMapping(value = "sendMail")
+	@ResponseBody
+	public Map<String, Object> getYzm(HttpServletRequest httpServletRequest,
+			@RequestParam(value = "phone", required = false) String phone,
+			@RequestParam(value = "email", required = false) String email) throws MessagingException {
+		SendMail.sendMail("wangyinzhehappy@163.com", "747819855@qq.com", "", "title", "content");
+		return null;
+	}
+
+	/**
+	 * 个人资料完善(修改资料)
+	 * 
+	 * @param httpServletRequest
+	 * @param uid
+	 * @return
+	 */
+	@RequestMapping(value = "updateUserInfo")
+	@ResponseBody
+	public Map<String, Object> updateUserInfo(HttpServletRequest httpServletRequest, User user) {
+		if (user.getId() == 0) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
+		}
+		User u = new User();
+		u.setId(user.getId());
+		u.setName(user.getName());
+		u.setAge(user.getAge());
+		u.setSex(user.getSex());
+		u.setPasswd(user.getPasswd());
+		u.setBirthday(user.getBirthday());
+		u.setQq(user.getQq());
+		u.setAvator(user.getAvator());
+		u.setSign(user.getSign());
+		u.setCoin(user.getCoin());
+		return userService.updateUser(u);
 	}
 }

@@ -73,4 +73,13 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User,Integer> implem
 		map.put("data",user);
 		return map;
 	}
+
+
+	@Override
+	public Map<String, Object> updateUser(User user) {
+		Map<String, Object> map = MapResult.initMap();
+		this.userDao.update(user);
+		map.put("data",user);
+		return map;
+	}
 }
