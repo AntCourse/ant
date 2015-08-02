@@ -46,22 +46,27 @@ public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisD
     public abstract String getMybatisMapperNamesapce();
     
     public String getFindByPrimaryKeyStatement() {
+    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
         return getMybatisMapperNamesapce()+".getById";
     }
 
     public String getInsertStatement() {
+    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
         return getMybatisMapperNamesapce()+".insert";
     }
 
     public String getUpdateStatement() {
+    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
     		return getMybatisMapperNamesapce()+".updateById";
     }
 
     public String getDeleteStatement() {
+    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
     		return getMybatisMapperNamesapce()+".deleteById";
     }
     
     public String getFindStatement() {
+    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
     		return getMybatisMapperNamesapce()+".findAll";
     }
    

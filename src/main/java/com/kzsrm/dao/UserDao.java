@@ -2,6 +2,7 @@ package com.kzsrm.dao;
 
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -31,7 +32,8 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		System.out.println(entity);
 		//map.put("name", name);
 		//map.put("phone", phone);
-		//map.put("passwd", passwd);
+		//map.put("passwd", passwd);\
+		System.out.println("this.getMybatisMapperNamesapce()   "+this.getMybatisMapperNamesapce());
 		this.getSqlSession().insert(this.getMybatisMapperNamesapce()+".insert",entity);
 	}
 	
@@ -42,5 +44,15 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		map.put("phone", phone);
 		map.put("passwd", passwd);
 		this.getSqlSession().insert(this.getMybatisMapperNamesapce()+".insert",map);
+	}
+	
+	public int insertYZM(User user) {
+		return this.getSqlSession().insert(this.getMybatisMapperNamesapce()+".insertYZM",user);
+	}
+	public List<Object> selectIsExitUser(String email,String phone){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("email", email);
+		map.put("phone", phone);
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce()+".selectIsExitUser",map);
 	}
 }

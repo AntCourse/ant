@@ -2,6 +2,9 @@ package com.kzsrm.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 public class User {
 	private int id;
 	private String name;
@@ -10,6 +13,7 @@ public class User {
 	private String phone;
 	private String passwd;
 	private String email;
+	@DateTimeFormat(iso = ISO.DATE_TIME,pattern="yyyy-MM-dd")
 	private Date birthday;
 	private String qq;
 	private Date regtime;
@@ -24,6 +28,16 @@ public class User {
 	private String status;
 	private String examtype;
 	private int coin;
+	private String yzm;
+	
+	
+	public String getYzm() {
+		return yzm;
+	}
+
+	public void setYzm(String yzm) {
+		this.yzm = yzm;
+	}
 
 	public Date getLastreg() {
 		return lastreg;
@@ -198,7 +212,7 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", passwd="
 				+ passwd + ", email=" + email + ", birthday=" + birthday + ", qq=" + qq + ", sign=" + sign
 				+ ", regtime=" + regtime + ", logintime=" + logintime + ", status=" + status + ", avator=" + avator
-				+ ", sign=" + sign + ", level=" + level + ", regnum=" + regnum + ", coin=" + coin + ", lastreg="
+				+ ", sign=" + sign + ", level=" + level + ", regnum=" + regnum + ", coin=" + coin + ", yzm=" + yzm + ", lastreg="
 				+ lastreg + ", honor=" + honor + ", learntime=" + learntime + ", status=" + status + ", examtype="
 				+ examtype + "]";
 	}

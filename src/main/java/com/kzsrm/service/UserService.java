@@ -15,5 +15,9 @@ public interface UserService {
 	public Map<String, Object> insertUser(User user);
 	
 	public Map<String, Object> updateUser(User user);
+	
+	public Map<String,Object> selectUniqueUser(String email,String phone);
+	
+	public int insertYZM(User user);
 
 }

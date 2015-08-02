@@ -1,5 +1,6 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -16,70 +17,69 @@ import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.UserService;
 import com.kzsrm.utils.MapResult;
 
-
-
 @Service("userService")
 @Transactional
-public class UserServiceImpl extends BaseServiceMybatisImpl<User,Integer> implements UserService {
-//public class UserServiceImpl implements UserService {
-	
+public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implements UserService {
+	// public class UserServiceImpl implements UserService {
+
+	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+
 	@Resource
-	private UserDao userDao;
-	
+	private UserDao<?> userDao;
+	Map<String, Object> map = MapResult.initMap();
+
 	@Override
 	protected EntityDao<User, Integer> getEntityDao() {
-	// TODO Auto-generated method stub
-	return userDao;
+		return userDao;
 	}
-	
-	
-	public Map<String, Object> createUser(String name, Integer age, String sex,
-			String phone, String passwd, String email, String sign, String tag,
-			String status, String appv, String src) {
-		
-		
-		// TODO Auto-generated method stub
-		//age = 1;
+
+	public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
+			String email, String sign, String tag, String status, String appv, String src) {
+
+		// age = 1;
 		User u = new User();
 		u.setName(name);
 		u.setPhone(phone);
 		u.setPasswd(passwd);
 		u.setAge(0);
-		
+
 		this.userDao.saveEntity(u);
-		//this.save(u);
-		Map<String, Object> map = MapResult.initMap();
+		// this.save(u);
 		map.put("uid", u.getId());
-		map.put("data",u);
-		
+		map.put("data", u);
+
 		return map;
 	}
-
 
 	@Override
 	public Map<String, Object> selectUser(int id) {
-		Map<String, Object> map = MapResult.initMap();
 		map.put("data", this.userDao.getById(id));
-		return map ;
+		return map;
 	}
-
 
 	@Override
 	public Map<String, Object> insertUser(User user) {
-		Map<String, Object> map = MapResult.initMap();
 		this.userDao.saveEntity(user);
-		map.put("data",user);
+		map.put("data", user);
 		return map;
 	}
 
-
 	@Override
 	public Map<String, Object> updateUser(User user) {
-		Map<String, Object> map = MapResult.initMap();
 		this.userDao.update(user);
-		map.put("data",user);
+		map.put("data", user);
 		return map;
+	}
+
+	@Override
+	public Map<String, Object> selectUniqueUser(String email,String phone) {
+		map.put("data", this.userDao.selectIsExitUser(email,phone));
+		return map;
+	}
+
+	@Override
+	public int insertYZM(User user) {
+		return this.userDao.insertYZM(user);
 	}
 }
