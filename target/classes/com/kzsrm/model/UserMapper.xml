@@ -42,25 +42,13 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
-	<select id="isUnique" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
-		select * from user where phone = #{phone} or email =
-		#{email}
-	</select>
-
-	<!-- 添加验证码 -->
-	<insert id="insertYZM" parameterType="com.kzsrm.model.User"
-		keyProperty="id">
-		insert into yzm(id,phone,email,yzm,regtime)
-		values(#{id,jdbcType=INTEGER},#{phone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{yzm,jdbcType=VARCHAR},#{regtime,jdbcType=VARCHAR})
-	</insert>
-
-	<!-- 查询是否已有此用户 -->
-	<select id="selectIsExitUser" parameterType="map" resultMap="BaseResultMap">
-		select * from user
+	<!-- 根据手机号和邮箱查询用户信息 -->
+	<select id="selectUser" resultMap="BaseResultMap" parameterType="map">
+		select
+		id,name,sex,phone,passwd,email,birthday,qq,regtime,logintime,avator,sign,level,regnum,lastreg,honor,learntime,status,examtype,coin
+		from user
 		where phone = #{phone} or email = #{email}
 	</select>
-
 
 	<delete id="deleteById" parameterType="java.lang.Integer">
 		delete from user

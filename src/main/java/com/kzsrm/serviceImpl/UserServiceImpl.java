@@ -1,6 +1,7 @@
 package com.kzsrm.serviceImpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.UserDao;
 import com.kzsrm.model.User;
+import com.kzsrm.model.Yzm;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.UserService;
 import com.kzsrm.utils.MapResult;
@@ -37,11 +39,11 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
 			String email, String sign, String tag, String status, String appv, String src) {
 
-		// age = 1;
 		User u = new User();
 		u.setName(name);
 		u.setPhone(phone);
 		u.setPasswd(passwd);
+		u.setEmail(email);
 		u.setAge(0);
 
 		this.userDao.saveEntity(u);
@@ -74,12 +76,18 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 
 	@Override
 	public Map<String, Object> selectUniqueUser(String email,String phone) {
-		map.put("data", this.userDao.selectIsExitUser(email,phone));
+		User user  = this.userDao.selectIsExitUser(email,phone);
+		map.put("data", user);
 		return map;
 	}
 
 	@Override
 	public int insertYZM(User user) {
 		return this.userDao.insertYZM(user);
+	}
+
+	@Override
+	public Yzm getYzm(String email,String phone) {
+		return this.userDao.selectOneYzm(email,phone);
 	}
 }

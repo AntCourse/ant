@@ -12,47 +12,60 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.kzsrm.model.User;
+import com.kzsrm.model.Yzm;
 import com.kzsrm.mybatis.BaseMybatisDao;
 import com.kzsrm.mybatis.EntityDao;
 
 @Repository("userDao")
 public class UserDao<E> extends BaseMybatisDao<User, Integer> {
-//public class UserDao extends SqlSessionDaoSupport {
-		
-	
+	// public class UserDao extends SqlSessionDaoSupport {
+
 	private static SqlSessionFactory sqlSessionFactory;
+
+	private static final String yzm = "com.kzsrm.model.YzmMapper";
+
 	private static Reader reader;
+
 	public String getMybatisMapperNamesapce() {
 		// TODO Auto-generated method stub
 		return "com.kzsrm.model.UserMapper";
 	}
-	
-	public <E> void saveEntity(E entity){
-		Map<String,Object> map = new HashMap<String,Object>();
+
+	public <E> void saveEntity(E entity) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(entity);
-		//map.put("name", name);
-		//map.put("phone", phone);
-		//map.put("passwd", passwd);\
-		System.out.println("this.getMybatisMapperNamesapce()   "+this.getMybatisMapperNamesapce());
-		this.getSqlSession().insert(this.getMybatisMapperNamesapce()+".insert",entity);
+		// map.put("name", name);
+		// map.put("phone", phone);
+		// map.put("passwd", passwd);\
+		System.out.println("this.getMybatisMapperNamesapce()   " + this.getMybatisMapperNamesapce());
+		this.getSqlSession().insert(this.getMybatisMapperNamesapce() + ".insert", entity);
 	}
-	
-	public void save(String name, int age, String sex,String phone, String passwd, String email, String sign, String tag,
-			String status) {
-		Map<String,Object> map = new HashMap<String,Object>();
+
+	public void save(String name, int age, String sex, String phone, String passwd, String email, String sign,
+			String tag, String status) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("name", name);
 		map.put("phone", phone);
 		map.put("passwd", passwd);
-		this.getSqlSession().insert(this.getMybatisMapperNamesapce()+".insert",map);
+		this.getSqlSession().insert(this.getMybatisMapperNamesapce() + ".insert", map);
 	}
-	
+
 	public int insertYZM(User user) {
-		return this.getSqlSession().insert(this.getMybatisMapperNamesapce()+".insertYZM",user);
+		return this.getSqlSession().insert(yzm + ".insertYZM", user);
 	}
-	public List<Object> selectIsExitUser(String email,String phone){
-		Map<String,Object> map = new HashMap<String,Object>();
+
+	public User selectIsExitUser(String email, String phone) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("email", email);
 		map.put("phone", phone);
-		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce()+".selectIsExitUser",map);
+		User user = this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".selectUser", map);
+		return user;
+	}
+
+	public Yzm selectOneYzm(String email, String phone) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("email", email);
+		map.put("phone", phone);
+		return this.getSqlSession().selectOne(yzm + ".selectOneYzm", map);
 	}
 }
