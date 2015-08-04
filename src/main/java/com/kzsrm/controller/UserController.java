@@ -3,17 +3,14 @@ package com.kzsrm.controller;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.session.SqlSession;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -30,9 +27,7 @@ import com.kzsrm.model.User;
 import com.kzsrm.model.Yzm;
 import com.kzsrm.service.UserService;
 import com.kzsrm.utils.ApiCode;
-import com.kzsrm.utils.ConfigUtil;
 import com.kzsrm.utils.DateUtil;
-import com.kzsrm.utils.JavaSmsApi;
 import com.kzsrm.utils.MapResult;
 import com.kzsrm.utils.SendMail;
 import com.kzsrm.utils.Tools;
@@ -109,9 +104,15 @@ public class UserController extends SimpleFormController {
 							}
 							u.setRegtime(new Date());
 							u.setPasswd(passwd);
-							u.setCoin(300);// 默认300蚂蚁币
 							u.setRegtime(new Date());
-							return userService.insertUser(u);
+							Map<String, Object> maps = userService.insertUser(u);
+							//查询用户
+							User user = userService.selByEmailOrMobile(email, phone);
+							Sign sign = new Sign();
+							sign.setAntCoin(300);
+							sign.setUid(user.getId());
+							boolean flag = userService.insertSign(sign);
+							return maps.get("data").equals("1") && flag == true ?MapResult.initMap():MapResult.failMap();
 						} else {
 							return MapResult.initMap(ApiCode.PARG_ERR, "已有此数据");
 						}
@@ -434,7 +435,6 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "passwd", required = false) String passwd,
 			@RequestParam(value = "code", required = false) String code)
 					throws IOException, URISyntaxException, MessagingException {
-		Map<String, Object> map = null;
 		// 获取最新验证码
 		Yzm yzmList = null;
 		try {
@@ -476,9 +476,8 @@ public class UserController extends SimpleFormController {
 						u.setPasswd(passwd);
 						u.setEmail(email);
 					}
-					Map<String, Object> m = null;
 					try {
-						m = userService.updateUser(u);
+						userService.updateUser(u);
 					} catch (Exception e) {
 						logger.error("", e);
 						return MapResult.failMap();
@@ -499,7 +498,6 @@ public class UserController extends SimpleFormController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@SuppressWarnings("static-access")
 	@RequestMapping(value = "userSignIn")
 	@ResponseBody
 	public Map<String, Object> userSignIn(HttpServletRequest httpServletRequest,
@@ -507,25 +505,60 @@ public class UserController extends SimpleFormController {
 		// 查询该用户签到
 		Sign listSign = userService.getSign(uid);
 		if (listSign != null) {
-			//昨天日期
-			String yeString = DateUtil.getYesterday();
-			//最后签到和当前差天数
+			Sign s = new Sign();
+			// 最后签到和当前差天数
+			System.out.println(listSign.getLastSignDay() + "    " + new Date());
 			int diffDay = DateUtil.getDifferSec(listSign.getLastSignDay(), new Date());
-			if(diffDay == 0){
-				//status+1
+			if (diffDay == 0) {
 				return MapResult.initMap(ApiCode.PARG_ERR, "今天已经签到啦");
-			}else if(diffDay == 1){
-				userService.updateSign(uid, Integer.parseInt(listSign.getStatus())+1);
+			} else if (diffDay == 1) {
+				int status = Integer.parseInt(listSign.getSignNum());
+				if (status == 0) {
+					status += 2;
+					s.setSignNum(String.valueOf(Integer.parseInt(listSign.getSignNum()) + 2));
+				} else {
+					status += 1;
+					s.setSignNum(String.valueOf(Integer.parseInt(listSign.getSignNum()) + 1));
+				}
+				int totalSignNum = 0;
+				if (status == 1) {
+					totalSignNum += 1;
+				} else if (status == 2) {
+					totalSignNum += 2;
+				} else if (status == 3) {
+					totalSignNum += 4;
+				} else if (status == 4) {
+					totalSignNum += 8;
+				} else if (status == 5) {
+					totalSignNum += 10;
+				} else if (status == 6) {
+					totalSignNum += 30;
+				} else if (status > 6) {
+					totalSignNum += 10;
+				}
+				if (status % 10 == 0) {
+					totalSignNum += 30;
+				}
+				System.out.println("连续打卡赠送的币    " + totalSignNum);
+				s.setUid(uid);
+				s.setAntCoin(listSign.getAntCoin() + totalSignNum);
+				
+				userService.updateSign(s);
 				return MapResult.initMap(ApiCode.PARG_ERR, "签到成功");
-			}else{
-				userService.updateSign(uid, 0);
+			} else {
+				s.setUid(uid);
+				s.setAntCoin(1);
+				s.setSignNum("0");
+				userService.updateSign(s);
 				return MapResult.initMap(ApiCode.PARG_ERR, "签到过期  已经清零");
 			}
 		} else {
 			try {
-				boolean insertSign = userService.insertSign(uid);
+				Sign si = new Sign();
+				si.setUid(uid);
+				boolean insertSign = userService.insertSign(si);
 				if (insertSign == true) {
-					return MapResult.initMap(ApiCode.PARG_ERR,"签到成功");
+					return MapResult.initMap(ApiCode.PARG_ERR, "签到成功");
 				} else {
 					return MapResult.initMap(ApiCode.PARG_ERR, "签到失败");
 				}

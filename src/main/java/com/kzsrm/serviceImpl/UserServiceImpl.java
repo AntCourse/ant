@@ -41,7 +41,7 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 		return userDao;
 	}
 
-	public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
+	/*public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
 			String email, String sign, String tag, String status, String appv, String src) {
 
 		User u = new User();
@@ -57,7 +57,7 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 		map.put("data", u);
 
 		return map;
-	}
+	}*/
 
 	@Override
 	public Map<String, Object> selectUser(int id) {
@@ -67,8 +67,8 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 
 	@Override
 	public Map<String, Object> insertUser(User user) {
-		this.userDao.saveEntity(user);
-		map.put("data", user);
+		int i = this.userDao.saveEntity(user);
+		map.put("data", i);
 		return map;
 	}
 
@@ -114,26 +114,9 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	/*
 	 * 添加打卡记录
 	 */
-	public boolean insertSign(int uid) {
+	public boolean insertSign(Sign sign) {
 		boolean flag = false;
-		int result = this.userDao.insertSign(uid);
-		if (result == 1) {
-			flag = true;
-		} else {
-			flag = false;
-		}
-		return flag;
-	}
-
-	/*
-	 * 打卡清零
-	 */
-	public boolean cleanSign() {
-		User user = new User();
-		user.setRegnum(0);// 清零
-		user.setLastreg(new Date());
-		int result = this.userDao.update(user);
-		boolean flag = false;
+		int result = this.userDao.insertSign(sign.getUid());
 		if (result == 1) {
 			flag = true;
 		} else {
@@ -151,8 +134,13 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public int updateSign(int uid,int status) {
-		int result = this.userDao.updateSign(uid,status);
+	public int updateSign(Sign sign) {
+		int result = this.userDao.updateSign(sign);
 		return result;
+	}
+
+	@Override
+	public User selByEmailOrMobile(String email, String mobile) {
+		return this.userDao.getUserByEmailOrMobile(email, mobile);
 	}
 }

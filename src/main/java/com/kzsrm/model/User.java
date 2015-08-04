@@ -31,13 +31,12 @@ public class User {
 	private String avator;
 	private String sign;
 	private String level;
-	private int regnum;
-	private Date lastreg;
+	// private int regnum;
+	// private Date lastreg;
 	private String honor;
 	private String learntime;
 	private String status;
 	private String examtype;
-	private int coin;
 	private String yzm;
 
 	public String getYzm() {
@@ -46,14 +45,6 @@ public class User {
 
 	public void setYzm(String yzm) {
 		this.yzm = yzm;
-	}
-
-	public Date getLastreg() {
-		return lastreg;
-	}
-
-	public void setLastreg(Date lastreg) {
-		this.lastreg = lastreg;
 	}
 
 	public String getHonor() {
@@ -78,14 +69,6 @@ public class User {
 
 	public void setExamtype(String examtype) {
 		this.examtype = examtype;
-	}
-
-	public int getRegnum() {
-		return regnum;
-	}
-
-	public void setRegnum(int regnum) {
-		this.regnum = regnum;
 	}
 
 	public String getAvator() {
@@ -118,14 +101,6 @@ public class User {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
-	}
-
-	public int getCoin() {
-		return coin;
-	}
-
-	public void setCoin(int coin) {
-		this.coin = coin;
 	}
 
 	public int getId() {
@@ -221,7 +196,7 @@ public class User {
 		return "[id=" + id + ", name=" + name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", passwd="
 				+ passwd + ", email=" + email + ", birthday=" + birthday + ", qq=" + qq + ", sign=" + sign
 				+ ", regtime=" + regtime + ", logintime=" + logintime + ", status=" + status + ", avator=" + avator
-				+ ", level=" + level + ", regnum=" + regnum + ", coin=" + coin + ", yzm=" + yzm + ", lastreg=" + lastreg
-				+ ", honor=" + honor + ", learntime=" + learntime + ", examtype=" + examtype + "]";
+				+ ", level=" + level + ", yzm=" + yzm + ", honor=" + honor + ", learntime=" + learntime + ", examtype="
+				+ examtype + "]";
 	}
 }

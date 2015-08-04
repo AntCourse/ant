@@ -74,9 +74,9 @@ public class Tools {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		// System.out.println(codeInvalid("2015-08-04 17:25:56",1));
-		String s = "2015-08-08";//数据库签到日期
-		Date d = Tools.ymd.parse(s);
-		System.out.println(compareSignInTime(d));
+		 System.out.println(codeInvalid("2015-08-08 14:19:22",1));
+//		String s = "2015-08-08";//数据库签到日期
+//		Date d = Tools.ymd.parse(s);
+//		System.out.println(compareSignInTime(d));
 	}
 }

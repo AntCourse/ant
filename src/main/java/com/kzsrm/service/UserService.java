@@ -11,8 +11,8 @@ import com.kzsrm.model.Yzm;
 
 public interface UserService {
 
-	public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
-			String email, String sign, String tag, String status, String appv, String src);
+//	public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
+//			String email, String sign, String tag, String status, String appv, String src);
 
 	public Map<String, Object> selectUser(int id);
 
@@ -28,12 +28,12 @@ public interface UserService {
 
 	public Map<String, Object> login(User user);
 
-	public boolean insertSign(int uid);
-
-	public boolean cleanSign();
+	public boolean insertSign(Sign sign);
 
 	public Sign getSign(int uid);
 	
-	public int updateSign(int uid,int status);
+	public int updateSign(Sign sign);
+	
+	public User selByEmailOrMobile(String email,String mobile);
 	
 }

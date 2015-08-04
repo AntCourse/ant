@@ -35,14 +35,15 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		return "com.kzsrm.model.UserMapper";
 	}
 
-	public <E> void saveEntity(E entity) {
+	public <E> int saveEntity(E entity) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(entity);
 		// map.put("name", name);
 		// map.put("phone", phone);
 		// map.put("passwd", passwd);\
 		System.out.println("this.getMybatisMapperNamesapce()   " + this.getMybatisMapperNamesapce());
-		this.getSqlSession().insert(this.getMybatisMapperNamesapce() + ".insert", entity);
+		int i = this.getSqlSession().insert(this.getMybatisMapperNamesapce() + ".insert", entity);
+		return i;
 	}
 
 	public void save(String name, int age, String sex, String phone, String passwd, String email, String sign,
@@ -89,23 +90,25 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		map.put("uid", uid);
 		map.put("startSignDay", Tools.ymd.format(new Date()));
 		map.put("lastSignDay", Tools.ymd.format(new Date()));
-		map.put("continueSignDay", 1);
-		map.put("status", "1");
+		map.put("antCoin", 1);
+		map.put("signNum", 1);
 		System.out.println(map);
 		return this.getSqlSession().insert(sign + ".insertSign", map);
 
 	}
-	
+
 	/*
 	 * 修改用户打卡记录
 	 */
-	public int updateSign(int uid,int status) {
-		map.put("uid", uid);
-		map.put("status", status);
+	public int updateSign(Sign signEntity) {
+		map.put("uid", signEntity.getUid());
+		map.put("signNum", signEntity.getSignNum());
 		map.put("lastSignDay", Tools.ymd.format(new Date()));
-		System.out.println(map);
+		map.put("antCoin", signEntity.getAntCoin());
+		if (Integer.parseInt(signEntity.getSignNum()) == 0) {
+			map.put("startSignDay", Tools.ymd.format(new Date()));
+		}
 		return this.getSqlSession().insert(sign + ".updateSign", map);
-
 	}
 
 	/*
@@ -114,7 +117,13 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 	public Sign getSign(int uid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uid", uid);
-//		map.put("checkTimes_Last", Tools.ymd.format(new Date()));
-		return this.getSqlSession().selectOne(sign+".getSignNum", map);
+		// map.put("checkTimes_Last", Tools.ymd.format(new Date()));
+		return this.getSqlSession().selectOne(sign + ".getSignNum", map);
+	}
+
+	public User getUserByEmailOrMobile(String email, String mobile) {
+		map.put("email", email);
+		map.put("phone", mobile);
+		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getByIdOrMobileOrEmail", map);
 	}
 }
