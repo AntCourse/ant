@@ -39,6 +39,24 @@ public class User {
 	private String examtype;
 	private String yzm;
 	private int isActive;
+	private String realName;
+	private String infoPerfectLev;
+
+	public String getInfoPerfectLev() {
+		return infoPerfectLev;
+	}
+
+	public void setInfoPerfectLev(String infoPerfectLev) {
+		this.infoPerfectLev = infoPerfectLev;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 
 	public int getIsActive() {
 		return isActive;
@@ -206,6 +224,6 @@ public class User {
 				+ passwd + ", email=" + email + ", birthday=" + birthday + ", qq=" + qq + ", sign=" + sign
 				+ ", regtime=" + regtime + ", logintime=" + logintime + ", status=" + status + ", avator=" + avator
 				+ ", level=" + level + ", yzm=" + yzm + ", honor=" + honor + ", learntime=" + learntime + ", examtype="
-				+ examtype + ", isActive="+isActive+"]";
+				+ examtype + ", isActive="+isActive+",realName="+realName+",infoPerfectLev="+infoPerfectLev+"]";
 	}
 }

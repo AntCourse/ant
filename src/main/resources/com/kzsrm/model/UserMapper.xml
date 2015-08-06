@@ -24,13 +24,15 @@
 		<result column="examtype" jdbcType="VARCHAR" property="examtype" />
 		<!-- <result column="coin" jdbcType="INTEGER" property="coin" /> -->
 		<result column="isActive" jdbcType="INTEGER" property="isActive"/>
+		<result column="realName" jdbcType="VARCHAR" property="realName"/>
+		<result column="infoPerfectLev" jdbcType="VARCHAR" property="infoPerfectLev"/>
 
 		<result column="yzm" jdbcType="VARCHAR" property="yzm" />
 
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, name, age, sex, phone, passwd, email, sign, regtime,
-		logintime,isActive,
+		logintime,isActive,realName,infoPerfectLev,
 		status
 	</sql>
 
@@ -212,7 +214,13 @@
 				examtype = #{examtype,jdbcType=VARCHAR},
 			</if>
 			<if test="isActive != null and isActive != ''">
-				isActive = #{isActive,jdbcType=INTEGER}
+				isActive = #{isActive,jdbcType=INTEGER},
+			</if>
+			<if test="realName != null">
+				realName = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="infoPerfectLev != null">
+				infoPerfectLev = #{infoPerfectLev,jdbcType=VARCHAR}
 			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER} or phone = #{phone,jdbcType=VARCHAR}

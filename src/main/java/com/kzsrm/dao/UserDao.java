@@ -1,42 +1,28 @@
 package com.kzsrm.dao;
 
-import java.io.Reader;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
-
 import com.kzsrm.model.Sign;
 import com.kzsrm.model.User;
 import com.kzsrm.model.Yzm;
 import com.kzsrm.mybatis.BaseMybatisDao;
-import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.utils.MapResult;
 import com.kzsrm.utils.Tools;
 
 @Repository("userDao")
 public class UserDao<E> extends BaseMybatisDao<User, Integer> {
-	// public class UserDao extends SqlSessionDaoSupport {
-
-	private static SqlSessionFactory sqlSessionFactory;
-
-	private static final String yzm = "com.kzsrm.model.YzmMapper";
-	private static final String sign = "com.kzsrm.model.SignMapper";
+	private static final String yzmMapper = "com.kzsrm.model.YzmMapper";
+	private static final String signMapper = "com.kzsrm.model.SignMapper";
 	Map<String, Object> map = MapResult.initMap();
 
 	public String getMybatisMapperNamesapce() {
-		// TODO Auto-generated method stub
 		return "com.kzsrm.model.UserMapper";
 	}
 
+	@SuppressWarnings("hiding")
 	public <E> int saveEntity(E entity) {
-		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(entity);
 		// map.put("name", name);
 		// map.put("phone", phone);
@@ -56,7 +42,7 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 	}
 
 	public int insertYZM(User user) {
-		return this.getSqlSession().insert(yzm + ".insertYZM", user);
+		return this.getSqlSession().insert(yzmMapper + ".insertYZM", user);
 	}
 
 	public User selectIsExitUser(String email, String phone) {
@@ -71,7 +57,7 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("email", email);
 		map.put("phone", phone);
-		return this.getSqlSession().selectOne(yzm + ".selectOneYzm", map);
+		return this.getSqlSession().selectOne(yzmMapper + ".selectOneYzm", map);
 	}
 
 	public User userLogin(User user) {
@@ -85,40 +71,46 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 	/*
 	 * 新增用户打卡记录
 	 */
-	public int insertSign(int uid) {
+	public int insertSign(Sign signEntity) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uid", uid);
-		map.put("startSignDay", Tools.ymd.format(new Date()));
-		map.put("lastSignDay", Tools.ymd.format(new Date()));
+		String currDate = Tools.ymd.format(new Date());
+		map.put("startSignDay", currDate);
+		map.put("lastSignDay", currDate);
 		map.put("antCoin", 1);
-		map.put("signNum", 1);
-		System.out.println(map);
-		return this.getSqlSession().insert(sign + ".insertSign", map);
-
+		map.put("signNum", signEntity.getSignNum());
+		map.put("email", signEntity.getEmail());
+		map.put("phone", signEntity.getPhone());
+		map.put("uid", signEntity.getUid());
+		map.put("signTotalNum", signEntity.getSignTotalNum());
+		return this.getSqlSession().insert(signMapper + ".insertSign", map);
 	}
 
 	/*
 	 * 修改用户打卡记录
 	 */
 	public int updateSign(Sign signEntity) {
-		map.put("uid", signEntity.getUid());
 		map.put("signNum", signEntity.getSignNum());
 		map.put("lastSignDay", Tools.ymd.format(new Date()));
 		map.put("antCoin", signEntity.getAntCoin());
-		if (Integer.parseInt(signEntity.getSignNum()) == 0) {
+		map.put("email", signEntity.getEmail());
+		map.put("phone", signEntity.getPhone());
+		map.put("signTotalNum", signEntity.getSignTotalNum());
+		if (signEntity.getSignNum() == 0) {
+			map.put("signNum", 1);
 			map.put("startSignDay", Tools.ymd.format(new Date()));
 		}
-		return this.getSqlSession().insert(sign + ".updateSign", map);
+		return this.getSqlSession().insert(signMapper + ".updateSign", map);
 	}
 
 	/*
 	 * 获取用户打卡数据
 	 */
-	public Sign getSign(int uid) {
+	public Sign getSign(String email,String phone) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uid", uid);
+		map.put("email", email);
+		map.put("phone", phone);
 		// map.put("checkTimes_Last", Tools.ymd.format(new Date()));
-		return this.getSqlSession().selectOne(sign + ".getSignNum", map);
+		return this.getSqlSession().selectOne(signMapper + ".getSignNum", map);
 	}
 
 	public User getUserByEmailOrMobile(String email, String mobile) {

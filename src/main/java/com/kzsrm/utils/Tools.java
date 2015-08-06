@@ -1,12 +1,17 @@
 package com.kzsrm.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.tools.Tool;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 工具类
@@ -17,6 +22,8 @@ import javax.tools.Tool;
 public class Tools {
 	public static SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd");
+
+	public static final String FILE_PATH = "/upload/";
 
 	/**
 	 * 
@@ -53,7 +60,7 @@ public class Tools {
 	 * 
 	 * @param signInTime
 	 * @return boolean
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	public static boolean compareSignInTime(Date signInTime) throws ParseException {
 		Date date1 = Tools.ymd.parse(Tools.ymd.format(new Date()));
@@ -68,15 +75,29 @@ public class Tools {
 		}
 		return false;
 	}
-	
-	public List<String> getNoSignInDay(){
-		return null;
+
+	// 文件上传
+	public static String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {
+		String fileName = file.getOriginalFilename();
+		File tempFile = new File(FILE_PATH, new Date().getTime() + String.valueOf(fileName));
+		if (!tempFile.getParentFile().exists()) {
+			tempFile.getParentFile().mkdir();
+		}
+		if (!tempFile.exists()) {
+			tempFile.createNewFile();
+		}
+		file.transferTo(tempFile);
+		return "/download?fileName=" + tempFile.getName();
+	}
+
+	public static File getFile(String fileName) {
+		return new File(FILE_PATH, fileName);
 	}
 
 	public static void main(String[] args) throws ParseException {
-		 System.out.println(codeInvalid("2015-08-08 14:19:22",1));
-//		String s = "2015-08-08";//数据库签到日期
-//		Date d = Tools.ymd.parse(s);
-//		System.out.println(compareSignInTime(d));
+		System.out.println(codeInvalid("2015-08-08 14:19:22", 1));
+		// String s = "2015-08-08";//数据库签到日期
+		// Date d = Tools.ymd.parse(s);
+		// System.out.println(compareSignInTime(d));
 	}
 }

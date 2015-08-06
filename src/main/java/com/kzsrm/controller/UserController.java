@@ -16,8 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import com.alibaba.fastjson.JSONObject;
 import com.kzsrm.model.Sign;
@@ -112,14 +114,8 @@ public class UserController extends SimpleFormController {
 						u.setRegtime(new Date());
 						u.setIsActive(1);// 未激活
 						Map<String, Object> maps = userService.insertUser(u);
-						// 查询用户
-						User user = userService.selByEmailOrMobile(email, phone);
-						Sign sign = new Sign();
-						sign.setAntCoin(300);
-						sign.setUid(user.getId());
-						boolean flag = userService.insertSign(sign);
 						Map<String, Object> result = MapResult.initMap();
-						if (Integer.parseInt(maps.get("data").toString()) == 1 && flag == true) {
+						if (Integer.parseInt(maps.get("data").toString()) == 1) {
 							result = MapResult.initMap();
 						} else {
 							result = MapResult.failMap();
@@ -153,13 +149,13 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
 		User users = null;
 		try {
-			 users = userService.selByEmailOrMobile(email, phone);
+			users = userService.selByEmailOrMobile(email, phone);
 		} catch (Exception e) {
-			logger.error("",e);
+			logger.error("", e);
 			return MapResult.failMap();
 		}
-		if(users == null){
-			return MapResult.initMap(ApiCode.PARG_ERR,"用户名或密码错误");
+		if (users == null) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
 		}
 		System.out.println(users.getIsActive() == 1);
 		if (users.getIsActive() == 1) {
@@ -202,14 +198,21 @@ public class UserController extends SimpleFormController {
 	 * @param httpServletRequest
 	 * @param user
 	 * @return
+	 * 
+	 * @RequestParam(value = "avator", required = false) MultipartFile avator
+	 * 
 	 */
-	@RequestMapping(value = "/update")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> update(HttpServletRequest httpServletRequest, User user) {
+	public Map<String, Object> update(HttpServletRequest request,
+			@RequestParam(value = "avator", required = false) MultipartFile avator, User user) {
+
+		System.out.println(avator.getName());
 		if (StringUtils.isEmpty(String.valueOf(user.getId()))) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 		}
 		try {
+			// String filePath = Tools.uploadFile(avator, request);
 			return userService.updateUser(user);
 		} catch (Exception e) {
 			logger.error("", e);
@@ -316,8 +319,8 @@ public class UserController extends SimpleFormController {
 		User u = new User();
 		// 获取验证码发送时间
 		Yzm yzmList = userService.getYzm(email, phone);
-		if(yzmList == null){
-			return MapResult.initMap(ApiCode.PARG_ERR, "验证码过期");
+		if (yzmList == null) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "没有发送验证码");
 		}
 		String str = yzmList.getYzm();
 		boolean isCodeInvalid = false;
@@ -344,6 +347,12 @@ public class UserController extends SimpleFormController {
 				u.setEmail(email);
 				u.setPhone(phone);
 				u.setIsActive(2);// 已激活
+				Sign sign = new Sign();
+				// sign.
+				sign.setEmail(email);
+				sign.setPhone(phone);
+				sign.setSignNum(100);// 注册成功即送100蚂蚁币
+				userService.insertSign(sign);
 				return userService.updateUser(u);
 			} else {
 				return MapResult.initMap(ApiCode.PARG_ERR, "验证码错误");
@@ -413,9 +422,53 @@ public class UserController extends SimpleFormController {
 			if (res == 1)
 				return MapResult.initMap();
 			else
-				return MapResult.initMap();
+				return MapResult.failMap();
 		} else {
 			return MapResult.failMap();
+		}
+	}
+
+	/**
+	 * 查询手机验证码是否过期
+	 * 
+	 * @param httpServletRequest
+	 * @param phone
+	 * @param yzm
+	 */
+	@RequestMapping(value = "phoneIsInvalid")
+	@ResponseBody
+	public Map<String, Object> phoneIsInvalid(HttpServletRequest httpServletRequest,
+			@RequestParam(value = "phone", required = false) String phone,
+			@RequestParam(value = "yzm", required = false) String yzm) {
+		
+		if(phone == null || yzm == null){
+			return MapResult.initMap(ApiCode.PARG_ERR,"参数错误");
+		}
+		
+		// 获取验证码发送时间
+		Yzm yzmList = userService.getYzm("", phone);
+		if (yzmList == null) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "没有发送验证码");
+		}
+		String str = yzmList.getYzm();
+		boolean isCodeInvalid = false;
+		String time = Tools.ymdhms.format(yzmList.getRegtime());
+		if (phone != null) {
+			try {
+				isCodeInvalid = Tools.codeInvalid(time, 1);
+			} catch (ParseException e) {
+				logger.error("", e);
+				e.printStackTrace();
+			}
+		}
+		if (isCodeInvalid == true) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
+		} else {
+			if (str.equals(yzm)) {
+				return MapResult.initMap();
+			} else {
+				return MapResult.initMap(ApiCode.PARG_ERR, "验证码错误");
+			}
 		}
 	}
 
@@ -515,24 +568,34 @@ public class UserController extends SimpleFormController {
 	@RequestMapping(value = "userSignIn")
 	@ResponseBody
 	public Map<String, Object> userSignIn(HttpServletRequest httpServletRequest,
-			@RequestParam(value = "uid", required = false) int uid) throws ParseException {
+			@RequestParam(value = "uid", required = false) int uid,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "phone", required = false) String phone) throws ParseException {
 		// 查询该用户签到
-		Sign listSign = userService.getSign(uid);
+		Sign listSign = userService.getSign(email, phone);
 		if (listSign != null) {
 			Sign s = new Sign();
+			s.setEmail(email);
+			s.setPhone(phone);
+			s.setUid(uid);
 			// 最后签到和当前差天数
 			System.out.println(listSign.getLastSignDay() + "    " + new Date());
 			int diffDay = DateUtil.getDifferSec(listSign.getLastSignDay(), new Date());
 			if (diffDay == 0) {
 				return MapResult.initMap(ApiCode.PARG_ERR, "今天已经签到啦");
 			} else if (diffDay == 1) {
-				int status = Integer.parseInt(listSign.getSignNum());
+				System.out.println(listSign.getSignNum());
+				int status = listSign.getSignNum();
+				int signTotalNum = listSign.getSignTotalNum();
+				if(signTotalNum == 0){
+					signTotalNum = 1;
+				}
 				if (status == 0) {
 					status += 2;
-					s.setSignNum(String.valueOf(Integer.parseInt(listSign.getSignNum()) + 2));
+					s.setSignNum(listSign.getSignNum() + 2);
 				} else {
 					status += 1;
-					s.setSignNum(String.valueOf(Integer.parseInt(listSign.getSignNum()) + 1));
+					s.setSignNum(listSign.getSignNum() + 1);
 				}
 				int totalSignNum = 0;
 				if (status == 1) {
@@ -554,21 +617,25 @@ public class UserController extends SimpleFormController {
 					totalSignNum += 30;
 				}
 				System.out.println("连续打卡赠送的币    " + totalSignNum);
-				s.setUid(uid);
 				s.setAntCoin(listSign.getAntCoin() + totalSignNum);
+				s.setSignTotalNum(listSign.getSignTotalNum()+1);
 				userService.updateSign(s);
 				return MapResult.initMap(ApiCode.PARG_ERR, "签到成功");
 			} else {
-				s.setUid(uid);
 				s.setAntCoin(1);
-				s.setSignNum("0");
+				s.setSignNum(0);
+				s.setSignTotalNum(listSign.getSignTotalNum()+1);
 				userService.updateSign(s);
 				return MapResult.initMap(ApiCode.PARG_ERR, "签到过期  已经清零");
 			}
 		} else {
 			try {
 				Sign si = new Sign();
+				si.setEmail(email);
+				si.setPhone(phone);
 				si.setUid(uid);
+				si.setSignNum(1);
+				si.setSignTotalNum(1);
 				boolean insertSign = userService.insertSign(si);
 				if (insertSign == true) {
 					return MapResult.initMap(ApiCode.PARG_ERR, "签到成功");
@@ -586,7 +653,8 @@ public class UserController extends SimpleFormController {
 	 * 用户唯一性验证(手机和邮箱)
 	 * 
 	 * @param httpServletRequest
-	 * @return{"message":"成功","data":"true","apicode":10000} true 有此用户 false不存在该用户
+	 * 			@return{"message":"成功","data":"true","apicode":10000} true
+	 *            有此用户 false不存在该用户
 	 */
 	@RequestMapping(value = "userUnique")
 	@ResponseBody

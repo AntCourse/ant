@@ -30,7 +30,7 @@ public interface UserService {
 
 	public boolean insertSign(Sign sign);
 
-	public Sign getSign(int uid);
+	public Sign getSign(String email,String phone);
 	
 	public int updateSign(Sign sign);
 	
