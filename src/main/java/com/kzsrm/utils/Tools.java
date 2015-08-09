@@ -1,14 +1,9 @@
 package com.kzsrm.utils;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import org.junit.After;
-
-import com.alibaba.fastjson.JSONArray;
 
 /**
  * 工具类

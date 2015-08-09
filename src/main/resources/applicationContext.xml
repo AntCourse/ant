@@ -58,6 +58,7 @@
 			<list>
 				<value>classpath:/com/kzsrm/model/UserMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/yzm.xml</value>
+				<value>classpath:/com/kzsrm/model/course.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -63,6 +63,7 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	@Override
 	public Map<String, Object> insertUser(User user) {
 		this.userDao.saveEntity(user);
+		this.save(user);
 		map.put("data", user);
 		return map;
 	}

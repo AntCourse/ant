@@ -7,5 +7,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="com.kzsrm.model.User" alias="User" />
 		<typeAlias type="com.kzsrm.model.Yzm" alias="Yzm" />
+		<typeAlias type="com.kzsrm.model.Course" alias="Course" />
 	</typeAliases>
 </configuration>
