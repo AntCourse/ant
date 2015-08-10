@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kzsrm.dao.SubjectDao" >
+  <resultMap id="BaseResultMap" type="com.kzsrm.model.Subject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="INTEGER" />
+    <result column="hint" property="hint" jdbcType="VARCHAR" />
+    <result column="allcount" property="allcount" jdbcType="VARCHAR" />
+    <result column="rightcount" property="rightcount" jdbcType="VARCHAR" />
+    <result column="avgtime" property="avgtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, question, type, degree, hint, allcount, rightcount, avgtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from subject
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from subject
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kzsrm.model.Subject" >
+    insert into subject (id, question, type, 
+      degree, hint, allcount, 
+      rightcount, avgtime)
+    values (#{id,jdbcType=INTEGER}, #{question,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=INTEGER}, #{hint,jdbcType=VARCHAR}, #{allcount,jdbcType=VARCHAR}, 
+      #{rightcount,jdbcType=VARCHAR}, #{avgtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kzsrm.model.Subject" >
+    insert into subject
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="hint != null" >
+        hint,
+      </if>
+      <if test="allcount != null" >
+        allcount,
+      </if>
+      <if test="rightcount != null" >
+        rightcount,
+      </if>
+      <if test="avgtime != null" >
+        avgtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="hint != null" >
+        #{hint,jdbcType=VARCHAR},
+      </if>
+      <if test="allcount != null" >
+        #{allcount,jdbcType=VARCHAR},
+      </if>
+      <if test="rightcount != null" >
+        #{rightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="avgtime != null" >
+        #{avgtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kzsrm.model.Subject" >
+    update subject
+    <set >
+      <if test="question != null" >
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="hint != null" >
+        hint = #{hint,jdbcType=VARCHAR},
+      </if>
+      <if test="allcount != null" >
+        allcount = #{allcount,jdbcType=VARCHAR},
+      </if>
+      <if test="rightcount != null" >
+        rightcount = #{rightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="avgtime != null" >
+        avgtime = #{avgtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Subject" >
+    update subject
+    set question = #{question,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=INTEGER},
+      hint = #{hint,jdbcType=VARCHAR},
+      allcount = #{allcount,jdbcType=VARCHAR},
+      rightcount = #{rightcount,jdbcType=VARCHAR},
+      avgtime = #{avgtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
