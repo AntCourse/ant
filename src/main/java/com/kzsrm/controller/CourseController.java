@@ -22,21 +22,27 @@ import com.kzsrm.utils.MapResult;
 public class CourseController {
 	private static Logger logger = LoggerFactory.getLogger(User.class);
 
-	@Resource
-	private CourseService courseService;
+	@Resource private CourseService courseService;
 
 	/**
 	 * 课程列表
-	 * @param type
+	 * @param pid		父级id，为空时查询顶层结点
+	 * @param type		预留参数
 	 * @return
 	 */
 	@RequestMapping(value = "/getCourList")
 	@ResponseBody
 	public Map<String, Object> getCourList(
+			@RequestParam(required = false) String pid,
 			@RequestParam(required = false) String type) {
-		List<Course> courseList = courseService.findAll();
-		Map<String, Object> ret = MapResult.initMap();
-		ret.put("courseList", courseList);
-		return ret;
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			List<Course> courseList = courseService.getchildrenCour(pid, type);
+			ret.put("courseList", courseList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
 	}
 }
