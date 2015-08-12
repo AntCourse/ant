@@ -22,7 +22,7 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, Integer> i
 	private CourseDao<?> courseDao;
 
 	@Override
-	protected EntityDao<Course, Integer> getEntityDao() {
+	protected EntityDao<Course, String> getEntityDao() {
 		return courseDao;
 	}
 

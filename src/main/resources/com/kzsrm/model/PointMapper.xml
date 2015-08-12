@@ -9,20 +9,30 @@
     <result column="course_id" property="courseId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, content, type, course_id
+    t.id, t.name, t.content, t.type, t.course_id
   </sql>
+  
+  <select id="getPointByCour" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from point t
+    where t.course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from course
+    from point t
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from point
-    where id = #{id,jdbcType=INTEGER}
+    from point t
+    where t.id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from point
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -87,7 +97,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Point" >
+  <update id="updateById" parameterType="com.kzsrm.model.Point" >
     update point
     set name = #{name,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},

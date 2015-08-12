@@ -1,5 +1,7 @@
 package com.kzsrm.model;
 
+import java.util.List;
+
 public class Subject {
     private Integer id;
 
@@ -11,11 +13,13 @@ public class Subject {
 
     private String hint;
 
-    private String allcount;
+    private Integer allcount;
 
-    private String rightcount;
+    private Integer rightcount;
 
-    private String avgtime;
+    private Integer avgtime;
+    
+    private List<Option> optionList;
 
     public Integer getId() {
         return id;
@@ -57,27 +61,36 @@ public class Subject {
         this.hint = hint == null ? null : hint.trim();
     }
 
-    public String getAllcount() {
-        return allcount;
-    }
+	public Integer getAllcount() {
+		return allcount;
+	}
 
-    public void setAllcount(String allcount) {
-        this.allcount = allcount == null ? null : allcount.trim();
-    }
+	public void setAllcount(Integer allcount) {
+		this.allcount = allcount;
+	}
 
-    public String getRightcount() {
-        return rightcount;
-    }
+	public Integer getRightcount() {
+		return rightcount;
+	}
 
-    public void setRightcount(String rightcount) {
-        this.rightcount = rightcount == null ? null : rightcount.trim();
-    }
+	public void setRightcount(Integer rightcount) {
+		this.rightcount = rightcount;
+	}
 
-    public String getAvgtime() {
-        return avgtime;
-    }
+	public Integer getAvgtime() {
+		return avgtime;
+	}
 
-    public void setAvgtime(String avgtime) {
-        this.avgtime = avgtime == null ? null : avgtime.trim();
-    }
+	public void setAvgtime(Integer avgtime) {
+		this.avgtime = avgtime;
+	}
+
+	public List<Option> getOptionList() {
+		return optionList;
+	}
+
+	public void setOptionList(List<Option> optionList) {
+		this.optionList = optionList;
+	}
+
 }

@@ -7,20 +7,23 @@
     <result column="content" property="content" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, content
+    t.id, t.name, t.content
   </sql>
+  
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from course
+    from tag t
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from tag
-    where id = #{id,jdbcType=INTEGER}
+    from tag t
+    where t.id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from tag
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -67,7 +70,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Tag" >
+  <update id="updateById" parameterType="com.kzsrm.model.Tag" >
     update tag
     set name = #{name,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR}

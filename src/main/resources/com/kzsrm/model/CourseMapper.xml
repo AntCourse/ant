@@ -10,37 +10,37 @@
     <result column="pid" property="pid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, type, name, profile, address, pid
+    t.id, t.type, t.name, t.profile, t.address, t.pid
   </sql>
   
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from course
-  </select>
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from course
-    where id = #{id,jdbcType=INTEGER}
+    from course t
   </select>
   
   <select id="getchildrenCour" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
-    from course
+    from course t
     <where>
     	<if test="pid != null and pid != ''">
-    		pid = #{pid,jdbcType=VARCHAR}
+    		t.pid = #{pid,jdbcType=VARCHAR}
     	</if>
     	<if test="type != null and type != ''">
-    		and type = #{type,jdbcType=VARCHAR}
+    		and t.type = #{type,jdbcType=VARCHAR}
     	</if>
     </where>
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course t
+    where t.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from course
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -116,7 +116,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Course" >
+  <update id="updateById" parameterType="com.kzsrm.model.Course" >
     update course
     set type = #{type,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

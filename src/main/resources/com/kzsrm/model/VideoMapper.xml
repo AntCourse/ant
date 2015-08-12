@@ -6,30 +6,44 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="playcount" property="playCount" jdbcType="INTEGER" />
+    <result column="timespan" property="timeSpan" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, content, address
+    t.id, t.name, t.content, t.address, t.playcount, t.timespan
   </sql>
+  
+  <select id="getVideoByPoint" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" /> ,pv.weight
+    from video t, point_video pv, point p
+    where t.id = pv.vid and pv.pid = p.id
+    and p.id = #{pointId,jdbcType=VARCHAR}
+  </select>
+  
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from course
+    from video t
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from video
-    where id = #{id,jdbcType=INTEGER}
+    from video t
+    where t.id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from video
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.Video" >
     insert into video (id, name, content, 
-      address)
+      address, playcount, timespan)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR})
+      #{address,jdbcType=VARCHAR}, #{playCount,jdbcType=INTEGER}, #{timeSpan,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.Video" >
     insert into video
@@ -46,6 +60,12 @@
       <if test="address != null" >
         address,
       </if>
+      <if test="address != null" >
+        playcount,
+      </if>
+      <if test="address != null" >
+        timespan,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -59,6 +79,12 @@
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{playCount,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{timeSpan,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -74,14 +100,22 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="playcount != null" >
+        playcount = #{playCount,jdbcType=VARCHAR},
+      </if>
+      <if test="timespan != null" >
+        timespan = #{timeSpan,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Video" >
+  <update id="updateById" parameterType="com.kzsrm.model.Video" >
     update video
     set name = #{name,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR}
+      address = #{address,jdbcType=VARCHAR},
+      playcount = #{playCount,jdbcType=INTEGER},
+      timespan = #{timeSpan,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

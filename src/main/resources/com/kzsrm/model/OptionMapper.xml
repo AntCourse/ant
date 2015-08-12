@@ -9,31 +9,43 @@
     <result column="isanswer" property="isanswer" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, sid, type, content, isanswer
+    t.id, t.sid, t.type, t.content, t.isanswer
   </sql>
+  <sql id="Base_Table" >
+    t.id, t.sid, t.type, t.content, t.isanswer
+  </sql>
+  
+  <select id="getOptionBySubject" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select t.id, t.type, t.content
+    from `option` t
+    where t.sid = #{subjectId,jdbcType=INTEGER}
+  </select>
+  
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from course
+    from `option` t
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from option
-    where id = #{id,jdbcType=INTEGER}
+    from `option` t
+    where t.id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from option
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from `option`
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.Option" >
-    insert into option (id, sid, type, 
+    insert into `option` (id, sid, type, 
       content, isanswer)
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{isanswer,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.Option" >
-    insert into option
+    insert into `option`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -70,7 +82,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.kzsrm.model.Option" >
-    update option
+    update `option`
     <set >
       <if test="sid != null" >
         sid = #{sid,jdbcType=INTEGER},
@@ -87,8 +99,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Option" >
-    update option
+  <update id="updateById" parameterType="com.kzsrm.model.Option" >
+    update `option`
     set sid = #{sid,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},

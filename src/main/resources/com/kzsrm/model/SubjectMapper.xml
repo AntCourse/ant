@@ -7,38 +7,59 @@
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="degree" property="degree" jdbcType="INTEGER" />
     <result column="hint" property="hint" jdbcType="VARCHAR" />
-    <result column="allcount" property="allcount" jdbcType="VARCHAR" />
-    <result column="rightcount" property="rightcount" jdbcType="VARCHAR" />
-    <result column="avgtime" property="avgtime" jdbcType="VARCHAR" />
+    <result column="allcount" property="allcount" jdbcType="INTEGER" />
+    <result column="rightcount" property="rightcount" jdbcType="INTEGER" />
+    <result column="avgtime" property="avgtime" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, question, type, degree, hint, allcount, rightcount, avgtime
+    t.id, t.question, t.type, t.degree, t.hint, t.allcount, t.rightcount, t.avgtime
   </sql>
+  
+  <select id="getPoisBySub" resultMap="java.lang.String" parameterType="java.lang.String" >
+    select GROUP_CONCAT(i.name) 
+    from tag_subject t, video_tag v, point_video p, point i 
+    where t.tid = v.tid and v.vid = p.vid and p.pid =i.id 
+    and t.sid = #{subjectId,jdbcType=VARCHAR}
+    group by t.sid
+  </select>
+  
+  <select id="getSubjectByVideo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    FROM
+	`subject` t, tag_subject s, video_tag v
+	WHERE t.id = s.sid AND s.tid = v.tid 
+		AND v.vid = #{videoId,jdbcType=VARCHAR}
+	ORDER BY RAND() LIMIT 5
+  </select>
+  
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from course
+    from `subject` t
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from subject
-    where id = #{id,jdbcType=INTEGER}
+    from `subject` t
+    where t.id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from subject
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from `subject`
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.Subject" >
-    insert into subject (id, question, type, 
+    insert into `subject` (id, question, type, 
       degree, hint, allcount, 
       rightcount, avgtime)
     values (#{id,jdbcType=INTEGER}, #{question,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{degree,jdbcType=INTEGER}, #{hint,jdbcType=VARCHAR}, #{allcount,jdbcType=VARCHAR}, 
-      #{rightcount,jdbcType=VARCHAR}, #{avgtime,jdbcType=VARCHAR})
+      #{degree,jdbcType=INTEGER}, #{hint,jdbcType=VARCHAR}, #{allcount,jdbcType=INTEGER}, 
+      #{rightcount,jdbcType=INTEGER}, #{avgtime,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.Subject" >
-    insert into subject
+    insert into `subject`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -82,18 +103,18 @@
         #{hint,jdbcType=VARCHAR},
       </if>
       <if test="allcount != null" >
-        #{allcount,jdbcType=VARCHAR},
+        #{allcount,jdbcType=INTEGER},
       </if>
       <if test="rightcount != null" >
-        #{rightcount,jdbcType=VARCHAR},
+        #{rightcount,jdbcType=INTEGER},
       </if>
       <if test="avgtime != null" >
-        #{avgtime,jdbcType=VARCHAR},
+        #{avgtime,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.kzsrm.model.Subject" >
-    update subject
+    update `subject`
     <set >
       <if test="question != null" >
         question = #{question,jdbcType=VARCHAR},
@@ -108,26 +129,26 @@
         hint = #{hint,jdbcType=VARCHAR},
       </if>
       <if test="allcount != null" >
-        allcount = #{allcount,jdbcType=VARCHAR},
+        allcount = #{allcount,jdbcType=INTEGER},
       </if>
       <if test="rightcount != null" >
-        rightcount = #{rightcount,jdbcType=VARCHAR},
+        rightcount = #{rightcount,jdbcType=INTEGER},
       </if>
       <if test="avgtime != null" >
-        avgtime = #{avgtime,jdbcType=VARCHAR},
+        avgtime = #{avgtime,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kzsrm.model.Subject" >
-    update subject
+  <update id="updateById" parameterType="com.kzsrm.model.Subject" >
+    update `subject`
     set question = #{question,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       degree = #{degree,jdbcType=INTEGER},
       hint = #{hint,jdbcType=VARCHAR},
-      allcount = #{allcount,jdbcType=VARCHAR},
-      rightcount = #{rightcount,jdbcType=VARCHAR},
-      avgtime = #{avgtime,jdbcType=VARCHAR}
+      allcount = #{allcount,jdbcType=INTEGER},
+      rightcount = #{rightcount,jdbcType=INTEGER},
+      avgtime = #{avgtime,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
