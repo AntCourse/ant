@@ -1,5 +1,7 @@
 package com.kzsrm.service;
 
+import java.util.List;
+
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Video;
 import com.kzsrm.utils.CustomException;
@@ -19,5 +21,11 @@ public interface VideoService  extends BaseServiceMybatis<Video, Integer> {
 	 * @throws CustomException 
 	 */
 	void updateVideoInfo(String videoId, String timeSpan) throws CustomException;
+	/**
+	 * 获取试题相关的视频
+	 * @param subjectId
+	 * @return
+	 */
+	List<Video> getVideoBySubject(String subjectId);
 
 }

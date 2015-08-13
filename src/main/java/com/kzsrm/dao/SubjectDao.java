@@ -18,8 +18,4 @@ public class SubjectDao<E> extends BaseMybatisDao<Subject, String> {
 		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getSubjectByVideo", videoId);
 	}
 
-	public String getPoisBySub(String subjectId) {
-		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getPoisBySub", subjectId);
-	}
-
 }

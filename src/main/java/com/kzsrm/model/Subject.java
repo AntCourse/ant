@@ -62,7 +62,7 @@ public class Subject {
     }
 
 	public Integer getAllcount() {
-		return allcount;
+		return allcount == null ? 0 : allcount;
 	}
 
 	public void setAllcount(Integer allcount) {
@@ -70,7 +70,7 @@ public class Subject {
 	}
 
 	public Integer getRightcount() {
-		return rightcount;
+		return rightcount == null ? 0 : rightcount;
 	}
 
 	public void setRightcount(Integer rightcount) {
@@ -78,7 +78,7 @@ public class Subject {
 	}
 
 	public Integer getAvgtime() {
-		return avgtime;
+		return avgtime == null ? 0 : avgtime;
 	}
 
 	public void setAvgtime(Integer avgtime) {

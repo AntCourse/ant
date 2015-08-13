@@ -17,4 +17,9 @@ public class PointDao<E> extends BaseMybatisDao<Point, String> {
 	public List<Point> getPointByCour(String courseId) {
 		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getPointByCour", courseId);
 	}
+	
+	public List<Point> getPoisBySub(String subjectId) {
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getPoisBySub", subjectId);
+	}
+
 }

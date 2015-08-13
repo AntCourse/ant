@@ -1,10 +1,11 @@
 package com.kzsrm.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Subject;
+
+import net.sf.json.JSONArray;
 
 public interface SubjectService  extends BaseServiceMybatis<Subject, Integer> {
 
@@ -19,6 +20,6 @@ public interface SubjectService  extends BaseServiceMybatis<Subject, Integer> {
 	 * @param answer
 	 * @return
 	 */
-	List<Map<String, Object>> checkAnswer(String answer);
+	JSONArray checkAnswer(String answer);
 
 }

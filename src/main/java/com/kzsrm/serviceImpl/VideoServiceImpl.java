@@ -1,5 +1,7 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.kzsrm.dao.VideoDao;
 import com.kzsrm.model.Video;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.VideoService;
+import com.kzsrm.utils.ComUtils;
 import com.kzsrm.utils.CustomException;
 
 @Service
@@ -40,12 +43,7 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, Integer> imp
 	 */
 	@Override
 	public void updateVideoInfo(String videoId, String timeSpan) throws CustomException {
-//		int _videoId = 0;
-		int _timeSpan = 0;
-		try{
-//			_videoId = Integer.parseInt(videoId);
-			_timeSpan = Integer.parseInt(timeSpan);
-		}catch (Exception e){}
+		int _timeSpan = ComUtils.parseInt(timeSpan);
 		
 		Video video = videoDao.getById(videoId);
 		if (video == null)
@@ -54,6 +52,15 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, Integer> imp
 		video.setPlayCount(video.getPlayCount() + 1);
 		video.setTimeSpan(video.getTimeSpan() + _timeSpan);
 		videoDao.update(video);
+	}
+	/**
+	 * 获取试题相关的视频
+	 * @param subjectId
+	 * @return
+	 */
+	@Override
+	public List<Video> getVideoBySubject(String subjectId) {
+		return videoDao.getVideoBySubject(subjectId);
 	}
 
 }

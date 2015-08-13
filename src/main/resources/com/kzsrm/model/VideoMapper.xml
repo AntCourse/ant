@@ -14,6 +14,14 @@
     t.id, t.name, t.content, t.address, t.playcount, t.timespan
   </sql>
   
+  <select id="getVideoBySubject" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from video t, video_tag v, tag_subject s
+    where t.id = v.vid and v.tid = s.tid
+    	and s.sid = #{subjectId,jdbcType=VARCHAR}
+  </select>
+  
   <select id="getVideoByPoint" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" /> ,pv.weight

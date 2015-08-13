@@ -15,14 +15,6 @@
     t.id, t.question, t.type, t.degree, t.hint, t.allcount, t.rightcount, t.avgtime
   </sql>
   
-  <select id="getPoisBySub" resultMap="java.lang.String" parameterType="java.lang.String" >
-    select GROUP_CONCAT(i.name) 
-    from tag_subject t, video_tag v, point_video p, point i 
-    where t.tid = v.tid and v.vid = p.vid and p.pid =i.id 
-    and t.sid = #{subjectId,jdbcType=VARCHAR}
-    group by t.sid
-  </select>
-  
   <select id="getSubjectByVideo" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

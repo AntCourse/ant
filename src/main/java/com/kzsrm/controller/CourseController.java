@@ -26,6 +26,8 @@ import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.CustomException;
 import com.kzsrm.utils.MapResult;
 
+import net.sf.json.JSONArray;
+
 @Controller
 @RequestMapping("/cour")
 public class CourseController {
@@ -85,8 +87,8 @@ public class CourseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getVideo")
-	public Map<String, Object> getVideo(
+	@RequestMapping(value = "/getVideoByPoi")
+	public Map<String, Object> getVideoByPoi(
 			@RequestParam(required = true) String pointId) {
 		try{
 			if (StringUtils.isBlank(pointId))
@@ -163,8 +165,30 @@ public class CourseController {
 				return MapResult.initMap(ApiCode.PARG_ERR, "答案为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
-			List<Map<String, Object>> subList = subjectService.checkAnswer(answer);
+			JSONArray subList = subjectService.checkAnswer(answer);
 			ret.put("result", subList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 获取测试题的相关视频
+	 * @param subjectId		试题id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getVideoBySub")
+	public Map<String, Object> getVideoBySub(
+			@RequestParam(required = true) String subjectId) {
+		try{
+			if (StringUtils.isBlank(subjectId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "试题id为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			List<Video> videoList = videoService.getVideoBySubject(subjectId);
+			ret.put("result", videoList);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
