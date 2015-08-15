@@ -23,6 +23,7 @@
 		<result column="learntime" jdbcType="VARCHAR" property="learntime" />
 		<result column="examtype" jdbcType="VARCHAR" property="examtype" />
 		<!-- <result column="coin" jdbcType="INTEGER" property="coin" /> -->
+		<result column="isActive" jdbcType="INTEGER" property="isActive"/>
 
 		<result column="yzm" jdbcType="VARCHAR" property="yzm" />
 
@@ -111,6 +112,9 @@
 			<if test="status != null">
 				status,
 			</if>
+			<if test="isActive != null and isActive != ''">
+				isActive,
+			</if>
 		</trim>
 
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -147,6 +151,9 @@
 			<if test="status != null">
 				#{status,jdbcType=VARCHAR},
 			</if>
+			<if test="isActive != null and isActive != ''">
+				#{isActive,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 
@@ -159,6 +166,9 @@
 			</if>
 			<if test="age != null and age!=''">
 				age = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="passwd != null">
+				passwd = #{passwd,jdbcType=VARCHAR},
 			</if>
 			<if test="sex != null">
 				sex = #{sex,jdbcType=VARCHAR},
@@ -199,9 +209,11 @@
 				learntime = #{learntime,jdbcType=VARCHAR},
 			</if>
 			<if test="examtype != null">
-				examtype = #{examtype,jdbcType=VARCHAR}
+				examtype = #{examtype,jdbcType=VARCHAR},
 			</if>
-
+			<if test="isActive != null and isActive != ''">
+				isActive = #{isActive,jdbcType=INTEGER}
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER} or phone = #{phone,jdbcType=VARCHAR}
 		or email = #{email,jdbcType=VARCHAR}

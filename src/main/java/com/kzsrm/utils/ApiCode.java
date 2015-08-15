@@ -15,9 +15,8 @@ public class ApiCode {
 	 * 无数据
 	 */
 	public static Integer NO_DATA = 1002;
-	
 	/*
-	 * 验证码已过期
+	 * 已有数据
 	 */
-	public static Integer CODE_INVALID = 1003;
+	public static Integer CODE_EXIST = 1003;
 }

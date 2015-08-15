@@ -25,7 +25,9 @@ import com.kzsrm.model.User;
 import com.kzsrm.model.Yzm;
 import com.kzsrm.service.UserService;
 import com.kzsrm.utils.ApiCode;
+import com.kzsrm.utils.ConfigUtil;
 import com.kzsrm.utils.DateUtil;
+import com.kzsrm.utils.JavaSmsApi;
 import com.kzsrm.utils.MapResult;
 import com.kzsrm.utils.SendMail;
 import com.kzsrm.utils.Tools;
@@ -48,15 +50,15 @@ public class UserController extends SimpleFormController {
 	 * @param email
 	 * @param yzm
 	 * @param passwd
-	 * @return
+	 * @return 成功{"message":"成功","apicode":1001}
+	 *         {"message":"用户已存在","apicode":1003}
 	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/reg")
 	@ResponseBody
-	public Map<String, Object> reg(HttpServletRequest httpServletRequest,
+	public Map<String, Object> reg(HttpServletRequest httpServletRequest, User us,
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "yzm", required = false) String yzm,
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
 		// 查询是否已经注册过
 		Map<String, Object> map = null;
@@ -70,8 +72,14 @@ public class UserController extends SimpleFormController {
 		Yzm yzmList = null;
 		try {
 			if (map.get("data") == null) {
-				if (!StringUtils.isEmpty(yzm)) {
-					yzmList = userService.getYzm(email, phone);
+				if (email.contains("@")) {
+					Map<String, Object> m = emailZym(email, us);
+					System.out.println(m);
+				}
+				yzmList = userService.getYzm(email, phone);
+				if (yzmList == null) {
+					return MapResult.initMap(ApiCode.PARG_ERR, "没有验证码");
+				} else {
 					Date d = yzmList.getRegtime();
 					String date = Tools.ymdhms.format(d);
 					boolean isCodeInvalid = false;
@@ -92,43 +100,35 @@ public class UserController extends SimpleFormController {
 						}
 					}
 					if (isCodeInvalid == true) {
-						return MapResult.initMap(ApiCode.CODE_INVALID, "验证码已过期");
+						return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 					} else {
-						if (yzmList.getYzm().equals(yzm)) {
-							if (!StringUtils.isEmpty(phone)) {
-								u.setPhone(phone);
-							} else if (!StringUtils.isEmpty(email)) {
-								u.setEmail(email);
-							}
-							u.setRegtime(new Date());
-							u.setPasswd(passwd);
-							u.setRegtime(new Date());
-							Map<String, Object> maps = userService.insertUser(u);
-							// 查询用户
-							User user = userService.selByEmailOrMobile(email, phone);
-							Sign sign = new Sign();
-							sign.setAntCoin(300);
-							sign.setUid(user.getId());
-							boolean flag = userService.insertSign(sign);
-							System.out.println(Integer.parseInt(maps.get("data").toString()) == 1);
-							System.out.println(flag == true);
-							System.out.println(maps.get("data").equals("1") && flag == true);
-							Map<String, Object> result = MapResult.initMap();;
-							if(Integer.parseInt(maps.get("data").toString()) == 1 && flag == true){
-								result = MapResult.initMap();
-							}else{
-								result = MapResult.failMap();
-							}
-							return result;
-						} else {
-							return MapResult.initMap(ApiCode.PARG_ERR, "验证码错误");
+						if (!StringUtils.isEmpty(phone)) {
+							u.setPhone(phone);
+						} else if (!StringUtils.isEmpty(email)) {
+							u.setEmail(email);
 						}
+						u.setRegtime(new Date());
+						u.setPasswd(passwd);
+						u.setRegtime(new Date());
+						u.setIsActive(1);// 未激活
+						Map<String, Object> maps = userService.insertUser(u);
+						// 查询用户
+						User user = userService.selByEmailOrMobile(email, phone);
+						Sign sign = new Sign();
+						sign.setAntCoin(300);
+						sign.setUid(user.getId());
+						boolean flag = userService.insertSign(sign);
+						Map<String, Object> result = MapResult.initMap();
+						if (Integer.parseInt(maps.get("data").toString()) == 1 && flag == true) {
+							result = MapResult.initMap();
+						} else {
+							result = MapResult.failMap();
+						}
+						return result;
 					}
-				} else {
-					return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 				}
 			} else {
-				return MapResult.initMap(ApiCode.PARG_ERR, "已有此数据");
+				return MapResult.initMap(ApiCode.CODE_EXIST, "用户已存在");
 			}
 		} catch (Exception e) {
 			logger.error("", e);
@@ -141,7 +141,8 @@ public class UserController extends SimpleFormController {
 	 * 
 	 * @param httpServletRequest
 	 * @param user
-	 * @return
+	 * @return {"message":"成功","data":"true","apicode":10000}
+	 *         data:true登陆成功(密码错误);false:登录失败(密码错误)
 	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/login")
@@ -150,32 +151,37 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
-		User u = new User();
-		if (phone != null) {
-			u.setPhone(phone);
-		} else if (email != null) {
-			u.setEmail(email);
-		}
-		u.setId(user.getId());
-		// 查询是否已经注册过,防止重复点击邮件链接
-		Map<String, Object> map = null;
-		try {
-			map = userService.login(user);
-		} catch (Exception e) {
-			return MapResult.failMap();
-		}
-		if (map.get("data").equals("false")) {
-			return userService.login(u);
+		User users = userService.selByEmailOrMobile(email, phone);
+		if (users.getIsActive() == 1) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "邮箱未激活");
 		} else {
+			User u = new User();
+			if (phone != null) {
+				u.setPhone(phone);
+			} else if (email != null) {
+				u.setEmail(email);
+			}
+			u.setId(user.getId());
+			// 查询是否已经注册过,防止重复点击邮件链接
+			Map<String, Object> map = null;
 			try {
-				// 修改最后一次登录时间
-				u.setLogintime(new Date());
-				userService.updateUser(u);
-				u.setPasswd(passwd);
-				return userService.login(u);
+				map = userService.login(user);
 			} catch (Exception e) {
-				logger.error("", e);
 				return MapResult.failMap();
+			}
+			if (map.get("data").equals("false")) {
+				return userService.login(u);
+			} else {
+				try {
+					// 修改最后一次登录时间
+					u.setLogintime(new Date());
+					userService.updateUser(u);
+					u.setPasswd(passwd);
+					return userService.login(u);
+				} catch (Exception e) {
+					logger.error("", e);
+					return MapResult.failMap();
+				}
 			}
 		}
 	}
@@ -297,48 +303,39 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "yzm", required = false) String yzm) {
-		Map<String, Object> map = null;
-		try {
-			// 查询是否已有此用户
-			map = userService.selectUniqueUser(email, phone);
-		} catch (Exception e) {
-			return MapResult.failMap();
-		}
-		if (map.get("data") != null) {
-			User u = new User();
-			// 获取验证码发送时间
-			Yzm yzmList = userService.getYzm(email, phone);
-			String str = yzmList.getYzm();
-			boolean isCodeInvalid = false;
-			String time = Tools.ymdhms.format(yzmList.getRegtime());
-			if (phone != null) {
-				try {
-					isCodeInvalid = Tools.codeInvalid(time, 1);
-				} catch (ParseException e) {
-					logger.error("", e);
-					e.printStackTrace();
-				}
-			} else if (email != null) {
-				try {
-					isCodeInvalid = Tools.codeInvalid(time, 0);
-				} catch (ParseException e) {
-					logger.error("", e);
-					e.printStackTrace();
-				}
+		User u = new User();
+		// 获取验证码发送时间
+		Yzm yzmList = userService.getYzm(email, phone);
+		String str = yzmList.getYzm();
+		boolean isCodeInvalid = false;
+		String time = Tools.ymdhms.format(yzmList.getRegtime());
+		if (phone != null) {
+			try {
+				isCodeInvalid = Tools.codeInvalid(time, 1);
+			} catch (ParseException e) {
+				logger.error("", e);
+				e.printStackTrace();
 			}
-			if (isCodeInvalid == true) {
-				return MapResult.initMap(ApiCode.CODE_INVALID, "验证码已过期");
+		} else if (email != null) {
+			try {
+				isCodeInvalid = Tools.codeInvalid(time, 0);
+			} catch (ParseException e) {
+				logger.error("", e);
+				e.printStackTrace();
+			}
+		}
+		if (isCodeInvalid == true) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
+		} else {
+			if (str.equals(yzm)) {
+				u.setEmail(email);
+				u.setPhone(phone);
+				u.setIsActive(2);// 已激活
+				return userService.updateUser(u);
 			} else {
-				if (str.equals(yzm)) {
-					u.setYzm(yzm);
-					u.setRegtime(new Date());
-					return userService.insertUser(u);
-				} else {
-					return MapResult.initMap(ApiCode.CODE_INVALID, "验证码错误");
-				}
+				return MapResult.initMap(ApiCode.PARG_ERR, "验证码错误");
 			}
 		}
-		return MapResult.initMap(ApiCode.CODE_INVALID, "没有此用户");
 	}
 
 	/**
@@ -364,32 +361,29 @@ public class UserController extends SimpleFormController {
 	 * @throws URISyntaxException
 	 */
 	public Map<String, Object> phoneYam(String mobile) throws IOException, URISyntaxException {
-		// String apikey = ConfigUtil.getStringValue("sms.key");
-		// String code = SendMail.getCode();
-		// System.out.println(JavaSmsApi.getUserInfo(apikey));
-		// String text = "【蚂蚁课堂】您的验证码是" + code;
-		// String result = JavaSmsApi.sendSms(apikey, text, mobile);
+		String apikey = ConfigUtil.getStringValue("sms.key");
+		String code = SendMail.getCode();
+		System.out.println(JavaSmsApi.getUserInfo(apikey));
+		String text = "【蚂蚁课堂】您的验证码是" + code;
+		String result = JavaSmsApi.sendSms(apikey, text, mobile);
 		/*
-		 * 测试
+		 * 测试start
 		 */
-		JSONObject jo = new JSONObject();
-		jo.put("code", 0);
-		jo.put("msg", "OK");
-		JSONObject jo1 = new JSONObject();
-		jo1.put("nick", "蚂蚁课堂");
-		jo1.put("gmt_created", "2015-07-29 15:15:24");
-		jo1.put("mobile", "13240406688");
-		jo1.put("email", "BD@antkt.com");
-		jo1.put("ip_whitelist", "223.72.133.2");
-		jo1.put("api_version", "v1");
-		jo1.put("alarm_balance", 100);
-		jo1.put("emergency_contact", "");
-		jo1.put("emergency_mobile", "");
-		jo1.put("balance", 981);
+		/*
+		 * JSONObject jo = new JSONObject(); jo.put("code", 0); jo.put("msg",
+		 * "OK"); JSONObject jo1 = new JSONObject(); jo1.put("nick", "蚂蚁课堂");
+		 * jo1.put("gmt_created", "2015-07-29 15:15:24"); jo1.put("mobile",
+		 * "13240406688"); jo1.put("email", "BD@antkt.com");
+		 * jo1.put("ip_whitelist", "223.72.133.2"); jo1.put("api_version",
+		 * "v1"); jo1.put("alarm_balance", 100); jo1.put("emergency_contact",
+		 * ""); jo1.put("emergency_mobile", ""); jo1.put("balance", 981);
+		 * jo.put("user", jo1);
+		 */
+		/*
+		 * 测试end
+		 */
 
-		jo.put("user", jo1);
-
-		// JSONObject jo = JSONObject.parseObject(result);
+		JSONObject jo = JSONObject.parseObject(result);
 		String msg = jo.getString("msg");
 
 		if (msg.equals("OK")) {
@@ -472,7 +466,7 @@ public class UserController extends SimpleFormController {
 			}
 
 			if (isCodeInvalid == true) {
-				return MapResult.initMap(ApiCode.CODE_INVALID, "验证码已过期");
+				return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 			} else {
 				User u = new User();
 				if (code.equals(yzmList.getYzm())) {
@@ -549,7 +543,6 @@ public class UserController extends SimpleFormController {
 				System.out.println("连续打卡赠送的币    " + totalSignNum);
 				s.setUid(uid);
 				s.setAntCoin(listSign.getAntCoin() + totalSignNum);
-
 				userService.updateSign(s);
 				return MapResult.initMap(ApiCode.PARG_ERR, "签到成功");
 			} else {
@@ -580,7 +573,7 @@ public class UserController extends SimpleFormController {
 	 * 用户唯一性验证(手机和邮箱)
 	 * 
 	 * @param httpServletRequest
-	 * @return true 有此用户 false不存在该用户
+	 * @return{"message":"成功","data":"true","apicode":10000} true 有此用户 false不存在该用户
 	 */
 	@RequestMapping(value = "userUnique")
 	@ResponseBody

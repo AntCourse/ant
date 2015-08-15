@@ -38,6 +38,15 @@ public class User {
 	private String status;
 	private String examtype;
 	private String yzm;
+	private int isActive;
+
+	public int getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
 
 	public String getYzm() {
 		return yzm;
@@ -197,6 +206,6 @@ public class User {
 				+ passwd + ", email=" + email + ", birthday=" + birthday + ", qq=" + qq + ", sign=" + sign
 				+ ", regtime=" + regtime + ", logintime=" + logintime + ", status=" + status + ", avator=" + avator
 				+ ", level=" + level + ", yzm=" + yzm + ", honor=" + honor + ", learntime=" + learntime + ", examtype="
-				+ examtype + "]";
+				+ examtype + ", isActive="+isActive+"]";
 	}
 }
