@@ -151,7 +151,17 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
-		User users = userService.selByEmailOrMobile(email, phone);
+		User users = null;
+		try {
+			 users = userService.selByEmailOrMobile(email, phone);
+		} catch (Exception e) {
+			logger.error("",e);
+			return MapResult.failMap();
+		}
+		if(users == null){
+			return MapResult.initMap(ApiCode.PARG_ERR,"用户名或密码错误");
+		}
+		System.out.println(users.getIsActive() == 1);
 		if (users.getIsActive() == 1) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "邮箱未激活");
 		} else {
@@ -306,6 +316,9 @@ public class UserController extends SimpleFormController {
 		User u = new User();
 		// 获取验证码发送时间
 		Yzm yzmList = userService.getYzm(email, phone);
+		if(yzmList == null){
+			return MapResult.initMap(ApiCode.PARG_ERR, "验证码过期");
+		}
 		String str = yzmList.getYzm();
 		boolean isCodeInvalid = false;
 		String time = Tools.ymdhms.format(yzmList.getRegtime());

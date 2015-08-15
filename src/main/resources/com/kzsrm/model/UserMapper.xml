@@ -30,7 +30,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, name, age, sex, phone, passwd, email, sign, regtime,
-		logintime,
+		logintime,isActive,
 		status
 	</sql>
 
