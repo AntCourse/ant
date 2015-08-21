@@ -1,5 +1,7 @@
 package com.kzsrm.serviceImpl;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.UserDao;
+import com.kzsrm.model.Sign;
 import com.kzsrm.model.User;
 import com.kzsrm.model.Yzm;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.UserService;
 import com.kzsrm.utils.MapResult;
+import com.kzsrm.utils.Tools;
+import com.sun.mail.imap.protocol.ID;
 
 @Service("userService")
 @Transactional
@@ -69,14 +74,18 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 
 	@Override
 	public Map<String, Object> updateUser(User user) {
-		this.userDao.update(user);
-		map.put("data", user);
+		int result = this.userDao.update(user);
+		boolean flag = false;
+		if (result == 1) {
+			flag = true;
+		}
+		map.put("data", flag);
 		return map;
 	}
 
 	@Override
-	public Map<String, Object> selectUniqueUser(String email,String phone) {
-		User user  = this.userDao.selectIsExitUser(email,phone);
+	public Map<String, Object> selectUniqueUser(String email, String phone) {
+		User user = this.userDao.selectIsExitUser(email, phone);
 		map.put("data", user);
 		return map;
 	}
@@ -87,7 +96,63 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public Yzm getYzm(String email,String phone) {
-		return this.userDao.selectOneYzm(email,phone);
+	public Yzm getYzm(String email, String phone) {
+		return this.userDao.selectOneYzm(email, phone);
+	}
+
+	@Override
+	public Map<String, Object> login(User user) {
+		User u = this.userDao.userLogin(user);
+		if (u != null) {
+			map.put("data", "true");
+		} else {
+			map.put("data", "false");
+		}
+		return map;
+	}
+
+	/*
+	 * 添加打卡记录
+	 */
+	public boolean insertSign(int uid) {
+		boolean flag = false;
+		int result = this.userDao.insertSign(uid);
+		if (result == 1) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		return flag;
+	}
+
+	/*
+	 * 打卡清零
+	 */
+	public boolean cleanSign() {
+		User user = new User();
+		user.setRegnum(0);// 清零
+		user.setLastreg(new Date());
+		int result = this.userDao.update(user);
+		boolean flag = false;
+		if (result == 1) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		return flag;
+	}
+
+	/*
+	 * 获取该用户是否打过卡
+	 */
+	public Sign getSign(int uid) {
+		Sign sign = this.userDao.getSign(uid);
+		return sign;
+	}
+
+	@Override
+	public int updateSign(int uid,int status) {
+		int result = this.userDao.updateSign(uid,status);
+		return result;
 	}
 }

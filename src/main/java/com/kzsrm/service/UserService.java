@@ -1,8 +1,11 @@
 package com.kzsrm.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kzsrm.model.Sign;
 import com.kzsrm.model.User;
 import com.kzsrm.model.Yzm;
 
@@ -23,4 +26,14 @@ public interface UserService {
 
 	public Yzm getYzm(String email, String phone);
 
+	public Map<String, Object> login(User user);
+
+	public boolean insertSign(int uid);
+
+	public boolean cleanSign();
+
+	public Sign getSign(int uid);
+	
+	public int updateSign(int uid,int status);
+	
 }

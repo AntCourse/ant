@@ -24,7 +24,6 @@
 		<result column="examtype" jdbcType="VARCHAR" property="examtype" />
 		<result column="coin" jdbcType="INTEGER" property="coin" />
 
-		<!-- 验证码表字段 -->
 		<result column="yzm" jdbcType="VARCHAR" property="yzm" />
 
 	</resultMap>
@@ -42,6 +41,30 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
+	<!--  根据id新增打卡记录同时修改打卡日期 -->
+	<update id="updateSign" parameterType="map">
+		update user set regnum =
+		#{regnum,jdbcType=INTEGER} and lastreg = #{lastreg,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!--  根据id还原打卡记录 -->
+	<update id="cleanSign" parameterType="map">
+		update user set regnum = 0 and lastreg = #{lastreg,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!--  根据id获取该用户打卡记录数 -->
+	<select id="getSignNum" parameterType="map">
+		select regnum from user where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 用户登录 -->
+	<select id="userLogin" parameterType="map" resultMap="BaseResultMap">
+		select *
+		from user
+		where (email = #{email,jdbcType=VARCHAR} or phone =
+		#{phone,jdbcType=VARCHAR}) and passwd = #{passwd,jdbcType=VARCHAR};
+	</select>
+
 	<!-- 根据手机号和邮箱查询用户信息 -->
 	<select id="selectUser" resultMap="BaseResultMap" parameterType="map">
 		select
@@ -50,6 +73,7 @@
 		where phone = #{phone} or email = #{email}
 	</select>
 
+	<!-- 根据id删除用户 -->
 	<delete id="deleteById" parameterType="java.lang.Integer">
 		delete from user
 		where id =
@@ -66,7 +90,7 @@
 			<if test="name != null">
 				name,
 			</if>
-			<if test="age != null">
+			<if test="age != null and age != ''">
 				age,
 			</if>
 			<if test="sex != null">
@@ -102,7 +126,7 @@
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
 			</if>
-			<if test="age != null">
+			<if test="age != null and age!=''">
 				#{age,jdbcType=INTEGER},
 			</if>
 			<if test="sex != null">
@@ -139,21 +163,17 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="age != null">
+			<if test="age != null and age!=''">
 				age = #{age,jdbcType=INTEGER},
 			</if>
 			<if test="sex != null">
 				sex = #{sex,jdbcType=VARCHAR},
 			</if>
-			<if test="phone != null">
-				phone = #{phone,jdbcType=VARCHAR},
-			</if>
+			<!-- <if test="phone != null"> phone = #{phone,jdbcType=VARCHAR}, </if> -->
 			<if test="passwd != null">
 				passwd = #{passwd,jdbcType=VARCHAR},
 			</if>
-			<if test="email != null">
-				email = #{email,jdbcType=VARCHAR},
-			</if>
+			<!-- <if test="email != null"> email = #{email,jdbcType=VARCHAR}, </if> -->
 			<if test="sign != null">
 				sign = #{sign,jdbcType=VARCHAR},
 			</if>
@@ -175,13 +195,13 @@
 			<if test="avator != null">
 				avator = #{avator,jdbcType=VARCHAR},
 			</if>
-			<if test="coin != null">
+			<if test="coin != null and coin!=''">
 				coin = #{coin,jdbcType=INTEGER},
 			</if>
 			<if test="level != null">
 				level = #{level,jdbcType=VARCHAR},
 			</if>
-			<if test="regnum != null">
+			<if test="regnum != null and regnum!=''">
 				regnum = #{regnum,jdbcType=INTEGER},
 			</if>
 			<if test="lastreg != null">
@@ -198,7 +218,8 @@
 			</if>
 
 		</set>
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER} or phone = #{phone,jdbcType=VARCHAR}
+		or email = #{email,jdbcType=VARCHAR}
 	</update>
 
 </mapper>

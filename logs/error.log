@@ -1,188 +1,22 @@
-07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@3e48983b] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@7968f44a] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@597e648b] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:05 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@41079622] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@4c5abdb2] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@636e6f5e] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@6da809b9] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@51e7c3f6] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@12eb6e] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@5ac7c747] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@46f2757c] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@45e83734] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@5edafb00] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@1872a01c] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@23a4a9c3] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@3e164f33] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@64e84fb3] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@22819db8] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@f50b597] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1852) - A RESOURCE POOL IS PERMANENTLY BROKEN! [com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask@3cef1c6a] (because a series of 30 acquisition attempts failed.)
-07-30 14:19:06 ERROR com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910) - com.mchange.v2.resourcepool.BasicResourcePool@33a7ce01 -- Unexpectedly broken!!!
-com.mchange.v2.resourcepool.ResourcePoolException: Unexpected Break Stack Trace!
-	at com.mchange.v2.resourcepool.BasicResourcePool.unexpectedBreak(BasicResourcePool.java:910)
-	at com.mchange.v2.resourcepool.BasicResourcePool.access$1100(BasicResourcePool.java:32)
-	at com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1855)
-	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:636)
-07-30 21:45:23 ERROR org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:466) - Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService' defined in file [D:\Echo\antproject\ant\target\classes\com\kzsrm\serviceImpl\UserServiceImpl.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [com.kzsrm.serviceImpl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The import com.kzsrm.baseservice cannot be resolved
-	The import com.kzsrm.model.User cannot be resolved
-	The import com.kzsrm.mybatis cannot be resolved
-	The import com.kzsrm.service cannot be resolved
-	The import com.kzsrm.utils cannot be resolved
-	BaseServiceMybatisImpl cannot be resolved to a type
-	User cannot be resolved to a type
-	UserService cannot be resolved to a type
-	EntityDao cannot be resolved to a type
-	User cannot be resolved to a type
-	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
-	User cannot be resolved to a type
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
-	MapResult cannot be resolved
-	The method getById(int) is undefined for the type UserDao
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:306)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1120)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:522)
+08-11 21:53:37 ERROR org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307) - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [applicationContext.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'class path resource [com/kzsrm/model/signMapper.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: java.lang.IllegalArgumentException: Result Maps collection already contains value for com.kzsrm.model.YzmMapper.yzmMap
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:524)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:461)
 	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:607)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
-	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:647)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:598)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:661)
-	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:517)
-	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:458)
-	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:138)
-	at javax.servlet.GenericServlet.init(GenericServlet.java:241)
-	at org.mortbay.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:431)
-	at org.mortbay.jetty.servlet.ServletHolder.doStart(ServletHolder.java:263)
-	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
-	at org.mortbay.jetty.servlet.ServletHandler.initialize(ServletHandler.java:676)
-	at org.mortbay.jetty.servlet.Context.startContext(Context.java:140)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
+	at org.springframework.context.event.AbstractApplicationEventMulticaster.getApplicationListeners(AbstractApplicationEventMulticaster.java:155)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:86)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:334)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:948)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:383)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:283)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.mortbay.jetty.handler.ContextHandler.startContext(ContextHandler.java:548)
+	at org.mortbay.jetty.servlet.Context.startContext(Context.java:136)
 	at org.mortbay.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1239)
 	at org.mortbay.jetty.handler.ContextHandler.doStart(ContextHandler.java:517)
 	at org.mortbay.jetty.webapp.WebAppContext.doStart(WebAppContext.java:466)
@@ -223,94 +57,25 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService' defined in file [D:\Echo\antproject\ant\target\classes\com\kzsrm\serviceImpl\UserServiceImpl.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [com.kzsrm.serviceImpl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The import com.kzsrm.baseservice cannot be resolved
-	The import com.kzsrm.model.User cannot be resolved
-	The import com.kzsrm.mybatis cannot be resolved
-	The import com.kzsrm.service cannot be resolved
-	The import com.kzsrm.utils cannot be resolved
-	BaseServiceMybatisImpl cannot be resolved to a type
-	User cannot be resolved to a type
-	UserService cannot be resolved to a type
-	EntityDao cannot be resolved to a type
-	User cannot be resolved to a type
-	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
-	User cannot be resolved to a type
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
-	MapResult cannot be resolved
-	The method getById(int) is undefined for the type UserDao
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1011)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:957)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:490)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:461)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:270)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:442)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:416)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:550)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:150)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:303)
-	... 62 more
-Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [com.kzsrm.serviceImpl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The import com.kzsrm.baseservice cannot be resolved
-	The import com.kzsrm.model.User cannot be resolved
-	The import com.kzsrm.mybatis cannot be resolved
-	The import com.kzsrm.service cannot be resolved
-	The import com.kzsrm.utils cannot be resolved
-	BaseServiceMybatisImpl cannot be resolved to a type
-	User cannot be resolved to a type
-	UserService cannot be resolved to a type
-	EntityDao cannot be resolved to a type
-	User cannot be resolved to a type
-	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
-	User cannot be resolved to a type
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
-	MapResult cannot be resolved
-	The method getById(int) is undefined for the type UserDao
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:163)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1004)
-	... 77 more
-Caused by: java.lang.Error: Unresolved compilation problems: 
-	The import com.kzsrm.baseservice cannot be resolved
-	The import com.kzsrm.model.User cannot be resolved
-	The import com.kzsrm.mybatis cannot be resolved
-	The import com.kzsrm.service cannot be resolved
-	The import com.kzsrm.utils cannot be resolved
-	BaseServiceMybatisImpl cannot be resolved to a type
-	User cannot be resolved to a type
-	UserService cannot be resolved to a type
-	EntityDao cannot be resolved to a type
-	User cannot be resolved to a type
-	The method getEntityDao() of type UserServiceImpl must override or implement a supertype method
-	User cannot be resolved to a type
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-	The method selectUser(int) of type UserServiceImpl must override or implement a supertype method
-	MapResult cannot be resolved
-	The method getById(int) is undefined for the type UserDao
-	User cannot be resolved to a type
-	MapResult cannot be resolved
-
-	at com.kzsrm.serviceImpl.UserServiceImpl.<init>(UserServiceImpl.java:12)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
-	... 79 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'class path resource [com/kzsrm/model/signMapper.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: java.lang.IllegalArgumentException: Result Maps collection already contains value for com.kzsrm.model.YzmMapper.yzmMap
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:412)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:295)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1483)
+	... 56 more
+Caused by: java.lang.RuntimeException: Error parsing Mapper XML. Cause: java.lang.IllegalArgumentException: Result Maps collection already contains value for com.kzsrm.model.YzmMapper.yzmMap
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:113)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:88)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:410)
+	... 59 more
+Caused by: java.lang.IllegalArgumentException: Result Maps collection already contains value for com.kzsrm.model.YzmMapper.yzmMap
+	at org.apache.ibatis.session.Configuration$StrictMap.put(Configuration.java:657)
+	at org.apache.ibatis.session.Configuration$StrictMap.put(Configuration.java:629)
+	at org.apache.ibatis.session.Configuration.addResultMap(Configuration.java:420)
+	at org.apache.ibatis.builder.MapperBuilderAssistant.addResultMap(MapperBuilderAssistant.java:200)
+	at org.apache.ibatis.builder.ResultMapResolver.resolve(ResultMapResolver.java:44)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:276)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:243)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:235)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:109)
+	... 61 more

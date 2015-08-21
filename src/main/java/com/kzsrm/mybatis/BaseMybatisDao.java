@@ -12,6 +12,7 @@ public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisD
 	private static Logger logger = LoggerFactory.getLogger(BaseMybatisDao.class);
 	
     public E getById(PK primaryKey) {
+    	System.out.println("primaryKey  "+primaryKey);
         return (E)getSqlSession().selectOne(getFindByPrimaryKeyStatement(), primaryKey);
     }
     
@@ -24,9 +25,10 @@ public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisD
 		int affectCount = getSqlSession().insert(getInsertStatement(), entity);    	
     }
     
-	public void update(E entity) {
+	public int update(E entity) {
 		prepareObjectForSaveOrUpdate(entity);
 		int affectCount = getSqlSession().update(getUpdateStatement(), entity);
+		return affectCount;
 	}
 	
 	

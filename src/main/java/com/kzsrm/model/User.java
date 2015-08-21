@@ -1,12 +1,20 @@
 package com.kzsrm.model;
 
+import java.io.IOException;
 import java.util.Date;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * 
+ * @author wwy
+ *
+ */
 public class User {
 	private int id;
 	private String name;
@@ -215,11 +223,5 @@ public class User {
 				+ ", regtime=" + regtime + ", logintime=" + logintime + ", status=" + status + ", avator=" + avator
 				+ ", level=" + level + ", regnum=" + regnum + ", coin=" + coin + ", yzm=" + yzm + ", lastreg=" + lastreg
 				+ ", honor=" + honor + ", learntime=" + learntime + ", examtype=" + examtype + "]";
-	}
-	
-	public static User toUserInfo(JSONObject user) {
-		User result = JSONObject.toJavaObject(user,
-				User.class);
-		return result;
 	}
 }

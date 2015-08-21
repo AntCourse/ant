@@ -8,14 +8,14 @@
 		<result column="yzm" jdbcType="VARCHAR" property="yzm" />
 		<result column="regtime" jdbcType="VARCHAR" property="regtime" />
 	</resultMap>
-	<!--查询发送验证码的时间  -->
+	
+	<!--获取最新验证码  -->
 	<select id="selectOneYzm" parameterType="map" resultMap="yzmMap">
 		select *
 		from yzm where phone = #{phone} or email =
 		#{email} order by regtime desc
 		limit 0,1;
 	</select>
-	
 	<!-- 添加验证码 -->
 	<insert id="insertYZM" parameterType="map"
 		keyProperty="id">
