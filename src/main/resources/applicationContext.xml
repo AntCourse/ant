@@ -57,6 +57,12 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:/com/kzsrm/model/UserMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/CourseMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/OptionMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/PointMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/SubjectMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/TagMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/VideoMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/yzm.xml</value>
 				<value>classpath:/com/kzsrm/model/SignMapper.xml</value>
 			</list>
