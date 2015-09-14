@@ -31,8 +31,8 @@
 
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, name, age, sex, phone, passwd, email, sign, regtime,
-		logintime,isActive,realName,infoPerfectLev,
+		id, name, age, sex, phone, passwd, email, birthday,sign, regtime,qq,
+		logintime,isActive,realName,infoPerfectLev,avator,sign,level,honor,learntime,isActive,realName,infoPerfectLev,
 		status
 	</sql>
 

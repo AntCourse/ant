@@ -82,7 +82,7 @@ public class UserController extends SimpleFormController {
 				}
 				yzmList = userService.getYzm(email, phone);
 				if (yzmList == null) {
-					return MapResult.initMap(ApiCode.PARG_ERR, "没有验证码");
+					return MapResult.initMap(ApiCode.PARG_ERR, "没有发送验证码");
 				} else {
 					Date d = yzmList.getRegtime();
 					String date = Tools.ymdhms.format(d);
@@ -107,11 +107,11 @@ public class UserController extends SimpleFormController {
 						return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 					} else {
 						if (!StringUtils.isEmpty(phone)) {
-//							Sign sign = new Sign();
-//							sign.setEmail(email);
-//							sign.setPhone(phone);
-//							sign.setSignNum(100);
-//							sign.
+							Sign sign = new Sign();
+							sign.setEmail(email);
+							sign.setPhone(phone);
+							sign.setSignNum(100);
+							this.userService.insertSign(sign);
 							u.setPhone(phone);
 						} else if (!StringUtils.isEmpty(email)) {
 							u.setEmail(email);
@@ -165,7 +165,7 @@ public class UserController extends SimpleFormController {
 			return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
 		}
 		System.out.println(users.getIsActive() == 1);
-		if (users.getIsActive() == 1) {
+		if (users.getIsActive() == 1 && email != null) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "邮箱未激活");
 		} else {
 			User u = new User();
@@ -211,10 +211,8 @@ public class UserController extends SimpleFormController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> update(HttpServletRequest request,
-			@RequestParam(value = "avator", required = false) MultipartFile avator, User user) {
-
-		System.out.println(avator.getName());
+	public Map<String, Object> update(HttpServletRequest request, User user) {
+//		System.out.println(avator.getName());
 		if (StringUtils.isEmpty(String.valueOf(user.getId()))) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 		}
@@ -270,6 +268,9 @@ public class UserController extends SimpleFormController {
 	 * @throws MessagingException
 	 */
 	public Map<String, Object> emailZym(String email, User user) throws MessagingException {
+		if(!email.contains("@")){
+			return MapResult.initMap(ApiCode.PARG_ERR,"邮箱格式错误");
+		}
 		StringBuffer sb = new StringBuffer("点击下面链接激活账号，2小时后失效，否则重新注册账号，链接只能使用一次，请尽快激活！");
 		String code = SendMail.getCode();
 		sb.append("<a href=\"http://localhost:8080/kzsrm/user/mailActive?email=");
@@ -285,8 +286,6 @@ public class UserController extends SimpleFormController {
 		Map<String, Object> map = MapResult.initMap();
 		if (email != null) {
 			flag = SendMail.sendMail(email, "", "", "", sb.toString());
-		} else {
-			map = MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 		}
 		// 添加验证码
 		User u = new User();
@@ -395,6 +394,7 @@ public class UserController extends SimpleFormController {
 		System.out.println(JavaSmsApi.getUserInfo(apikey));
 		String text = "【蚂蚁课堂】您的验证码是" + code;
 		String result = JavaSmsApi.sendSms(apikey, text, mobile);
+		System.out.println(result);
 		/*
 		 * 测试start
 		 */
@@ -418,7 +418,7 @@ public class UserController extends SimpleFormController {
 		if (msg.equals("OK")) {
 			User u = new User();
 			u.setPhone(mobile);
-			u.setYzm("1919");
+			u.setYzm(code);
 			u.setRegtime(new Date());
 			int res = 0;
 			try {
