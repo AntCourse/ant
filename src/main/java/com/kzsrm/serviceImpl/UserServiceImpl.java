@@ -33,9 +33,9 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public Map<String, Object> selectUser(int id) {
-		map.put("data", this.userDao.getById(id));
-		return map;
+	public User selectUser(String sessionId) {
+		User user = this.userDao.getUserBySessionId(sessionId);
+		return user;
 	}
 
 	@Override

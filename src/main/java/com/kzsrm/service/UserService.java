@@ -14,7 +14,7 @@ public interface UserService {
 //	public Map<String, Object> createUser(String name, Integer age, String sex, String phone, String passwd,
 //			String email, String sign, String tag, String status, String appv, String src);
 
-	public Map<String, Object> selectUser(int id);
+	public User selectUser(String sessionId);
 
 	public Map<String, Object> insertUser(User user);
 

@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +64,10 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
+
+		// 创建session
+		HttpSession session = httpServletRequest.getSession();
+		String sessionId = session.getId();
 		// 查询是否已经注册过
 		Map<String, Object> map = null;
 		try {
@@ -116,6 +122,7 @@ public class UserController extends SimpleFormController {
 						} else if (!StringUtils.isEmpty(email)) {
 							u.setEmail(email);
 						}
+						u.setUserSession(sessionId);
 						u.setRegtime(new Date());
 						u.setPasswd(passwd);
 						u.setRegtime(new Date());
@@ -127,6 +134,7 @@ public class UserController extends SimpleFormController {
 						} else {
 							result = MapResult.failMap();
 						}
+						result.put("user", u);
 						return result;
 					}
 				}
@@ -212,7 +220,7 @@ public class UserController extends SimpleFormController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> update(HttpServletRequest request, User user) {
-//		System.out.println(avator.getName());
+		// System.out.println(avator.getName());
 		if (StringUtils.isEmpty(String.valueOf(user.getId()))) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 		}
@@ -226,17 +234,17 @@ public class UserController extends SimpleFormController {
 	}
 
 	/**
-	 * 根据id查询用户的信息
+	 * 根据sessionId查询用户的信息
 	 * 
-	 * @param id
+	 * @param sessionId
 	 * @return User对象
 	 */
 	@RequestMapping(value = "/queryUser")
 	@ResponseBody
-	public Map<String, Object> queryUser(int id) {
+	public Map<String, Object> queryUser(String sessionId) {
 		Map<String, Object> result = MapResult.initMap();
 		try {
-			result.put("data", userService.selectUser(id));
+			result.put("data", userService.selectUser(sessionId));
 		} catch (Exception e) {
 			logger.error("", e);
 			return MapResult.failMap();
@@ -268,8 +276,8 @@ public class UserController extends SimpleFormController {
 	 * @throws MessagingException
 	 */
 	public Map<String, Object> emailZym(String email, User user) throws MessagingException {
-		if(!email.contains("@")){
-			return MapResult.initMap(ApiCode.PARG_ERR,"邮箱格式错误");
+		if (!email.contains("@")) {
+			return MapResult.initMap(ApiCode.PARG_ERR, "邮箱格式错误");
 		}
 		StringBuffer sb = new StringBuffer("点击下面链接激活账号，2小时后失效，否则重新注册账号，链接只能使用一次，请尽快激活！");
 		String code = SendMail.getCode();

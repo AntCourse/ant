@@ -118,4 +118,9 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		map.put("phone", mobile);
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getByIdOrMobileOrEmail", map);
 	}
+	
+	public User getUserBySessionId(String sessionId){
+		map.put("userSession", sessionId);
+		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getUserBySessionId", map);
+	}
 }

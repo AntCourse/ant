@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.kzsrm.model.User;
+
 
 
 public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisDao  implements EntityDao<E,PK> {
@@ -86,5 +88,4 @@ public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisD
 	public void flush() {
 		//ignore
 	}
-	
 }
