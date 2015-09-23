@@ -17,7 +17,7 @@ import com.kzsrm.service.CourseService;
 
 @Service
 @Transactional
-public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, Integer> implements CourseService {
+public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> implements CourseService {
 	@Resource
 	private CourseDao<?> courseDao;
 

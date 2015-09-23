@@ -27,6 +27,7 @@ import com.kzsrm.utils.CustomException;
 import com.kzsrm.utils.MapResult;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/cour")
@@ -39,7 +40,7 @@ public class CourseController {
 	@Resource private SubjectService subjectService;
 
 	/**
-	 * 课程列表
+	 * 课程列表-二级
 	 * @param pid		父级id，为空时查询顶层结点
 	 * @param type		预留参数
 	 * @return
@@ -51,8 +52,60 @@ public class CourseController {
 			@RequestParam(required = false) String type) {
 		try{
 			Map<String, Object> ret = MapResult.initMap();
+			JSONObject course = new JSONObject();
+			Course cour = courseService.getById(pid);
+			if (cour != null){
+				course.put("courId", cour.getId());
+				course.put("courName", cour.getName());
+				course.put("courProfile", cour.getProfile());
+			}
+			
 			List<Course> courseList = courseService.getchildrenCour(pid, type);
-			ret.put("result", courseList);
+			course.put("child", courseList);
+			
+			ret.put("result", course);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 课程列表-三级
+	 * @param pid		父级id，不能为空
+	 * @param type		预留参数
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getCourListSpe")
+	public Map<String, Object> getCourListSpe(
+			@RequestParam(required = true) String pid,
+			@RequestParam(required = false) String type) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			JSONObject course = new JSONObject();
+			Course cour = courseService.getById(pid);
+			if (cour != null){
+				course.put("courId", cour.getId());
+				course.put("courName", cour.getName());
+				course.put("courProfile", cour.getProfile());
+			}
+			
+			List<Course> courseList = courseService.getchildrenCour(pid, type);
+			JSONArray children = new JSONArray();
+			for (Course child : courseList){
+				JSONObject ch = new JSONObject();
+				ch.put("childId", child.getId());
+				ch.put("childName", child.getName());
+				
+				List<Point> pointList = pointService.getPointByCour(child.getId() + "");
+				ch.put("pointList", pointList);
+				
+				children.add(ch);
+			}
+			course.put("children", children);
+			
+			ret.put("result", course);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

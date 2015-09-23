@@ -5,7 +5,7 @@ import java.util.List;
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Course;
 
-public interface CourseService  extends BaseServiceMybatis<Course, Integer> {
+public interface CourseService  extends BaseServiceMybatis<Course, String> {
 
 	/**
 	 * 查询pid下的所有子项
