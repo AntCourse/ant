@@ -68,6 +68,34 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	
+	
+	<bean id="myTimer" class="com.kzsrm.controller.UserController"></bean>
+	<bean id="timeDitail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="myTimer"></property>
+		<property name="targetMethod" value="doit"></property>
+	</bean>
+
+	<bean id="timeTigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="timeDitail"></property>
+		<property name="cronExpression">
+		<!-- 每天凌晨00点执行 -->
+			<value>0 0 00 * * ?</value>
+		</property>
+	</bean>
+
+	<bean id="startJob"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="timeTigger" />
+			</list>
+		</property>
+	</bean>
+	
+	
 
 	
 	<!-- 使用annotation定义事务 -->

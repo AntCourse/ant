@@ -1,10 +1,6 @@
 package com.kzsrm.service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import com.kzsrm.model.Sign;
 import com.kzsrm.model.User;
 import com.kzsrm.model.Yzm;
@@ -35,5 +31,7 @@ public interface UserService {
 	public int updateSign(Sign sign);
 	
 	public User selByEmailOrMobile(String email,String mobile);
+	
+	public int batchQuartz();
 	
 }

@@ -12,7 +12,7 @@
 	</form> -->
 
 
-	<form action="/user/update" method="post" enctype="multipart/form-data">
+	<form action="user/update" method="post" enctype="multipart/form-data">
 		<input type="file" name="avator" id="avator" /> <br /> <input
 			type="submit" name="submit" value="Submit" />
 	</form>

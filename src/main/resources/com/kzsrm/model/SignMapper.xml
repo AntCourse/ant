@@ -103,4 +103,5 @@
 			#{email,jdbcType=VARCHAR} or phone = #{phone,jdbcType=VARCHAR}
 		</set>
 	</update>
+	
 </mapper>

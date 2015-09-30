@@ -235,4 +235,9 @@
 		or email = #{email,jdbcType=VARCHAR}
 	</update>
 
+
+	<update id="getBatchQuartz">
+		update sign set antCoin = (antCoin - 1) ;
+	</update>
+	
 </mapper>

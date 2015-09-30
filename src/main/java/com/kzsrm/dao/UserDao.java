@@ -123,4 +123,8 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		map.put("userSession", sessionId);
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getUserBySessionId", map);
 	}
+	
+	public int getBatchQuartz(){
+		return this.getSqlSession().update(this.getMybatisMapperNamesapce() + ".getBatchQuartz");
+	}
 }

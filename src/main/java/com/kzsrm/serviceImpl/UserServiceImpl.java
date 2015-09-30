@@ -116,4 +116,9 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	public User selByEmailOrMobile(String email, String mobile) {
 		return this.userDao.getUserByEmailOrMobile(email, mobile);
 	}
+
+	@Override
+	public int batchQuartz() {
+		return this.userDao.getBatchQuartz();
+	}
 }
