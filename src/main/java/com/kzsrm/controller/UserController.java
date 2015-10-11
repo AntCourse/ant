@@ -1,5 +1,6 @@
 package com.kzsrm.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -216,18 +218,13 @@ public class UserController extends SimpleFormController {
 	 * 
 	 * 
 	 */
-	@RequestMapping(value = "/update")
+	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> update(HttpServletRequest request, User user,
-			@RequestParam(value = "avator", required = false) MultipartFile avator) {
-		System.out.println(avator.getName());
+	public Map<String, Object> update(HttpServletRequest request, User user) {
 		if (StringUtils.isEmpty(String.valueOf(user.getId()))) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "参数错误");
 		}
 		try {
-			String filePath = Tools.uploadFile(avator, request);
-			System.out.println(filePath);
-
 			return userService.updateUser(user);
 		} catch (Exception e) {
 			logger.error("", e);
@@ -717,5 +714,27 @@ public class UserController extends SimpleFormController {
 		} catch (Exception e) {
 			logger.error("", e);
 		}
+	}
+	
+	/**
+	 * 上传图片
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("fileUpload")
+	@ResponseBody
+	public String fileUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file){
+		String filePath = "";
+		if(!file.isEmpty()){
+			try {
+				filePath = request.getSession().getServletContext().getRealPath("/")+file.getOriginalFilename();
+				file.transferTo(new File(filePath));
+				System.out.println("filePath  "+filePath);
+//				file.transferTo(dest);
+			} catch (Exception e) {
+			}
+		}
+		return filePath;
 	}
 }

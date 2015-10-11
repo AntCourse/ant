@@ -7,15 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 	<form action="/user/update" method="post" enctype="multipart/form-data">
+	<!-- 	<form action="/user/update" method="post" enctype="multipart/form-data">
 		<input type="file" name="avator" id="avator" /> <input type="submit">
 	</form> -->
 
 
-	<form action="user/update" method="post" enctype="multipart/form-data">
+	<!-- <form action="user/update" method="post" enctype="multipart/form-data">
 		<input type="file" name="avator" id="avator" /> <br /> <input
-			type="submit" name="submit" value="Submit" />
+			type="submit" name="updateSbt" value="updateSbts" />
+	</form> -->
+	<form id="firstUpdateForm" action="user/fileUpload" method="post"
+		enctype="multipart/form-data" class="form-horizontal" role="form"
+		target="hidden_frame">
+		<input type="file" name="file">
+		<input type="submit" value="提交" />
 	</form>
-
 </body>
 </html>
