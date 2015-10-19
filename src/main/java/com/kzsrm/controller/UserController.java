@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -66,9 +65,6 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
 
-		// 创建session
-		HttpSession session = httpServletRequest.getSession();
-		String sessionId = session.getId();
 		// 查询是否已经注册过
 		Map<String, Object> map = null;
 		try {
@@ -123,7 +119,6 @@ public class UserController extends SimpleFormController {
 						} else if (!StringUtils.isEmpty(email)) {
 							u.setEmail(email);
 						}
-						u.setUserSession(sessionId);
 						u.setRegtime(new Date());
 						u.setPasswd(passwd);
 						u.setRegtime(new Date());
@@ -191,8 +186,17 @@ public class UserController extends SimpleFormController {
 			} catch (Exception e) {
 				return MapResult.failMap();
 			}
-			if (map.get("data").equals("false")) {
-				return userService.login(u);
+			String res = map.get("data").toString();
+			if(res == null){
+				System.out.println("null");
+			}
+			else{
+				System.out.println("feinull");
+			}
+			System.out.println(map.get("data").toString().equals("null"));
+			if (map.get("data").equals("null")) {
+//				return userService.login(u);
+				return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
 			} else {
 				try {
 					// 修改最后一次登录时间
@@ -233,17 +237,17 @@ public class UserController extends SimpleFormController {
 	}
 
 	/**
-	 * 根据sessionId查询用户的信息
+	 * 根据id查询用户的信息
 	 * 
 	 * @param sessionId
 	 * @return User对象
 	 */
 	@RequestMapping(value = "/queryUser")
 	@ResponseBody
-	public Map<String, Object> queryUser(String sessionId) {
+	public Map<String, Object> queryUser(int id) {
 		Map<String, Object> result = MapResult.initMap();
 		try {
-			result.put("data", userService.selectUser(sessionId));
+			result.put("data", userService.selectUser(id));
 		} catch (Exception e) {
 			logger.error("", e);
 			return MapResult.failMap();
@@ -478,7 +482,7 @@ public class UserController extends SimpleFormController {
 		if (isCodeInvalid == true) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 		} else {
-			if (str.equals(yzm)) {
+			if (str.trim().equals(yzm.trim())) {
 				return MapResult.initMap();
 			} else {
 				return MapResult.initMap(ApiCode.PARG_ERR, "验证码错误");

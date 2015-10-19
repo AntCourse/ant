@@ -26,24 +26,23 @@
 		<result column="isActive" jdbcType="INTEGER" property="isActive" />
 		<result column="realName" jdbcType="VARCHAR" property="realName" />
 		<result column="infoPerfectLev" jdbcType="VARCHAR" property="infoPerfectLev" />
-		<result column="userSession" jdbcType="VARCHAR" property="userSession" />
 
 		<result column="yzm" jdbcType="VARCHAR" property="yzm" />
 
 	</resultMap>
 	<sql id="Base_Column_List">
-		userSession, id, name, age, sex, phone, passwd, email,
+		id, name, age, sex, phone, passwd, email,
 		birthday,sign, regtime,qq,
 		logintime,isActive,realName,infoPerfectLev,avator,sign,level,honor,learntime,isActive,realName,infoPerfectLev,
 		status
 	</sql>
 
-	<select id="getUserBySessionId" parameterType="java.lang.String"
+	<select id="getUserBySessionId" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where userSession = #{userSession,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
 	</select>
 
 	<!-- 根据手机号和有邮件查询用户信息 -->
@@ -119,9 +118,6 @@
 			<if test="isActive != null and isActive != ''">
 				isActive,
 			</if>
-			<if test="userSession != null and userSession != ''">
-				userSession,
-			</if>
 		</trim>
 
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -159,10 +155,7 @@
 				#{status,jdbcType=VARCHAR},
 			</if>
 			<if test="isActive != null and isActive != ''">
-				#{isActive,jdbcType=INTEGER},
-			</if>
-			<if test="userSession != null and userSession != ''">
-				#{userSession , jdbcType=VARCHAR}
+				#{isActive,jdbcType=INTEGER}
 			</if>
 		</trim>
 	</insert>

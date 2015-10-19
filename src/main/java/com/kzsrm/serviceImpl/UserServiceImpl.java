@@ -33,8 +33,8 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public User selectUser(String sessionId) {
-		User user = this.userDao.getUserBySessionId(sessionId);
+	public User selectUser(int id) {
+		User user = this.userDao.getUserBySessionId(id);
 		return user;
 	}
 
@@ -77,9 +77,9 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	public Map<String, Object> login(User user) {
 		User u = this.userDao.userLogin(user);
 		if (u != null) {
-			map.put("data", "true");
+			map.put("data", user);
 		} else {
-			map.put("data", "false");
+			map.put("data", "null");
 		}
 		return map;
 	}
