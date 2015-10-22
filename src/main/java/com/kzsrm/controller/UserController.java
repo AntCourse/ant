@@ -32,6 +32,7 @@ import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.ConfigUtil;
 import com.kzsrm.utils.DateUtil;
 import com.kzsrm.utils.JavaSmsApi;
+import com.kzsrm.utils.MD5;
 import com.kzsrm.utils.MapResult;
 import com.kzsrm.utils.SendMail;
 import com.kzsrm.utils.Tools;
@@ -63,8 +64,9 @@ public class UserController extends SimpleFormController {
 	public Map<String, Object> reg(HttpServletRequest httpServletRequest, User us,
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
-
+			@RequestParam(value = "passwd", required = false) String passwd,
+			@RequestParam(value = "code", required = false) String code) throws ParseException {
+		
 		// 查询是否已经注册过
 		Map<String, Object> map = null;
 		try {
@@ -80,7 +82,6 @@ public class UserController extends SimpleFormController {
 				if (email != null) {
 					if (email.contains("@")) {
 						Map<String, Object> m = emailZym(email, us);
-						System.out.println(m);
 					}
 				}
 				yzmList = userService.getYzm(email, phone);
@@ -109,6 +110,11 @@ public class UserController extends SimpleFormController {
 					if (isCodeInvalid == true) {
 						return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 					} else {
+						code = code.trim();
+						System.out.println("code  "+code+"|||");
+						if(!yzmList.getYzm().trim().equals(code)){
+							return MapResult.initMap(ApiCode.PARG_ERR, "验证码输入有误");
+						}
 						if (!StringUtils.isEmpty(phone)) {
 							Sign sign = new Sign();
 							sign.setEmail(email);
@@ -120,7 +126,7 @@ public class UserController extends SimpleFormController {
 							u.setEmail(email);
 						}
 						u.setRegtime(new Date());
-						u.setPasswd(passwd);
+						u.setPasswd(MD5.md5(passwd));
 						u.setRegtime(new Date());
 						u.setIsActive(1);// 未激活
 						Map<String, Object> maps = userService.insertUser(u);
@@ -193,7 +199,6 @@ public class UserController extends SimpleFormController {
 			else{
 				System.out.println("feinull");
 			}
-			System.out.println(map.get("data").toString().equals("null"));
 			if (map.get("data").equals("null")) {
 //				return userService.login(u);
 				return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
@@ -360,7 +365,7 @@ public class UserController extends SimpleFormController {
 		if (isCodeInvalid == true) {
 			return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 		} else {
-			if (str.equals(yzm)) {
+			if (str.trim().equals(yzm.trim())) {
 				u.setEmail(email);
 				u.setPhone(phone);
 				u.setIsActive(2);// 已激活
@@ -561,7 +566,8 @@ public class UserController extends SimpleFormController {
 				return MapResult.initMap(ApiCode.PARG_ERR, "验证码已过期");
 			} else {
 				User u = new User();
-				if (code.equals(yzmList.getYzm())) {
+				if (code.trim().equals(yzmList.getYzm().trim())) {
+					passwd = MD5.md5(passwd);
 					u.setPasswd(passwd);
 					if (phone != null) {
 						u.setPhone(phone);
