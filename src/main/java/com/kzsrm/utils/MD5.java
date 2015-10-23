@@ -30,6 +30,6 @@ public class MD5 {
 		return null;
 	}
 	public static void main(String[] args) {
-		System.out.println(md5("a"));
+		System.out.println(md5("123123"));
 	}
 }

@@ -9,11 +9,14 @@
 		<result column="phone" jdbcType="VARCHAR" property="phone" />
 		<result column="passwd" jdbcType="VARCHAR" property="passwd" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
-		<result column="birthday" jdbcType="VARCHAR" property="birthday" />
+		<result column="birthday" jdbcType="DATE" property="birthday"
+			javaType="java.util.Date" />
 		<result column="qq" jdbcType="VARCHAR" property="qq" />
 		<result column="sign" jdbcType="VARCHAR" property="sign" />
-		<result column="regtime" jdbcType="TIMESTAMP" property="regtime" />
-		<result column="logintime" jdbcType="TIMESTAMP" property="logintime" />
+		<result column="regtime" jdbcType="DATE" property="regtime"
+			javaType="java.util.Date" />
+		<result column="logintime" jdbcType="DATE" property="logintime"
+			javaType="java.util.Date" />
 		<result column="status" jdbcType="VARCHAR" property="status" />
 		<result column="avator" jdbcType="VARCHAR" property="avator" />
 		<result column="level" jdbcType="VARCHAR" property="level" />
@@ -31,8 +34,9 @@
 
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, name, age, sex, phone, passwd, email,
-		birthday,sign, regtime,qq,
+		id, name, age, sex, phone, email,
+		birthday,sign,
+		regtime,qq,
 		logintime,isActive,realName,infoPerfectLev,avator,sign,level,honor,learntime,isActive,realName,infoPerfectLev,
 		status
 	</sql>
@@ -45,22 +49,22 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
-	<!-- 根据手机号和有邮件查询用户信息 -->
+	<!-- 根据手机号查询用户信息 -->
 	<select id="getByIdOrMobileOrEmail" parameterType="map"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where email = #{email,jdbcType=VARCHAR} or phone =
+		where phone =
 		#{phone,jdbcType=VARCHAR}
 	</select>
 
 	<!-- 用户登录 -->
 	<select id="userLogin" parameterType="map" resultMap="BaseResultMap">
-		select *
+		select
+		<include refid="Base_Column_List" />
 		from user
-		where (email = #{email,jdbcType=VARCHAR} or phone =
-		#{phone,jdbcType=VARCHAR}) and passwd = #{passwd,jdbcType=VARCHAR};
+		where phone = #{phone,jdbcType=VARCHAR} and passwd = #{passwd,jdbcType=VARCHAR};
 	</select>
 
 	<!-- 根据手机号和邮箱查询用户信息 -->
@@ -68,7 +72,7 @@
 		select
 		id,name,sex,phone,passwd,email,birthday,qq,regtime,logintime,avator,sign,level,honor,learntime,status,examtype
 		from user
-		where phone = #{phone} or email = #{email}
+		where phone = #{phone}
 	</select>
 
 	<!-- 根据id删除用户 -->
@@ -161,7 +165,6 @@
 	</insert>
 
 	<update id="updateById" parameterType="com.kzsrm.model.User">
-
 		update user
 		<set>
 			<if test="name != null">
@@ -170,10 +173,10 @@
 			<if test="age != null and age!=''">
 				age = #{age,jdbcType=INTEGER},
 			</if>
-			<if test="passwd != null">
+<!-- 			<if test="passwd != null">
 				passwd = #{passwd,jdbcType=VARCHAR},
 			</if>
-			<if test="sex != null">
+ -->			<if test="sex != null">
 				sex = #{sex,jdbcType=VARCHAR},
 			</if>
 			<!-- <if test="phone != null"> phone = #{phone,jdbcType=VARCHAR}, </if> -->
@@ -225,12 +228,11 @@
 			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER} or phone = #{phone,jdbcType=VARCHAR}
-		or email = #{email,jdbcType=VARCHAR}
 	</update>
 
 
 	<update id="getBatchQuartz">
 		update sign set antCoin = (antCoin - 1) ;
 	</update>
-	
+
 </mapper>

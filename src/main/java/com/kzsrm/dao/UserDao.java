@@ -45,24 +45,21 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		return this.getSqlSession().insert(yzmMapper + ".insertYZM", user);
 	}
 
-	public User selectIsExitUser(String email, String phone) {
+	public User selectIsExitUser(String phone) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("email", email);
 		map.put("phone", phone);
 		User user = this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".selectUser", map);
 		return user;
 	}
 
-	public Yzm selectOneYzm(String email, String phone) {
+	public Yzm selectOneYzm(String phone) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("email", email);
 		map.put("phone", phone);
 		return this.getSqlSession().selectOne(yzmMapper + ".selectOneYzm", map);
 	}
 
 	public User userLogin(User user) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("email", user.getEmail());
 		map.put("phone", user.getPhone());
 		map.put("passwd", user.getPasswd());
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".userLogin", map);
@@ -105,16 +102,14 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 	/*
 	 * 获取用户打卡数据
 	 */
-	public Sign getSign(String email,String phone) {
+	public Sign getSign(String phone) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("email", email);
 		map.put("phone", phone);
 		// map.put("checkTimes_Last", Tools.ymd.format(new Date()));
 		return this.getSqlSession().selectOne(signMapper + ".getSignNum", map);
 	}
 
-	public User getUserByEmailOrMobile(String email, String mobile) {
-		map.put("email", email);
+	public User getUserByEmailOrMobile(String mobile) {
 		map.put("phone", mobile);
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getByIdOrMobileOrEmail", map);
 	}
