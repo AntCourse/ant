@@ -9,8 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -125,31 +122,59 @@ public class UserController extends SimpleFormController {
 	public Map<String, Object> login(HttpServletRequest httpServletRequest, User user,
 			@RequestParam(value = "phone", required = false) String phone,
 			@RequestParam(value = "passwd", required = false) String passwd) throws ParseException {
-		User users = null;
-		try {
-			users = userService.selByEmailOrMobile(phone);
-		} catch (Exception e) {
-			logger.error("", e);
-			return MapResult.failMap();
-		}
-		if (users == null) {
-			return MapResult.initMap(ApiCode.PARG_ERR, "没有此用户");
-		}
-		User u = new User();
-		u.setPhone(phone);
-		u.setId(users.getId());
-		u.setPasswd(MD5.md5(passwd.trim()));
+
 		Map<String, Object> maps = null;
-		try {
+		User us = (User) httpServletRequest.getSession().getAttribute("user");
+		System.out.println(us);
+		String usernamea, password;
+		if (us != null) {
+			usernamea = us.getPhone();
+			password = us.getPasswd();
+			System.out.println("usernamea  >>>>>>>>>>>>> " + usernamea);
+			System.out.println("password    >>>>>>>>>>>>>>   " + password);
+			User u = new User();
+			u.setPhone(usernamea);
+			u.setPasswd(passwd);
 			maps = userService.login(u);
-		} catch (Exception e) {
-			return MapResult.failMap();
-		}
-		if (maps.get("data").equals("null")) {
-			return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
-		} else {
 			return maps;
+		} else {
+			User users = null;
+			try {
+				users = userService.selByEmailOrMobile(phone);
+			} catch (Exception e) {
+				logger.error("", e);
+				return MapResult.failMap();
+			}
+			if (users == null) {
+				return MapResult.initMap(ApiCode.PARG_ERR, "没有此用户");
+			}
+			User u = new User();
+			u.setPhone(phone);
+			u.setId(users.getId());
+			u.setPasswd(MD5.md5(passwd.trim()));
+			try {
+				httpServletRequest.getSession().setAttribute("user", u);// 登录成功，向session存入一个登录标记
+				maps = userService.login(u);
+			} catch (Exception e) {
+				return MapResult.failMap();
+			}
+			if (maps.get("data").equals("null")) {
+				return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
+			} else {
+				return maps;
+			}
 		}
+	}
+	
+	
+	/**
+	 * 登出
+	 */
+	@RequestMapping(value = "/loginOut")
+	@ResponseBody
+	public Map<String, Object> loginOut(HttpServletRequest httpServletRequest) throws ParseException {
+		httpServletRequest.getSession().removeAttribute("user");
+		return MapResult.initMap();
 	}
 
 	/**

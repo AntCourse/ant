@@ -6,21 +6,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
-	<!-- 	<form action="/user/update" method="post" enctype="multipart/form-data">
-		<input type="file" name="avator" id="avator" /> <input type="submit">
-	</form> -->
-
-
-	<!-- <form action="user/update" method="post" enctype="multipart/form-data">
-		<input type="file" name="avator" id="avator" /> <br /> <input
-			type="submit" name="updateSbt" value="updateSbts" />
-	</form> -->
 	<form id="firstUpdateForm" action="user/fileUpload" method="post"
 		enctype="multipart/form-data" class="form-horizontal" role="form"
 		target="hidden_frame">
-		<input type="file" name="file">
-		<input type="submit" value="提交" />
+		<input type="file" name="file"> <input type="submit"
+			value="提交" />
+	</form>
+
+
+	<div>----------------------------------------</div>
+
+
+	<form action="user/login" method="post">
+		<ul>
+			<li><label>用户名</label><input name="phone" type="text" /></li>
+			<li />
+			<li><label>密 码</label><input name="passwd" type="text" /></li>
+			<li />
+			<li><input type="submit" value="登录" /></li>
+		</ul>
 	</form>
 </body>
 </html>
