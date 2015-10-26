@@ -444,7 +444,7 @@ public class UserController extends SimpleFormController {
 		if (!file.isEmpty()) {
 			try {
 				filePath = request.getSession().getServletContext().getRealPath("/") + file.getOriginalFilename();
-				file.transferTo(new File(filePath));
+				file.transferTo(new File("/usr/tomcat/webapps/upload/"));
 				System.out.println("filePath  " + filePath);
 				// file.transferTo(dest);
 			} catch (Exception e) {
