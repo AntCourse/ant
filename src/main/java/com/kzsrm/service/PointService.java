@@ -5,7 +5,7 @@ import java.util.List;
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Point;
 
-public interface PointService  extends BaseServiceMybatis<Point, Integer> {
+public interface PointService  extends BaseServiceMybatis<Point, String> {
 
 	/**
 	 * 查询课程中的知识点

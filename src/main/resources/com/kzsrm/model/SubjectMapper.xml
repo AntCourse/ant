@@ -16,7 +16,7 @@
   </sql>
   
   <select id="getSubjectByVideo" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select distinct
     <include refid="Base_Column_List" />
     FROM
 	`subject` t, tag_subject s, video_tag v

@@ -1,6 +1,8 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
+import com.kzsrm.dao.PointDao;
 import com.kzsrm.dao.VideoDao;
+import com.kzsrm.model.Point;
 import com.kzsrm.model.Video;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.VideoService;
@@ -17,9 +21,11 @@ import com.kzsrm.utils.CustomException;
 
 @Service
 @Transactional
-public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, Integer> implements VideoService {
+public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> implements VideoService {
 	@Resource
 	private VideoDao<?> videoDao;
+	@Resource
+	private PointDao<?> pointDao;
 
 	@Override
 	protected EntityDao<Video, String> getEntityDao() {
@@ -61,6 +67,39 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, Integer> imp
 	@Override
 	public List<Video> getVideoBySubject(String subjectId) {
 		return videoDao.getVideoBySubject(subjectId);
+	}
+	/**
+	 * 获取推荐视频
+	 * @param subjectIds
+	 * @return
+	 */
+	@Override
+	public Video getRecommendVideo(String subjectIds) {
+		Map<Integer, Integer> repeat = new HashMap<Integer, Integer>();
+		Integer maxCount = 0, maxPoint = null;
+		
+		for (String sid : subjectIds.split(",")) {
+			List<Point> plist = pointDao.getPoisBySub(sid);
+			for (Point point : plist) {
+				Integer pid = point.getId();
+				if (repeat.containsKey(pid)) {
+					Integer count = repeat.get(pid) + 1;
+					repeat.put(pid, count);
+					if (count > maxCount){
+						maxCount = count;
+						maxPoint = pid;
+					}
+				} else {
+					repeat.put(pid, 1);
+					if (maxCount == 0) {
+						maxCount = 1;
+						maxPoint = pid;
+					}
+				}
+			}
+		}
+		
+		return videoDao.getVideoByPoint(maxPoint+"");
 	}
 
 }

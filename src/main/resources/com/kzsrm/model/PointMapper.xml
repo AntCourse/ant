@@ -13,7 +13,7 @@
   </sql>
   
   <select id="getPoisBySub" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
+    select distinct
 	<include refid="Base_Column_List" />
     from tag_subject s, video_tag v, point_video p, point t
     where s.tid = v.tid and v.vid = p.vid and p.pid =t.id 

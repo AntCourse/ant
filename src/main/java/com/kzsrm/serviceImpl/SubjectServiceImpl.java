@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 
 @Service
 @Transactional
-public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, Integer> implements SubjectService {
+public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> implements SubjectService {
 	@Resource
 	private SubjectDao<?> subjectDao;
 	@Resource

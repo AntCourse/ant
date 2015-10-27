@@ -157,6 +157,28 @@ public class CourseController {
 		}
 	}
 	/**
+	 * 获取知识点详细信息
+	 * @param pointId		知识点id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getPointDetail")
+	public Map<String, Object> getPointDetail(
+			@RequestParam(required = true) String pointId) {
+		try{
+			if (StringUtils.isBlank(pointId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "知识点id为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			Point point = pointService.getById(pointId);
+			ret.put("result", point);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
 	 * 更新视频信息
 	 * 每调用一次，视频点击数+1，同时更新时长总计
 	 * @param videoId		视频id
@@ -242,6 +264,28 @@ public class CourseController {
 			Map<String, Object> ret = MapResult.initMap();
 			List<Video> videoList = videoService.getVideoBySubject(subjectId);
 			ret.put("result", videoList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 获取推荐视频
+	 * @param subjectIds		错误试题id，多个用逗号分隔
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getRecommendVideo")
+	public Map<String, Object> getRecommendVideo(
+			@RequestParam(required = true) String subjectIds) {
+		try{
+			if (StringUtils.isBlank(subjectIds))
+				return MapResult.initMap(ApiCode.PARG_ERR, "试题id为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			Video video = videoService.getRecommendVideo(subjectIds);
+			ret.put("result", video);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

@@ -7,7 +7,7 @@ import com.kzsrm.model.Subject;
 
 import net.sf.json.JSONArray;
 
-public interface SubjectService  extends BaseServiceMybatis<Subject, Integer> {
+public interface SubjectService  extends BaseServiceMybatis<Subject, String> {
 
 	/**
 	 * 获取视频对应的测试题

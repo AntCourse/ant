@@ -15,7 +15,7 @@ import com.kzsrm.service.PointService;
 
 @Service
 @Transactional
-public class PointServiceImpl extends BaseServiceMybatisImpl<Point, Integer> implements PointService {
+public class PointServiceImpl extends BaseServiceMybatisImpl<Point, String> implements PointService {
 	@Resource
 	private PointDao<?> pointDao;
 
