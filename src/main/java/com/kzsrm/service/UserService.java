@@ -16,21 +16,21 @@ public interface UserService {
 
 	public Map<String, Object> updateUser(User user);
 
-	public Map<String, Object> selectUniqueUser(String email, String phone);
+	public Map<String, Object> selectUniqueUser(String phone);
 
 	public int insertYZM(User user);
 
-	public Yzm getYzm(String email, String phone);
+	public Yzm getYzm(String phone);
 
 	public Map<String, Object> login(User user);
 
 	public boolean insertSign(Sign sign);
 
-	public Sign getSign(String email,String phone);
+	public Sign getSign(String phone);
 	
 	public int updateSign(Sign sign);
 	
-	public User selByEmailOrMobile(String email,String mobile);
+	public User selByEmailOrMobile(String mobile);
 	
 	public int batchQuartz();
 	

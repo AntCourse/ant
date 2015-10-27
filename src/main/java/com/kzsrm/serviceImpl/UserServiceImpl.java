@@ -1,5 +1,6 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.Date;
 import java.util.Map;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
@@ -57,8 +58,8 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public Map<String, Object> selectUniqueUser(String email, String phone) {
-		User user = this.userDao.selectIsExitUser(email, phone);
+	public Map<String, Object> selectUniqueUser(String phone) {
+		User user = this.userDao.selectIsExitUser(phone);
 		map.put("data", user);
 		return map;
 	}
@@ -69,17 +70,19 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public Yzm getYzm(String email, String phone) {
-		return this.userDao.selectOneYzm(email, phone);
+	public Yzm getYzm(String phone) {
+		return this.userDao.selectOneYzm(phone);
 	}
 
 	@Override
 	public Map<String, Object> login(User user) {
 		User u = this.userDao.userLogin(user);
 		if (u != null) {
-			map.put("data", user);
-		} else {
-			map.put("data", "null");
+			map.put("data", u);
+			// 修改最后一次登录时间、
+			User useras = new User();
+			useras.setLogintime(new Date());
+			userDao.update(useras);
 		}
 		return map;
 	}
@@ -101,8 +104,8 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	/*
 	 * 获取该用户是否打过卡
 	 */
-	public Sign getSign(String email,String phone) {
-		Sign sign = this.userDao.getSign(email,phone);
+	public Sign getSign(String phone) {
+		Sign sign = this.userDao.getSign(phone);
 		return sign;
 	}
 
@@ -113,8 +116,8 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	}
 
 	@Override
-	public User selByEmailOrMobile(String email, String mobile) {
-		return this.userDao.getUserByEmailOrMobile(email, mobile);
+	public User selByEmailOrMobile(String mobile) {
+		return this.userDao.getUserByEmailOrMobile(mobile);
 	}
 
 	@Override
