@@ -1,10 +1,12 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +14,11 @@ import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.OptionDao;
 import com.kzsrm.dao.PointDao;
 import com.kzsrm.dao.SubjectDao;
+import com.kzsrm.dao.SubjectLogDao;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Point;
 import com.kzsrm.model.Subject;
+import com.kzsrm.model.SubjectLog;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.SubjectService;
 import com.kzsrm.utils.ComUtils;
@@ -31,6 +35,8 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 	private OptionDao<?> optionDao;
 	@Resource
 	private PointDao<?> pointDao;
+	@Resource
+	private SubjectLogDao<?> subjectLogDao;
 
 	@Override
 	protected EntityDao<Subject, String> getEntityDao() {
@@ -48,9 +54,15 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			sub.setOptionList(optionDao.getOptionBySubject(sub.getId()));
 		return subList;
 	}
+	/**
+	 * 校验测试题的答案
+	 * @param userId
+	 * @param answer
+	 * @return
+	 */
 	@Override
 	@SuppressWarnings({ "static-access", "rawtypes" })
-	public JSONArray checkAnswer(String answer) {
+	public JSONArray checkAnswer(String userId, String answer) {
 		JSONArray ret = new JSONArray();
 		JSONArray _jAnswerList = new JSONArray().fromObject(answer);
 		Iterator iter = _jAnswerList.iterator();
@@ -87,6 +99,17 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			ele.put("points", pois);
 			
 			ret.add(ele);
+			if (StringUtils.isNotBlank(userId)){
+				// 记录做题日志
+				SubjectLog slog = new SubjectLog();
+				slog.setCreatetime(new Date());
+				slog.setIsright(opt.getIsanswer());
+				slog.setOid(opt.getId()+"");
+				slog.setSid(sub.getId()+"");
+				slog.setUserid(userId);
+				subjectLogDao.save(slog);
+			}
+			
 		}
 		return ret;
 	}

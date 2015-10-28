@@ -61,8 +61,10 @@
 				<value>classpath:/com/kzsrm/model/OptionMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/PointMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/SubjectMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/SubjectLogMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/TagMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/VideoMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/VideoLogMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/yzm.xml</value>
 				<value>classpath:/com/kzsrm/model/SignMapper.xml</value>
 			</list>

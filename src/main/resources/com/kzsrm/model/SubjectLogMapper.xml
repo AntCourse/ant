@@ -6,28 +6,28 @@
     <result column="sid" property="sid" jdbcType="VARCHAR" />
     <result column="userid" property="userid" jdbcType="VARCHAR" />
     <result column="isright" property="isright" jdbcType="VARCHAR" />
-    <result column="answerid" property="answerid" jdbcType="VARCHAR" />
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, sid, userid, isright, answerid, createTime
+    id, sid, userid, isright, oid, createTime
   </sql>
-  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from subjectLog
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer" >
+  <delete id="deleteById" parameterType="java.lang.String" >
     delete from subjectLog
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.SubjectLog" >
     insert into subjectLog (id, sid, userid, 
-      isright, answerid, createTime
+      isright, oid, createTime
       )
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
-      #{isright,jdbcType=VARCHAR}, #{answerid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      #{isright,jdbcType=VARCHAR}, #{oid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.SubjectLog" >
@@ -45,8 +45,8 @@
       <if test="isright != null" >
         isright,
       </if>
-      <if test="answerid != null" >
-        answerid,
+      <if test="oid != null" >
+        oid,
       </if>
       <if test="createtime != null" >
         createTime,
@@ -65,8 +65,8 @@
       <if test="isright != null" >
         #{isright,jdbcType=VARCHAR},
       </if>
-      <if test="answerid != null" >
-        #{answerid,jdbcType=VARCHAR},
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
@@ -85,8 +85,8 @@
       <if test="isright != null" >
         isright = #{isright,jdbcType=VARCHAR},
       </if>
-      <if test="answerid != null" >
-        answerid = #{answerid,jdbcType=VARCHAR},
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
         createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -99,7 +99,7 @@
     set sid = #{sid,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=VARCHAR},
       isright = #{isright,jdbcType=VARCHAR},
-      answerid = #{answerid,jdbcType=VARCHAR},
+      oid = #{oid,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

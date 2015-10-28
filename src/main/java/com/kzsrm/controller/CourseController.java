@@ -41,7 +41,7 @@ public class CourseController {
 
 	/**
 	 * 课程列表-二级
-	 * @param pid		父级id，为空时查询顶层结点
+	 * @param pid		课程id，返回本级及其子集信息
 	 * @param type		预留参数
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class CourseController {
 	}
 	/**
 	 * 课程列表-三级
-	 * @param pid		父级id，不能为空
+	 * @param pid		课程id，返回本级，子集及子集所包含的知识点
 	 * @param type		预留参数
 	 * @return
 	 */
@@ -112,9 +112,10 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	/*
 	 * 知识点列表
 	 * @param courseId		课程id
+	 * @param userId		用户id，用于判断各知识点用户是否已学
 	 * @return
 	 */
 	@ResponseBody
@@ -127,6 +128,9 @@ public class CourseController {
 			
 			Map<String, Object> ret = MapResult.initMap();
 			List<Point> pointList = pointService.getPointByCour(courseId);
+			for (Point Point : pointList) {
+				
+			}
 			ret.put("result", pointList);
 			return ret;
 		} catch (Exception e) {
@@ -228,19 +232,21 @@ public class CourseController {
 	}
 	/**
 	 * 提交测试题的答案
+	 * @param userId		用户id，用于记录做题日志
 	 * @param answer		答案，json格式[{"no":"序号","optId":"选项id","timeSpan":"秒"},{},...]
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/checkAnswer")
 	public Map<String, Object> checkAnswer(
+			@RequestParam(required = false) String userId,
 			@RequestParam(required = true) String answer) {
 		try{
 			if (StringUtils.isBlank(answer))
 				return MapResult.initMap(ApiCode.PARG_ERR, "答案为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
-			JSONArray subList = subjectService.checkAnswer(answer);
+			JSONArray subList = subjectService.checkAnswer(userId, answer);
 			ret.put("result", subList);
 			return ret;
 		} catch (Exception e) {

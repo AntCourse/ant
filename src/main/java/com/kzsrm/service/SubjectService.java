@@ -17,9 +17,10 @@ public interface SubjectService  extends BaseServiceMybatis<Subject, String> {
 	List<Subject> getSubjectByVideo(String videoId);
 	/**
 	 * 校验测试题的答案
+	 * @param userId
 	 * @param answer
 	 * @return
 	 */
-	JSONArray checkAnswer(String answer);
+	JSONArray checkAnswer(String userId, String answer);
 
 }

@@ -9,9 +9,9 @@ public class SubjectLog {
 
     private String userid;
 
-    private Integer isright;
+    private String isright;
 
-    private String answerid;
+    private String oid;
 
     private Date createtime;
 
@@ -39,27 +39,27 @@ public class SubjectLog {
 		this.userid = userid;
 	}
 
-	public Integer getIsright() {
-		return isright;
-	}
-
-	public void setIsright(Integer isright) {
-		this.isright = isright;
-	}
-
-	public String getAnswerid() {
-		return answerid;
-	}
-
-	public void setAnswerid(String answerid) {
-		this.answerid = answerid;
-	}
-
 	public Date getCreatetime() {
 		return createtime;
 	}
 
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
+	}
+
+	public String getOid() {
+		return oid;
+	}
+
+	public void setOid(String oid) {
+		this.oid = oid;
+	}
+
+	public String getIsright() {
+		return isright;
+	}
+
+	public void setIsright(String isright) {
+		this.isright = isright;
 	}
 }
