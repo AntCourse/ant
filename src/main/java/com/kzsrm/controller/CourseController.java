@@ -1,5 +1,6 @@
 package com.kzsrm.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kzsrm.model.Course;
 import com.kzsrm.model.Point;
+import com.kzsrm.model.PointLog;
 import com.kzsrm.model.Subject;
 import com.kzsrm.model.User;
 import com.kzsrm.model.Video;
 import com.kzsrm.service.CourseService;
+import com.kzsrm.service.PointLogService;
 import com.kzsrm.service.PointService;
 import com.kzsrm.service.SubjectService;
 import com.kzsrm.service.VideoService;
@@ -38,6 +41,7 @@ public class CourseController {
 	@Resource private PointService pointService;
 	@Resource private VideoService videoService;
 	@Resource private SubjectService subjectService;
+	@Resource private PointLogService pointLogService;
 
 	/**
 	 * 课程列表-二级
@@ -48,7 +52,7 @@ public class CourseController {
 	@ResponseBody
 	@RequestMapping(value = "/getCourList")
 	public Map<String, Object> getCourList(
-			@RequestParam(required = false) String pid,
+			@RequestParam(required = true) String pid,
 			@RequestParam(required = false) String type) {
 		try{
 			Map<String, Object> ret = MapResult.initMap();
@@ -112,7 +116,7 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/*
+	/**
 	 * 知识点列表
 	 * @param courseId		课程id
 	 * @param userId		用户id，用于判断各知识点用户是否已学
@@ -121,17 +125,50 @@ public class CourseController {
 	@ResponseBody
 	@RequestMapping(value = "/getPointList")
 	public Map<String, Object> getPointList(
-			@RequestParam(required = true) String courseId) {
+			@RequestParam(required = true) String courseId,
+			@RequestParam(required = false) String userId) {
 		try{
 			if (StringUtils.isBlank(courseId))
 				return MapResult.initMap(ApiCode.PARG_ERR, "课程id为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
 			List<Point> pointList = pointService.getPointByCour(courseId);
-			for (Point Point : pointList) {
-				
-			}
+			if (StringUtils.isNotBlank(userId))
+				for (Point point : pointList) {
+					point.setIsLearn(pointLogService.checkIsLearn(point.getId()+"", userId));
+				}
 			ret.put("result", pointList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 知识点学习记录
+	 * @param pointId		知识点id
+	 * @param userId		用户id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/setPointLog")
+	public Map<String, Object> setPointLog(
+			@RequestParam(required = true) String pointId,
+			@RequestParam(required = true) String userId) {
+		try{
+			if (StringUtils.isBlank(pointId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "知识点id为空");
+			if (StringUtils.isBlank(userId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "用户id为空");
+			
+			PointLog pointLog = new PointLog();
+			pointLog.setCreatetime(new Date());
+			pointLog.setPid(pointId);
+			pointLog.setUserid(userId);
+			pointLogService.save(pointLog);
+			
+			Map<String, Object> ret = MapResult.initMap();
+			ret.put("result", "保存成功");
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
@@ -154,6 +191,7 @@ public class CourseController {
 			Map<String, Object> ret = MapResult.initMap();
 			Video video = videoService.getVideoByPoint(pointId);
 			ret.put("result", video);
+			ret.put("pointId", pointId);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

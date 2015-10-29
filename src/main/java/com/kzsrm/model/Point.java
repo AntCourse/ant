@@ -10,6 +10,8 @@ public class Point {
     private String type;
 
     private Integer courseId;
+    
+    private String isLearn;
 
     public Integer getId() {
         return id;
@@ -50,4 +52,12 @@ public class Point {
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
+
+	public String getIsLearn() {
+		return isLearn;
+	}
+
+	public void setIsLearn(String isLearn) {
+		this.isLearn = isLearn;
+	}
 }
