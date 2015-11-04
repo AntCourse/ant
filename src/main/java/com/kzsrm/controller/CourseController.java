@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kzsrm.model.Course;
+import com.kzsrm.model.Option;
 import com.kzsrm.model.Point;
 import com.kzsrm.model.PointLog;
 import com.kzsrm.model.Subject;
 import com.kzsrm.model.User;
 import com.kzsrm.model.Video;
 import com.kzsrm.service.CourseService;
+import com.kzsrm.service.OptionService;
 import com.kzsrm.service.PointLogService;
 import com.kzsrm.service.PointService;
 import com.kzsrm.service.SubjectService;
@@ -42,6 +44,7 @@ public class CourseController {
 	@Resource private VideoService videoService;
 	@Resource private SubjectService subjectService;
 	@Resource private PointLogService pointLogService;
+	@Resource private OptionService optionService;
 
 	/**
 	 * 课程列表-二级
@@ -103,6 +106,11 @@ public class CourseController {
 				ch.put("childName", child.getName());
 				
 				List<Point> pointList = pointService.getPointByCour(child.getId() + "");
+				for (Point poi : pointList) {
+					Video video = videoService.getVideoByPoint(poi.getId()+"");
+					poi.setVideoId(video.getId()+"");
+					poi.setVideoAddr(video.getAddress());
+				}
 				ch.put("pointList", pointList);
 				
 				children.add(ch);
@@ -330,6 +338,50 @@ public class CourseController {
 			Map<String, Object> ret = MapResult.initMap();
 			Video video = videoService.getRecommendVideo(subjectIds);
 			ret.put("result", video);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 获取试题答案
+	 * @param subjectId			试题id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getSubjectAnswer")
+	public Map<String, Object> getSubjectAnswer(
+			@RequestParam(required = true) String subjectId) {
+		try{
+			if (StringUtils.isBlank(subjectId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "试题id为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			Option option = optionService.getSubjectAnswer(subjectId);
+			ret.put("result", option);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 获取试题提示
+	 * @param subjectId			试题id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getSubjectHint")
+	public Map<String, Object> getSubjectHint(
+			@RequestParam(required = true) String subjectId) {
+		try{
+			if (StringUtils.isBlank(subjectId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "试题id为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			Subject subject = subjectService.getById(subjectId);
+			ret.put("result", subject.getHint());
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

@@ -21,6 +21,13 @@
     where t.sid = #{subjectId,jdbcType=INTEGER}
   </select>
   
+  <select id="getRightOptionBySubject" resultMap="BaseResultMap" parameterType="map" >
+    select t.id, t.type, t.content
+    from `option` t
+    where t.sid = #{sid,jdbcType=INTEGER}
+    	and t.isanswer = #{isanswer,jdbcType=INTEGER}
+  </select>
+  
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />

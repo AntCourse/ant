@@ -1,6 +1,7 @@
 package com.kzsrm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,10 @@ public class OptionDao<E> extends BaseMybatisDao<Option, String> {
 
 	public List<Option> getOptionBySubject(Integer subjectId) {
 		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getOptionBySubject", subjectId);
+	}
+
+	public Option getRightOptionBySubject(Map<String, Object> map) {
+		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getRightOptionBySubject", map);
 	}
 
 }

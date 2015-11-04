@@ -12,6 +12,10 @@ public class Point {
     private Integer courseId;
     
     private String isLearn;
+    
+    private String videoId;
+    
+    private String videoAddr;
 
     public Integer getId() {
         return id;
@@ -59,5 +63,21 @@ public class Point {
 
 	public void setIsLearn(String isLearn) {
 		this.isLearn = isLearn;
+	}
+
+	public String getVideoId() {
+		return videoId;
+	}
+
+	public void setVideoId(String videoId) {
+		this.videoId = videoId;
+	}
+
+	public String getVideoAddr() {
+		return videoAddr;
+	}
+
+	public void setVideoAddr(String videoAddr) {
+		this.videoAddr = videoAddr;
 	}
 }
