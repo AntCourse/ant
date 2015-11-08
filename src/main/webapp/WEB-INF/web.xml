@@ -54,14 +54,14 @@
 
 
 	<!-- 登录过滤器 -->
-	<filter>
+	<!-- <filter>
 		<filter-name>sessionFilter</filter-name>
 		<filter-class>com.tt.comm.LoginInterceptor</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>sessionFilter</filter-name>
 		<url-pattern> *.do</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 
 	<servlet>

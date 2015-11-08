@@ -53,8 +53,8 @@ public class CourseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getCourList")
-	public Map<String, Object> getCourList(
+	@RequestMapping(value = "/getCourList_old")
+	public Map<String, Object> getCourList_old(
 			@RequestParam(required = true) String pid,
 			@RequestParam(required = false) String type) {
 		try{
@@ -77,6 +77,57 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
+	
+	/**
+	 * 课程列表-二级
+	 * @param pid		课程id，返回本级及其子集信息
+	 * @param type		预留参数
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getCourList")
+	public Map<String, Object> getCourList(
+			@RequestParam(required = true) String pid,
+			@RequestParam(required = false) String type) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			JSONObject course = new JSONObject();
+			Course cour = courseService.getById(pid);
+			if (cour != null){
+				course.put("courId", cour.getId());
+				course.put("courName", cour.getName());
+				course.put("courProfile", cour.getProfile());
+			}
+			
+			List<Course> courseList = courseService.getchildrenCour(pid, type);
+			
+			JSONArray children = new JSONArray();
+			for (Course child : courseList){
+				JSONObject ch = new JSONObject();
+				ch.put("id", child.getId());
+				ch.put("name", child.getName());
+				ch.put("pid", child.getPid());
+				ch.put("profile", child.getProfile());
+				ch.put("type", child.getType());
+				ch.put("address", child.getAddress());
+				
+				List<Course> subList = courseService.getchildrenCour(child.getId()+"", type);
+				ch.put("subList", subList);
+				
+				children.add(ch);
+			}
+			
+			course.put("child", children);
+			
+			ret.put("result", course);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	
+	
 	/**
 	 * 课程列表-三级
 	 * @param pid		课程id，返回本级，子集及子集所包含的知识点
