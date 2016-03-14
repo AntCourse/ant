@@ -31,6 +31,11 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 	protected EntityDao<Video, String> getEntityDao() {
 		return videoDao;
 	}
+	
+	@Override
+	public Video getVideoById(Integer id){
+		return videoDao.getById(id);
+	}
 
 	/**
 	 * 获取知识点对应的视频
@@ -41,6 +46,17 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 	public Video getVideoByPoint(String pointId) {
 		return videoDao.getVideoByPoint(pointId);
 	}
+	
+	/**
+	 * 根据标签获取视频（模糊检索）
+	 * @param pointId
+	 * @return
+	 */
+	@Override
+	public List<Video> getVideoByTag(String keyword) {
+		return videoDao.getVideoByTag(keyword);
+	}
+	
 	/**
 	 * 更新视频信息
 	 * @param videoId
@@ -100,6 +116,16 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 		}
 		
 		return videoDao.getVideoByPoint(maxPoint+"");
+	}
+	
+	/**
+	 * 获取首页轮播中展示的视频
+	 * @param subjectId
+	 * @return
+	 */
+	@Override
+	public List<Video> getHomeVideoList(){
+		return videoDao.getBannerVideo();
 	}
 
 }

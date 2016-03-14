@@ -9,11 +9,23 @@ import com.kzsrm.utils.CustomException;
 public interface VideoService  extends BaseServiceMybatis<Video, String> {
 
 	/**
+	 * 获取视频信息
+	 * @param Id
+	 * @return
+	 */
+	Video getVideoById(Integer id);
+	/**
 	 * 获取知识点对应的视频
 	 * @param pointId
 	 * @return
 	 */
 	Video getVideoByPoint(String pointId);
+	/**
+	 * 根据标签获取视频（模糊检索）
+	 * @param pointId
+	 * @return
+	 */
+	List<Video> getVideoByTag(String keyword);
 	/**
 	 * 更新视频信息
 	 * @param videoId
@@ -34,4 +46,10 @@ public interface VideoService  extends BaseServiceMybatis<Video, String> {
 	 */
 	Video getRecommendVideo(String subjectIds);
 
+	/**
+	 * 获取首页轮播中展示的视频
+	 * @param subjectId
+	 * @return
+	 */
+	List<Video> getHomeVideoList();
 }

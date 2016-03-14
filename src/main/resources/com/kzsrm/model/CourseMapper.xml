@@ -8,9 +8,10 @@
     <result column="profile" property="profile" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="playcount" property="playcount" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    t.id, t.type, t.name, t.profile, t.address, t.pid
+    t.id, t.type, t.name, t.profile, t.address, t.pid, t.playcount
   </sql>
   
   <select id="findAll" resultMap="BaseResultMap" >
@@ -46,10 +47,11 @@
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.Course" >
     insert into course (id, type, name, 
-      profile, address, pid
+      profile, address, pid, playcount
       )
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{profile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}
+      #{profile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR},
+      #{playcount,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.Course" >
@@ -73,6 +75,9 @@
       <if test="pid != null" >
         pid,
       </if>
+      <if test="playcount != null" >
+        playcount,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -92,6 +97,9 @@
       </if>
       <if test="pid != null" >
         #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="playcount != null" >
+        #{playcount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -113,6 +121,9 @@
       <if test="pid != null" >
         pid = #{pid,jdbcType=VARCHAR},
       </if>
+      <if test="playcount != null" >
+        playcount = #{playcount,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -122,7 +133,8 @@
       name = #{name,jdbcType=VARCHAR},
       profile = #{profile,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=VARCHAR}
+      pid = #{pid,jdbcType=VARCHAR},
+      playcount = #{playcount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

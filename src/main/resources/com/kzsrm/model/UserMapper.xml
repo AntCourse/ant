@@ -9,6 +9,7 @@
 		<result column="phone" jdbcType="VARCHAR" property="phone" />
 		<result column="passwd" jdbcType="VARCHAR" property="passwd" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="local" jdbcType="VARCHAR" property="local" />
 		<result column="birthday" jdbcType="DATE" property="birthday"
 			javaType="java.util.Date" />
 		<result column="qq" jdbcType="VARCHAR" property="qq" />
@@ -34,7 +35,7 @@
 
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, name, age, sex, phone, email,
+		id, name, age, sex, phone, email, local,
 		birthday,sign,
 		regtime,qq,
 		logintime,isActive,realName,infoPerfectLev,avator,sign,level,honor,learntime,isActive,realName,infoPerfectLev,
@@ -204,6 +205,9 @@
 			</if>
 			<if test="avator != null">
 				avator = #{avator,jdbcType=VARCHAR},
+			</if>
+			<if test="local != null">
+				local = #{local,jdbcType=VARCHAR},
 			</if>
 			<if test="level != null">
 				level = #{level,jdbcType=VARCHAR},

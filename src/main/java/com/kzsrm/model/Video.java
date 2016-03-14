@@ -14,7 +14,15 @@ public class Video {
     private Integer timeSpan;
     
     private String weight;
+    
+    private String orgname;
+    
+    private String tname;
 
+    private Integer isBanner;
+    
+    private String pic;
+    
     public Integer getId() {
         return id;
     }
@@ -69,6 +77,38 @@ public class Video {
 
 	public void setTimeSpan(Integer timeSpan) {
 		this.timeSpan = timeSpan;
+	}
+
+	public String getOrgname() {
+		return orgname;
+	}
+
+	public void setOrgname(String orgname) {
+		this.orgname = orgname;
+	}
+
+	public String getTname() {
+		return tname;
+	}
+
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
+	
+	public Integer getIsBanner() {
+		return isBanner;
+	}
+
+	public void setIsBanner(Integer isBanner) {
+		this.isBanner = isBanner;
+	}
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 
 }

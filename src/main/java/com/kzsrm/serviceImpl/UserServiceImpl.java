@@ -77,8 +77,8 @@ public class UserServiceImpl extends BaseServiceMybatisImpl<User, Integer>implem
 	@Override
 	public Map<String, Object> login(User user) {
 		User u = this.userDao.userLogin(user);
+		map.put("data", u);
 		if (u != null) {
-			map.put("data", u);
 			// 修改最后一次登录时间、
 			User useras = new User();
 			useras.setLogintime(new Date());

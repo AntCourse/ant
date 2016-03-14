@@ -12,6 +12,8 @@ public class Course {
     private String address;
 
     private String pid;
+    
+    private Integer playcount;
 
     public Integer getId() {
         return id;
@@ -60,4 +62,12 @@ public class Course {
     public void setPid(String pid) {
         this.pid = pid == null ? null : pid.trim();
     }
+
+	public Integer getPlaycount() {
+		return playcount;
+	}
+
+	public void setPlaycount(Integer playcount) {
+		this.playcount = playcount;
+	}
 }

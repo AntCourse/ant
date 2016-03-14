@@ -57,6 +57,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:/com/kzsrm/model/UserMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/CollectionMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/CourseMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/OptionMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/PointMapper.xml</value>
@@ -65,7 +66,11 @@
 				<value>classpath:/com/kzsrm/model/SubjectLogMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/TagMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/VideoMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/KeywordMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/OrganizationMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/TeacherOrgMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/TeacherMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/CheckInMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/yzm.xml</value>
 				<value>classpath:/com/kzsrm/model/SignMapper.xml</value>
 			</list>

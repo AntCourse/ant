@@ -49,7 +49,7 @@ public class Point {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer getCourseId() {
+	public Integer getCourseId() {
         return courseId;
     }
 

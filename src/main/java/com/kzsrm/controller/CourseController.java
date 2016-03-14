@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kzsrm.model.Course;
+import com.kzsrm.model.Keyword;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Point;
 import com.kzsrm.model.PointLog;
 import com.kzsrm.model.Subject;
-import com.kzsrm.model.User;
 import com.kzsrm.model.Video;
 import com.kzsrm.service.CourseService;
+import com.kzsrm.service.KeywordService;
 import com.kzsrm.service.OptionService;
 import com.kzsrm.service.PointLogService;
 import com.kzsrm.service.PointService;
@@ -31,13 +35,10 @@ import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.CustomException;
 import com.kzsrm.utils.MapResult;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 @Controller
 @RequestMapping("/cour")
 public class CourseController {
-	private static Logger logger = LoggerFactory.getLogger(User.class);
+	private static Logger logger = LoggerFactory.getLogger(Course.class);
 
 	@Resource private CourseService courseService;
 	@Resource private PointService pointService;
@@ -45,6 +46,7 @@ public class CourseController {
 	@Resource private SubjectService subjectService;
 	@Resource private PointLogService pointLogService;
 	@Resource private OptionService optionService;
+	@Resource private KeywordService keywordService;
 
 	/**
 	 * 课程列表-二级
@@ -147,6 +149,7 @@ public class CourseController {
 				course.put("courId", cour.getId());
 				course.put("courName", cour.getName());
 				course.put("courProfile", cour.getProfile());
+				course.put("playcount", cour.getPlaycount());
 			}
 			
 			List<Course> courseList = courseService.getchildrenCour(pid, type);
@@ -197,6 +200,25 @@ public class CourseController {
 					point.setIsLearn(pointLogService.checkIsLearn(point.getId()+"", userId));
 				}
 			ret.put("result", pointList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	
+	/**
+	 * 首页推荐知识点
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getHomeVideoList")
+	public Map<String, Object> getHomeVideoList() {
+		try{
+			
+			Map<String, Object> ret = MapResult.initMap();
+			List<Video> videoList = videoService.getHomeVideoList();
+			ret.put("result", videoList);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
@@ -257,6 +279,48 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
+	
+	/**
+	 * 获取推荐的搜索关键词
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getKeywordList")
+	public Map<String, Object> getKeywordList() {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			List<Keyword> keywordList = keywordService.getKeywordList();
+			ret.put("result", keywordList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	
+	/**
+	 * 根据标签查询对应的视频（视频检索）
+	 * @param pointId		知识点id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getVideoByKeyWord")
+	public Map<String, Object> getVideoByKeyWord(
+			@RequestParam(required = true) String keyword) {
+		try{
+			if (StringUtils.isBlank(keyword))
+				return MapResult.initMap(ApiCode.PARG_ERR, "参数为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			List<Video> video = videoService.getVideoByTag(keyword);
+			ret.put("result", video);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	
 	/**
 	 * 获取知识点详细信息
 	 * @param pointId		知识点id
@@ -279,6 +343,33 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
+	
+	/**
+	 * 更新课程（视频文件夹）信息
+	 * 每调用一次，课程点击数+1，同时更新时长总计
+	 * @param videoId		视频id
+	 * @param timeSpan		时长，秒
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/updateCourseInfo")
+	public Map<String, Object> updateCourseInfo(
+			@RequestParam(required = true) String courseId) {
+		try{
+			if (StringUtils.isBlank(courseId))
+				return MapResult.initMap(ApiCode.PARG_ERR, "课程id为空");
+			
+			Map<String, Object> ret = MapResult.initMap();
+			courseService.updateCourseInfo(courseId);
+			return ret;
+		} catch (CustomException e) {
+			return MapResult.initMap(-1, e.getMessage());
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	
 	/**
 	 * 更新视频信息
 	 * 每调用一次，视频点击数+1，同时更新时长总计

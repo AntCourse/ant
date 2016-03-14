@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.kzsrm.model.User" alias="User" />
+		<typeAlias type="com.kzsrm.model.Collection" alias="Collection" />
 		<typeAlias type="com.kzsrm.model.Course" alias="Course" />
 		<typeAlias type="com.kzsrm.model.Option" alias="Option" />
 		<typeAlias type="com.kzsrm.model.Point" alias="Point" />
@@ -14,7 +15,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kzsrm.model.SubjectLog" alias="SubjectLog" />
 		<typeAlias type="com.kzsrm.model.Tag" alias="Tag" />
 		<typeAlias type="com.kzsrm.model.Video" alias="Video" />
+		<typeAlias type="com.kzsrm.model.Keyword" alias="Keyword" />
 		<typeAlias type="com.kzsrm.model.Organization" alias="Organization" />
+		<typeAlias type="com.kzsrm.model.Teacher" alias="Teacher" />
+		<typeAlias type="com.kzsrm.model.TeacherOrg" alias="TeacherOrg" />
+		<typeAlias type="com.kzsrm.model.CheckInfo" alias="CheckInfo" />
 		<typeAlias type="com.kzsrm.model.Yzm" alias="Yzm" />
 		<typeAlias type="com.kzsrm.model.Sign" alias="Sign" />
 	</typeAliases>

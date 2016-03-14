@@ -69,7 +69,7 @@ public class SendMail {
 				message.setRecipient(RecipientType.CC, bcc);
 			}
 			// 设置邮件标题
-			message.setSubject("欢迎注册蚂蚁课堂");
+			message.setSubject("欢迎注册Swift Academy");
 
 			// 设置邮件的内容体
 			// message.setContent("<a

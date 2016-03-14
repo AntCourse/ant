@@ -6,9 +6,11 @@ import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.SimpleFormController;
+
 import com.alibaba.fastjson.JSONObject;
 import com.kzsrm.model.Sign;
 import com.kzsrm.model.User;
@@ -153,14 +156,14 @@ public class UserController extends SimpleFormController {
 			u.setId(users.getId());
 			u.setPasswd(MD5.md5(passwd.trim()));
 			try {
-				httpServletRequest.getSession().setAttribute("user", u);// 登录成功，向session存入一个登录标记
 				maps = userService.login(u);
 			} catch (Exception e) {
 				return MapResult.failMap();
 			}
-			if (maps.get("data").equals("null")) {
+			if (maps.get("data")==null) {
 				return MapResult.initMap(ApiCode.PARG_ERR, "用户名或密码错误");
 			} else {
+				httpServletRequest.getSession().setAttribute("user", u);// 登录成功，向session存入一个登录标记
 				return maps;
 			}
 		}
@@ -186,6 +189,33 @@ public class UserController extends SimpleFormController {
 			@RequestParam(value = "id", required = false) String id) {
 		try {
 			user.setId(Integer.parseInt(id));
+			return userService.updateUser(user);
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	
+	/**
+	 * 根据id修改用户信息
+	 */
+	@RequestMapping(value = "/updateInfo")
+	@ResponseBody
+	public Map<String, Object> updateInfo(HttpServletRequest request,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "avator", required = false) String avator,
+			@RequestParam(value = "sex", required = false) String sex,
+			@RequestParam(value = "local", required = false) String local,
+			@RequestParam(value = "descript", required = false) String descript) {
+		try {
+			User user = new User();
+			user.setId(Integer.parseInt(id));
+			user.setAvator(avator);
+			user.setName(name);
+			user.setSex(sex);
+			user.setSign(descript);
+			user.setLocal(local);
 			return userService.updateUser(user);
 		} catch (Exception e) {
 			logger.error("", e);
@@ -226,7 +256,7 @@ public class UserController extends SimpleFormController {
 		String apikey = ConfigUtil.getStringValue("sms.key");
 		String code = SendMail.getCode();
 		System.out.println(JavaSmsApi.getUserInfo(apikey));
-		String text = "【蚂蚁课堂】您的验证码是" + code;
+		String text = "【极速学院】您的验证码是"+ code +"，欢迎使用极速学院产品";
 		String result = JavaSmsApi.sendSms(apikey, text, mobile);
 		System.out.println(result);
 		/*
@@ -433,24 +463,34 @@ public class UserController extends SimpleFormController {
 			logger.error("", e);
 		}
 	}
-
+	
 	/**
 	 * 上传图片
 	 */
 	@RequestMapping("fileUpload")
 	@ResponseBody
-	public String fileUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+	public Map<String, Object> fileUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		String filePath = "";
+		String fileName = "";
 		if (!file.isEmpty()) {
+			if ((file.getOriginalFilename() != null) && (file.getOriginalFilename().length() > 0)) {    
+	            int dot = file.getOriginalFilename().lastIndexOf('.');    
+	            if ((dot >-1) && (dot < (file.getOriginalFilename().length() - 1))) {    
+	                fileName = System.currentTimeMillis()+file.getOriginalFilename().substring(dot);    
+	            }    
+	        }    
 			try {
 				filePath = request.getSession().getServletContext().getRealPath("/") + file.getOriginalFilename();
-				file.transferTo(new File("/usr/tomcat/webapps/upload/"));
+				file.transferTo(new File("/usr/tomcat/webapps/upload/"+fileName));
 				System.out.println("filePath  " + filePath);
 				// file.transferTo(dest);
 			} catch (Exception e) {
+				return MapResult.failMap();
 			}
 		}
-		return filePath;
+		Map<String, Object> ret = MapResult.initMap();
+		ret.put("result", fileName);
+		return ret;
 	}
 
 	/**

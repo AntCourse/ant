@@ -14,12 +14,25 @@ public class VideoDao<E> extends BaseMybatisDao<Video, String> {
 		return "com.kzsrm.model.VideoMapper";
 	}
 
+	public Video getById(Integer id) {
+		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getById", id);
+	}
+	
 	public Video getVideoByPoint(String pointId) {
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getVideoByPoint", pointId);
+	}
+	
+	public List<Video> getVideoByTag(String keyword) {
+		String searchText = new StringBuilder("%").append(keyword).append("%").toString(); 
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getVideoByTag", searchText);
 	}
 
 	public List<Video> getVideoBySubject(String subjectId) {
 		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getVideoBySubject", subjectId);
+	}
+	
+	public List<Video> getBannerVideo() {
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getBannerVideo");
 	}
 
 }

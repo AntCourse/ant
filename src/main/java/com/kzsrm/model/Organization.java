@@ -5,6 +5,8 @@ public class Organization {
 	private Integer id;
 	
 	private String name;
+	
+	private String logo;
 
     private Integer type;  // 1:address为图片地址  2:address为视频地址
 
@@ -30,6 +32,14 @@ public class Organization {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 
 	public Integer getType() {

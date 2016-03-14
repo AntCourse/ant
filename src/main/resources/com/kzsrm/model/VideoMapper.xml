@@ -9,9 +9,13 @@
     <result column="playcount" property="playCount" jdbcType="INTEGER" />
     <result column="timespan" property="timeSpan" jdbcType="INTEGER" />
     <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="orgname" property="orgname" jdbcType="VARCHAR" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="isBanner" property="isBanner" jdbcType="INTEGER" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    t.id, t.name, t.content, t.address, t.playcount, t.timespan
+    t.id, t.name, t.content, t.address, t.playcount, t.timespan, t.orgname, t.tname, t.pic, t.isBanner
   </sql>
   
   <select id="getVideoBySubject" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -28,6 +32,25 @@
     from video t, point_video pv, point p
     where t.id = pv.vid and pv.pid = p.id
     and p.id = #{pointId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getVideoByTag" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from video t, video_tag vt, tag tag
+    where t.id = vt.vid and vt.tid = tag.id
+    and tag.name like #{keyword,jdbcType=VARCHAR}
+    union select 
+    <include refid="Base_Column_List" />
+    from video t where t.orgname like #{keyword,jdbcType=VARCHAR} 
+    or t.category like #{keyword,jdbcType=VARCHAR}
+    or t.tname like #{keyword,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getBannerVideo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video t where t.isBanner = 1
   </select>
   
   <select id="findAll" resultMap="BaseResultMap" >

@@ -26,6 +26,7 @@ public class User {
 	@DateTimeFormat(iso = ISO.DATE_TIME, pattern = "yyyy-MM-dd")
 	private Date birthday;
 	private String qq;
+	private String local;
 	private Date regtime;
 	private Date logintime;
 	private String avator;
@@ -191,6 +192,14 @@ public class User {
 
 	public void setSign(String sign) {
 		this.sign = sign;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
 	}
 
 	public Date getRegtime() {

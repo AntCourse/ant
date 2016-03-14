@@ -44,7 +44,8 @@ public class JavaSmsApi {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         //修改为您的apikey.apikey可在官网（http://www.yuanpian.com)登录后用户中心首页看到
-        String apikey = "2a622c3ef05c259f277c915f3b768f28";
+        //String apikey = "2a622c3ef05c259f277c915f3b768f28"; //蚂蚁
+        String apikey = "10e2994692b6a2c5fce24198f9e7fa5b";
         //修改为您要发送的手机号
         String mobile = "15311450124";
 
