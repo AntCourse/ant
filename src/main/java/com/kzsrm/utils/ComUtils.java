@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
+
 public class ComUtils {
 	public static String getuuid(){
 		return UUID.randomUUID().toString();
@@ -56,5 +59,12 @@ public class ComUtils {
 		}catch (Exception e){
 			return 0;
 		}
+	}
+	public static JsonConfig jsonConfig(String[] arg){
+		JsonConfig config = new JsonConfig();    
+        config.setIgnoreDefaultExcludes(false); // 默认为false，即过滤默认的key  
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT); // 涉及自包含时开启
+        config.setExcludes(arg);//只要设置这个数组，指定过滤哪些字段。    
+        return config;
 	}
 }

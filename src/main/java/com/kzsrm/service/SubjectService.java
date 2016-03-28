@@ -22,5 +22,17 @@ public interface SubjectService  extends BaseServiceMybatis<Subject, String> {
 	 * @return
 	 */
 	JSONArray checkAnswer(String userId, String answer);
+	/**
+	 * 获取知识点对应的测试题
+	 * @param videoId
+	 * @return
+	 */
+	List<Subject> getSubjectByPoint(String pointId);
+	/**
+	 * 获取知识点对应的测试题的数量
+	 * @param videoId
+	 * @return
+	 */
+	Integer getSubNumByPoint(String pointId);
 
 }

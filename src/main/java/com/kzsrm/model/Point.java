@@ -17,6 +17,9 @@ public class Point {
     
     private String videoAddr;
 
+    private Double accuracy;// 关联字段，后期赋值
+    private Integer subNum;
+    
     public Integer getId() {
         return id;
     }
@@ -64,6 +67,14 @@ public class Point {
 	public void setIsLearn(String isLearn) {
 		this.isLearn = isLearn;
 	}
+	
+	public Double getAccuracy() {
+		return accuracy;
+	}
+
+	public void setAccuracy(Double accuracy) {
+		this.accuracy = accuracy;
+	}
 
 	public String getVideoId() {
 		return videoId;
@@ -79,5 +90,13 @@ public class Point {
 
 	public void setVideoAddr(String videoAddr) {
 		this.videoAddr = videoAddr;
+	}
+
+	public Integer getSubNum() {
+		return subNum;
+	}
+
+	public void setSubNum(Integer subNum) {
+		this.subNum = subNum;
 	}
 }

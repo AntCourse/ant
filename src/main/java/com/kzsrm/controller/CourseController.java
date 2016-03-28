@@ -36,7 +36,7 @@ import com.kzsrm.utils.CustomException;
 import com.kzsrm.utils.MapResult;
 
 @Controller
-@RequestMapping("/cour")
+@RequestMapping("/courold")
 public class CourseController {
 	private static Logger logger = LoggerFactory.getLogger(Course.class);
 

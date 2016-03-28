@@ -46,6 +46,10 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 	public Video getVideoByPoint(String pointId) {
 		return videoDao.getVideoByPoint(pointId);
 	}
+	@Override
+	public List<Video> getVideoListByPoint(String pointId) {
+		return videoDao.getVideoListByPoint(pointId);
+	}
 	
 	/**
 	 * 根据标签获取视频（模糊检索）

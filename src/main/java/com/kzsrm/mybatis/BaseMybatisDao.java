@@ -5,26 +5,24 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kzsrm.model.User;
-
 
 
 public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisDao  implements EntityDao<E,PK> {
    
 	private static Logger logger = LoggerFactory.getLogger(BaseMybatisDao.class);
 	
-    public E getById(PK primaryKey) {
-    	System.out.println("primaryKey  "+primaryKey);
+    @SuppressWarnings("unchecked")
+	public E getById(PK primaryKey) {
         return (E)getSqlSession().selectOne(getFindByPrimaryKeyStatement(), primaryKey);
     }
     
 	public void deleteById(PK id) {
-		int affectCount = getSqlSession().delete(getDeleteStatement(), id);
+		getSqlSession().delete(getDeleteStatement(), id);
 	}
 	
     public void save(E entity) {
 		prepareObjectForSaveOrUpdate(entity);
-		int affectCount = getSqlSession().insert(getInsertStatement(), entity);    	
+		getSqlSession().insert(getInsertStatement(), entity);    	
     }
     
 	public int update(E entity) {
@@ -50,27 +48,22 @@ public abstract class BaseMybatisDao<E,PK extends Serializable> extends MybatisD
     public abstract String getMybatisMapperNamesapce();
     
     public String getFindByPrimaryKeyStatement() {
-    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
         return getMybatisMapperNamesapce()+".getById";
     }
 
     public String getInsertStatement() {
-    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
         return getMybatisMapperNamesapce()+".insert";
     }
 
     public String getUpdateStatement() {
-    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
     		return getMybatisMapperNamesapce()+".updateById";
     }
 
     public String getDeleteStatement() {
-    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
     		return getMybatisMapperNamesapce()+".deleteById";
     }
     
     public String getFindStatement() {
-    	System.out.println("getMybatisMapperNamesapce()   "+getMybatisMapperNamesapce());
     		return getMybatisMapperNamesapce()+".findAll";
     }
    

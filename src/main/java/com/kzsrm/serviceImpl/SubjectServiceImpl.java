@@ -16,12 +16,10 @@ import com.kzsrm.dao.PointDao;
 import com.kzsrm.dao.SubjectDao;
 import com.kzsrm.dao.SubjectLogDao;
 import com.kzsrm.model.Option;
-import com.kzsrm.model.Point;
 import com.kzsrm.model.Subject;
 import com.kzsrm.model.SubjectLog;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.SubjectService;
-import com.kzsrm.utils.ComUtils;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -71,8 +69,8 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			JSONObject _jAnswer = new JSONObject().fromObject(iter.next());
 			String no = _jAnswer.get("no") + "";
 			String optId = _jAnswer.get("optId") + "";
-			String timeSpan = _jAnswer.get("timeSpan") + "";
-			int _timeSpan = ComUtils.parseInt(timeSpan);
+//			String timeSpan = _jAnswer.get("timeSpan") + "";
+//			int _timeSpan = ComUtils.parseInt(timeSpan);
 			
 			Option opt = optionDao.getById(optId);
 			Subject sub = subjectDao.getById(opt.getSid() + "");
@@ -81,22 +79,22 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			sub.setAllcount(ac + 1);
 			if ("1".equals(opt.getIsanswer()))
 				sub.setRightcount(sub.getRightcount() + 1);
-			sub.setAvgtime((sub.getAvgtime() * ac + _timeSpan) / (ac + 1));
+//			sub.setAvgtime((sub.getAvgtime() * ac + _timeSpan) / (ac + 1));
 			subjectDao.update(sub);
 			
 			ele.put("no", no);
 			ele.put("isRight", opt.getIsanswer());
 			ele.put("degree", sub.getDegree());
 			ele.put("avgAcc", (sub.getRightcount() * 100 / sub.getAllcount()) + "%");
-			ele.put("avgTime", sub.getAvgtime());
-			JSONArray pois = new JSONArray();
-			for (Point point : pointDao.getPoisBySub(sub.getId() + "")){
-				JSONObject poi = new JSONObject();
-				poi.put("content", point.getContent());
-				poi.put("id", point.getId());
-				pois.add(poi);
-			}
-			ele.put("points", pois);
+//			ele.put("avgTime", sub.getAvgtime());
+//			JSONArray pois = new JSONArray();
+//			for (Point point : pointDao.getPoisBySub(sub.getId() + "")){
+//				JSONObject poi = new JSONObject();
+//				poi.put("content", point.getContent());
+//				poi.put("id", point.getId());
+//				pois.add(poi);
+//			}
+//			ele.put("points", pois);
 			
 			ret.add(ele);
 			if (StringUtils.isNotBlank(userId)){
@@ -112,6 +110,27 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			
 		}
 		return ret;
+	}
+	/**
+	 * 获取知识点对应的测试题
+	 * @param videoId
+	 * @return
+	 */
+	@Override
+	public List<Subject> getSubjectByPoint(String pointId) {
+		List<Subject> subList = subjectDao.getSubjectByPoint(pointId);
+		for (Subject sub : subList)
+			sub.setOptionList(optionDao.getOptionBySubject(sub.getId()));
+		return subList;
+	}
+	/**
+	 * 获取知识点对应的测试题的数量
+	 * @param videoId
+	 * @return
+	 */
+	@Override
+	public Integer getSubNumByPoint(String pointId) {
+		return subjectDao.getSubNumByPoint(pointId);
 	}
 
 }

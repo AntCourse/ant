@@ -21,6 +21,9 @@ public class VideoDao<E> extends BaseMybatisDao<Video, String> {
 	public Video getVideoByPoint(String pointId) {
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getVideoByPoint", pointId);
 	}
+	public List<Video> getVideoListByPoint(String pointId) {
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getVideoListByPoint", pointId);
+	}
 	
 	public List<Video> getVideoByTag(String keyword) {
 		String searchText = new StringBuilder("%").append(keyword).append("%").toString(); 

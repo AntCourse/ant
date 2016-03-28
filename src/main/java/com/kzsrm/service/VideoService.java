@@ -20,6 +20,7 @@ public interface VideoService  extends BaseServiceMybatis<Video, String> {
 	 * @return
 	 */
 	Video getVideoByPoint(String pointId);
+	List<Video> getVideoListByPoint(String pointId);
 	/**
 	 * 根据标签获取视频（模糊检索）
 	 * @param pointId

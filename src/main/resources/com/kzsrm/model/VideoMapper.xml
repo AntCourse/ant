@@ -33,6 +33,13 @@
     where t.id = pv.vid and pv.pid = p.id
     and p.id = #{pointId,jdbcType=VARCHAR}
   </select>
+  <select id="getVideoListByPoint" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" /> ,pv.weight
+    from video t, point_video pv, point p
+    where t.id = pv.vid and pv.pid = p.id
+    and p.id = #{pointId,jdbcType=VARCHAR}
+  </select>
   
   <select id="getVideoByTag" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

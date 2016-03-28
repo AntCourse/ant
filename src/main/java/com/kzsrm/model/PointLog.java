@@ -11,6 +11,8 @@ public class PointLog {
 
     private Date createtime;
     
+    private Double accuracy;
+    
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class PointLog {
 
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
+	}
+
+	public Double getAccuracy() {
+		return accuracy;
+	}
+
+	public void setAccuracy(Double accuracy) {
+		this.accuracy = accuracy;
 	}
 }

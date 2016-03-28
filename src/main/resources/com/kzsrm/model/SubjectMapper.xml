@@ -15,6 +15,24 @@
     t.id, t.question, t.type, t.degree, t.hint, t.allcount, t.rightcount, t.avgtime
   </sql>
   
+  <!-- 知识点中试题的数量 -->
+  <select id="getSubNumByPoint" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(*)
+    FROM
+	`subject` t, point_subject s
+	WHERE t.id = s.sid
+		AND s.pid = #{pointId,jdbcType=VARCHAR}
+  </select>
+  <!-- 知识点中试题的列表 -->
+  <select id="getSubjectByPoint" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    FROM
+	`subject` t, point_subject s
+	WHERE t.id = s.sid
+		AND s.pid = #{pointId,jdbcType=VARCHAR}
+  </select>
+  
   <select id="getSubjectByVideo" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select distinct
     <include refid="Base_Column_List" />

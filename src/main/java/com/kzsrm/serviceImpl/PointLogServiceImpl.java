@@ -41,5 +41,21 @@ public class PointLogServiceImpl extends BaseServiceMybatisImpl<PointLog, String
 			return "1";
 		return "0";
 	}
+	/**
+	 * 获取当前用户某个知识点的正确率
+	 * @param pid		知识点id
+	 * @param userId	用户
+	 * @return
+	 */
+	@Override
+	public Double getAccuracy(String pid, String userId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pid", pid);
+		map.put("userId", userId);
+		List<PointLog> ret = pointLogDao.getLearned(map);
+		if (ret.size() > 0 )
+			return ret.get(0).getAccuracy();
+		return 0D;
+	}
 
 }

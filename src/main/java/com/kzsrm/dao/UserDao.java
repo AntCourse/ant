@@ -27,7 +27,6 @@ public class UserDao<E> extends BaseMybatisDao<User, Integer> {
 		// map.put("name", name);
 		// map.put("phone", phone);
 		// map.put("passwd", passwd);\
-		System.out.println("this.getMybatisMapperNamesapce()   " + this.getMybatisMapperNamesapce());
 		int i = this.getSqlSession().insert(this.getMybatisMapperNamesapce() + ".insert", entity);
 		return i;
 	}
