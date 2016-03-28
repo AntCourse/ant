@@ -48,7 +48,7 @@ public class CourseNewController {
 	/**
 	 * 课程列表-三层
 	 * @param pid		课程id，返回本级及其子集信息
-	 * @param type		预留参数
+	 * @param type		1 考点课程分级  2课程课程分级
 	 * @return
 	 */
 	@ResponseBody
@@ -62,8 +62,8 @@ public class CourseNewController {
 			Course cour = courseService.getById(pid);
 			if (cour != null){
 				course.put("courId", cour.getId());
-				course.put("courName", cour.getName());
-				course.put("courProfile", cour.getProfile());
+				course.put("name", cour.getName());
+				course.put("profile", cour.getProfile());
 			}
 			
 			List<Course> courseList = courseService.getchildrenCour(pid, type);
@@ -71,16 +71,18 @@ public class CourseNewController {
 			JSONArray children = new JSONArray();
 			for (Course child : courseList){
 				JSONObject ch = new JSONObject();
-				ch.put("id", child.getId());
+				ch.put("courId", child.getId());
 				ch.put("name", child.getName());
 				ch.put("pid", child.getPid());
 				ch.put("profile", child.getProfile());
 				ch.put("type", child.getType());
 				ch.put("address", child.getAddress());
 				
-				List<Course> subList = courseService.getchildrenCour(child.getId()+"", type);
-				ch.put("subList", subList);
-				
+				// 1 考点试题，课程后面接一层知识点  2课程视频 分两层即可
+				if(type.equals("1")){
+					List<Point> pointList = pointService.getPointByCour(child.getId() + "");
+					ch.put("pointList", pointList);
+				}
 				children.add(ch);
 			}
 			
