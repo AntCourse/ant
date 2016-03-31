@@ -78,10 +78,13 @@ public class CourseNewController {
 				ch.put("type", child.getType());
 				ch.put("address", child.getAddress());
 				
-				// 1 考点试题，课程后面接一层知识点  2课程视频 分两层即可
+				// 1 考点试题，课程后面接一层知识点  2课程视频 课程三层结构
 				if(type.equals("1")){
 					List<Point> pointList = pointService.getPointByCour(child.getId() + "");
-					ch.put("pointList", pointList);
+					ch.put("subList", pointList);
+				}else if(type.equals("2")){
+					List<Course> subList = courseService.getchildrenCour(child.getId()+"", type);
+					ch.put("subList", subList);
 				}
 				children.add(ch);
 			}
