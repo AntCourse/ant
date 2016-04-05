@@ -3,19 +3,19 @@
 <mapper namespace="com.kzsrm.model.PointLogMapper" >
   <resultMap id="BaseResultMap" type="com.kzsrm.model.PointLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="VARCHAR" />
     <result column="userid" property="userid" jdbcType="VARCHAR" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, pid, userid, createTime
+    id, cid, userid, createTime
   </sql>
   
   <select id="getLearned" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
     from pointLog
-    where pid = #{pid,jdbcType=VARCHAR}
+    where cid = #{cid,jdbcType=VARCHAR}
     	and userid = #{userId,jdbcType=VARCHAR}
   </select>
   
@@ -30,9 +30,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.PointLog" >
-    insert into pointLog (id, pid, userid, 
+    insert into pointLog (id, cid, userid, 
       createTime)
-    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.PointLog" >
@@ -41,8 +41,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="pid != null" >
-        pid,
+      <if test="cid != null" >
+        cid,
       </if>
       <if test="userid != null" >
         userid,
@@ -55,8 +55,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=VARCHAR},
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
         #{userid,jdbcType=VARCHAR},
@@ -69,8 +69,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.kzsrm.model.PointLog" >
     update pointLog
     <set >
-      <if test="pid != null" >
-        pid = #{pid,jdbcType=VARCHAR},
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
         userid = #{userid,jdbcType=VARCHAR},
@@ -83,7 +83,7 @@
   </update>
   <update id="updateById" parameterType="com.kzsrm.model.PointLog" >
     update pointLog
-    set pid = #{pid,jdbcType=VARCHAR},
+    set cid = #{cid,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

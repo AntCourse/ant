@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kzsrm.model.Course;
 import com.kzsrm.model.Option;
-import com.kzsrm.model.Point;
 import com.kzsrm.model.Subject;
 import com.kzsrm.model.Video;
 import com.kzsrm.service.CourseService;
 import com.kzsrm.service.OptionService;
 import com.kzsrm.service.PointLogService;
-import com.kzsrm.service.PointService;
 import com.kzsrm.service.SubjectService;
 import com.kzsrm.service.VideoService;
 import com.kzsrm.utils.ApiCode;
@@ -39,7 +37,6 @@ public class CourseNewController {
 	JsonConfig courCf = ComUtils.jsonConfig(new String[]{"id","reDate"});
 
 	@Resource private CourseService courseService;
-	@Resource private PointService pointService;
 	@Resource private VideoService videoService;
 	@Resource private SubjectService subjectService;
 	@Resource private PointLogService pointLogService;
@@ -48,7 +45,7 @@ public class CourseNewController {
 	/**
 	 * 课程列表-三层
 	 * @param pid		课程id，返回本级及其子集信息
-	 * @param type		1 考点课程分级  2课程课程分级
+	 * @param type		预留字段
 	 * @return
 	 */
 	@ResponseBody
@@ -77,50 +74,12 @@ public class CourseNewController {
 				ch.put("profile", child.getProfile());
 				ch.put("type", child.getType());
 				ch.put("address", child.getAddress());
-				
-				// 1 考点试题，课程后面接一层知识点  2课程视频 课程三层结构
-				if(type.equals("1")){
-					List<Point> pointList = pointService.getPointByCour(child.getId() + "");
-					ch.put("subList", pointList);
-				}else if(type.equals("2")){
-					List<Course> subList = courseService.getchildrenCour(child.getId()+"", type);
-					ch.put("subList", subList);
-				}
+				ch.put("subList", courseService.getchildrenCour(child.getId()+"", type));
 				children.add(ch);
 			}
-			
 			course.put("child", children);
 			
 			ret.put("result", course);
-			return ret;
-		} catch (Exception e) {
-			logger.error("", e);
-			return MapResult.failMap();
-		}
-	}
-	/**
-	 * 知识点列表
-	 * @param courseId		课程id
-	 * @param userId		用户id，用于判断各知识点用户是否已学
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/getPointList")
-	public Map<String, Object> getPointList(
-			@RequestParam(required = true) String courseId,
-			@RequestParam(required = false) String userId) {
-		try{
-			if (StringUtils.isBlank(courseId))
-				return MapResult.initMap(ApiCode.PARG_ERR, "课程id为空");
-			
-			Map<String, Object> ret = MapResult.initMap();
-			List<Point> pointList = pointService.getPointByCour(courseId);
-			for (Point point : pointList) {
-				point.setSubNum(subjectService.getSubNumByPoint(point.getId()+""));
-				if (StringUtils.isNotBlank(userId))
-					point.setAccuracy(pointLogService.getAccuracy(point.getId()+"", userId));
-			}
-			ret.put("result", pointList);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
@@ -186,7 +145,7 @@ public class CourseNewController {
 				return MapResult.initMap(ApiCode.PARG_ERR, "知识点id为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
-			Point point = pointService.getById(pointId);
+			Course point = courseService.getById(pointId);
 			ret.put("result", point);
 			return ret;
 		} catch (Exception e) {

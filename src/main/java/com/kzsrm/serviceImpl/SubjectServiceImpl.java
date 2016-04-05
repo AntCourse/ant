@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.OptionDao;
-import com.kzsrm.dao.PointDao;
 import com.kzsrm.dao.SubjectDao;
 import com.kzsrm.dao.SubjectLogDao;
 import com.kzsrm.model.Option;
@@ -31,8 +30,6 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 	private SubjectDao<?> subjectDao;
 	@Resource
 	private OptionDao<?> optionDao;
-	@Resource
-	private PointDao<?> pointDao;
 	@Resource
 	private SubjectLogDao<?> subjectLogDao;
 

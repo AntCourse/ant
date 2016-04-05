@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kzsrm.model.Course;
 import com.kzsrm.model.Keyword;
 import com.kzsrm.model.Option;
-import com.kzsrm.model.Point;
 import com.kzsrm.model.PointLog;
 import com.kzsrm.model.Subject;
 import com.kzsrm.model.Video;
@@ -28,7 +27,6 @@ import com.kzsrm.service.CourseService;
 import com.kzsrm.service.KeywordService;
 import com.kzsrm.service.OptionService;
 import com.kzsrm.service.PointLogService;
-import com.kzsrm.service.PointService;
 import com.kzsrm.service.SubjectService;
 import com.kzsrm.service.VideoService;
 import com.kzsrm.utils.ApiCode;
@@ -37,23 +35,22 @@ import com.kzsrm.utils.MapResult;
 
 @Controller
 @RequestMapping("/courold")
-public class CourseController {
+public class CourseController {/*
 	private static Logger logger = LoggerFactory.getLogger(Course.class);
 
 	@Resource private CourseService courseService;
-	@Resource private PointService pointService;
 	@Resource private VideoService videoService;
 	@Resource private SubjectService subjectService;
 	@Resource private PointLogService pointLogService;
 	@Resource private OptionService optionService;
 	@Resource private KeywordService keywordService;
 
-	/**
+	*//**
 	 * 课程列表-二级
 	 * @param pid		课程id，返回本级及其子集信息
 	 * @param type		预留参数
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getCourList_old")
 	public Map<String, Object> getCourList_old(
@@ -80,12 +77,12 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 课程列表-二级
 	 * @param pid		课程id，返回本级及其子集信息
 	 * @param type		预留参数
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getCourList")
 	public Map<String, Object> getCourList(
@@ -130,12 +127,12 @@ public class CourseController {
 	}
 	
 	
-	/**
+	*//**
 	 * 课程列表-三级
 	 * @param pid		课程id，返回本级，子集及子集所包含的知识点
 	 * @param type		预留参数
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getCourListSpe")
 	public Map<String, Object> getCourListSpe(
@@ -178,12 +175,12 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 知识点列表
 	 * @param courseId		课程id
 	 * @param userId		用户id，用于判断各知识点用户是否已学
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getPointList")
 	public Map<String, Object> getPointList(
@@ -207,10 +204,10 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 首页推荐知识点
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getHomeVideoList")
 	public Map<String, Object> getHomeVideoList() {
@@ -225,12 +222,12 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 知识点学习记录
 	 * @param pointId		知识点id
 	 * @param userId		用户id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/setPointLog")
 	public Map<String, Object> setPointLog(
@@ -256,11 +253,11 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 获取知识点对应的视频
 	 * @param pointId		知识点id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getVideoByPoi")
 	public Map<String, Object> getVideoByPoi(
@@ -280,10 +277,10 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 获取推荐的搜索关键词
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getKeywordList")
 	public Map<String, Object> getKeywordList() {
@@ -298,11 +295,11 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 根据标签查询对应的视频（视频检索）
 	 * @param pointId		知识点id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getVideoByKeyWord")
 	public Map<String, Object> getVideoByKeyWord(
@@ -321,11 +318,11 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 获取知识点详细信息
 	 * @param pointId		知识点id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getPointDetail")
 	public Map<String, Object> getPointDetail(
@@ -344,13 +341,13 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 更新课程（视频文件夹）信息
 	 * 每调用一次，课程点击数+1，同时更新时长总计
 	 * @param videoId		视频id
 	 * @param timeSpan		时长，秒
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/updateCourseInfo")
 	public Map<String, Object> updateCourseInfo(
@@ -370,13 +367,13 @@ public class CourseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * 更新视频信息
 	 * 每调用一次，视频点击数+1，同时更新时长总计
 	 * @param videoId		视频id
 	 * @param timeSpan		时长，秒
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/updVideoInfo")
 	public Map<String, Object> updateVideoInfo(
@@ -396,11 +393,11 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 获取视频对应的测试题
 	 * @param videoId		视频id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getSubList")
 	public Map<String, Object> getSubjectList(
@@ -418,12 +415,12 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 提交测试题的答案
 	 * @param userId		用户id，用于记录做题日志
 	 * @param answer		答案，json格式[{"no":"序号","optId":"选项id","timeSpan":"秒"},{},...]
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/checkAnswer")
 	public Map<String, Object> checkAnswer(
@@ -442,11 +439,11 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 获取测试题的相关视频
 	 * @param subjectId		试题id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getVideoBySub")
 	public Map<String, Object> getVideoBySub(
@@ -464,11 +461,11 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 获取推荐视频
 	 * @param subjectIds		错误试题id，多个用逗号分隔
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getRecommendVideo")
 	public Map<String, Object> getRecommendVideo(
@@ -486,11 +483,11 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 获取试题答案
 	 * @param subjectId			试题id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getSubjectAnswer")
 	public Map<String, Object> getSubjectAnswer(
@@ -508,11 +505,11 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-	/**
+	*//**
 	 * 获取试题提示
 	 * @param subjectId			试题id
 	 * @return
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/getSubjectHint")
 	public Map<String, Object> getSubjectHint(
@@ -530,4 +527,4 @@ public class CourseController {
 			return MapResult.failMap();
 		}
 	}
-}
+*/}

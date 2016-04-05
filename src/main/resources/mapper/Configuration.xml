@@ -9,7 +9,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kzsrm.model.Collection" alias="Collection" />
 		<typeAlias type="com.kzsrm.model.Course" alias="Course" />
 		<typeAlias type="com.kzsrm.model.Option" alias="Option" />
-		<typeAlias type="com.kzsrm.model.Point" alias="Point" />
 		<typeAlias type="com.kzsrm.model.PointLog" alias="PointLog" />
 		<typeAlias type="com.kzsrm.model.Subject" alias="Subject" />
 		<typeAlias type="com.kzsrm.model.SubjectLog" alias="SubjectLog" />

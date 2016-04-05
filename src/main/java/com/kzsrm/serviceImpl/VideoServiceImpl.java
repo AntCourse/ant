@@ -1,8 +1,6 @@
 package com.kzsrm.serviceImpl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -10,9 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
-import com.kzsrm.dao.PointDao;
 import com.kzsrm.dao.VideoDao;
-import com.kzsrm.model.Point;
 import com.kzsrm.model.Video;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.VideoService;
@@ -24,8 +20,6 @@ import com.kzsrm.utils.CustomException;
 public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> implements VideoService {
 	@Resource
 	private VideoDao<?> videoDao;
-	@Resource
-	private PointDao<?> pointDao;
 
 	@Override
 	protected EntityDao<Video, String> getEntityDao() {
@@ -94,7 +88,7 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 	 * @return
 	 */
 	@Override
-	public Video getRecommendVideo(String subjectIds) {
+	public Video getRecommendVideo(String subjectIds) {return null;/*
 		Map<Integer, Integer> repeat = new HashMap<Integer, Integer>();
 		Integer maxCount = 0, maxPoint = null;
 		
@@ -120,7 +114,7 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 		}
 		
 		return videoDao.getVideoByPoint(maxPoint+"");
-	}
+	*/}
 	
 	/**
 	 * 获取首页轮播中展示的视频
