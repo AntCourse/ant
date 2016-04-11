@@ -33,7 +33,7 @@ import net.sf.json.JsonConfig;
 @Controller
 @RequestMapping("/cour")
 public class CourseNewController {
-	private static Logger logger = LoggerFactory.getLogger(Course.class);
+	private static Logger logger = LoggerFactory.getLogger(CourseNewController.class);
 	JsonConfig courCf = ComUtils.jsonConfig(new String[]{"id","reDate"});
 
 	@Resource private CourseService courseService;

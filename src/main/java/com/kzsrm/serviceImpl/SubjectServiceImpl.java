@@ -129,5 +129,17 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 	public Integer getSubNumByPoint(String pointId) {
 		return subjectDao.getSubNumByPoint(pointId);
 	}
+	/**
+	 * 获取模考对应的测试题
+	 * @param examId
+	 * @return
+	 */
+	@Override
+	public List<Subject> getSubjectByExam(String examId) {
+		List<Subject> subList = subjectDao.getSubjectByExam(examId);
+		for (Subject sub : subList)
+			sub.setOptionList(optionDao.getOptionBySubject(sub.getId()));
+		return subList;
+	}
 
 }

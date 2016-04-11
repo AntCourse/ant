@@ -32,6 +32,15 @@
 	WHERE t.id = s.sid
 		AND s.cid = #{pointId,jdbcType=VARCHAR}
   </select>
+  <!-- 模考中试题的列表 -->
+  <select id="getSubjectByPoint" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    FROM
+	`subject` t, exam_subject s
+	WHERE t.id = s.sid
+		AND s.eid = #{examId,jdbcType=VARCHAR}
+  </select>
   
   <select id="getSubjectByVideo" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select distinct

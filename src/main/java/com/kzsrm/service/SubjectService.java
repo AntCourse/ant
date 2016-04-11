@@ -34,5 +34,11 @@ public interface SubjectService  extends BaseServiceMybatis<Subject, String> {
 	 * @return
 	 */
 	Integer getSubNumByPoint(String pointId);
+	/**
+	 * 获取模考对应的测试题
+	 * @param examId
+	 * @return
+	 */
+	List<Subject> getSubjectByExam(String examId);
 
 }
