@@ -21,5 +21,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kzsrm.model.Sign" alias="Sign" />
 		<typeAlias type="com.kzsrm.model.Examination" alias="Examination" />
 		<typeAlias type="com.kzsrm.model.Goods" alias="Goods" />
+		<typeAlias type="com.kzsrm.model.Option" alias="Option" />
 	</typeAliases>
 </configuration>

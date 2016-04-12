@@ -72,6 +72,7 @@
 				<value>classpath:/com/kzsrm/model/SignMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/ExaminationMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/GoodsMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/OptionMapper.xml</value>
 			</list>
 		</property>
 	</bean>
