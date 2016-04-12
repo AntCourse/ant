@@ -27,7 +27,7 @@ public class SubjectDao<E> extends BaseMybatisDao<Subject, String> {
 	}
 
 	public List<Subject> getSubjectByExam(String examId) {
-		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getSubjectByExam", examId);
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getSubjectByExam", examId);
 	}
 
 }
