@@ -215,6 +215,12 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.ning</groupId>
