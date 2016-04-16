@@ -36,18 +36,20 @@ public class ExamController {
 	/**
 	 * 模考列表
 	 * @param courseId		课程id
+	 * @param type			1-题库，2-真题
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getExamList")
 	public Map<String, Object> getExamList(
-			@RequestParam(required = true) String courseId) {
+			@RequestParam(required = true) String courseId,
+			@RequestParam(required = true) String type) {
 		try{
 			if (StringUtils.isBlank(courseId))
 				return MapResult.initMap(ApiCode.PARG_ERR, "课程id为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
-			List<Examination> examList = examService.getListByCour(courseId);
+			List<Examination> examList = examService.getListByCour(courseId, type);
 			
 			ret.put("result", JSONArray.fromObject(examList, examCf));
 			return ret;

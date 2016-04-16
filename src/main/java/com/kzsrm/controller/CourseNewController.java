@@ -157,19 +157,21 @@ public class CourseNewController {
 	 * 提交测试题的答案
 	 * @param userId		用户id，用于记录做题日志
 	 * @param answer		答案，json格式[{"no":"序号","optId":"选项id","timeSpan":"秒"},{},...]
+	 * @param type			试题类型
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/checkAnswer")
 	public Map<String, Object> checkAnswer(
 			@RequestParam(required = false) String userId,
-			@RequestParam(required = true) String answer) {
+			@RequestParam(required = true) String answer,
+			@RequestParam(required = true) String type) {
 		try{
 			if (StringUtils.isBlank(answer))
 				return MapResult.initMap(ApiCode.PARG_ERR, "答案为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
-			JSONArray subList = subjectService.checkAnswer(userId, answer);
+			JSONArray subList = subjectService.checkAnswer(userId, answer, type);
 			ret.put("result", subList);
 			return ret;
 		} catch (Exception e) {

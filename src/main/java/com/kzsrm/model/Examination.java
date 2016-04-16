@@ -13,6 +13,8 @@ public class Examination {
 
     private Integer coverpoint;
 
+    private String type;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class Examination {
 
     public void setCoverpoint(Integer coverpoint) {
         this.coverpoint = coverpoint;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 }

@@ -15,6 +15,8 @@ public class Goods {
 
     private Integer status;
 
+    private String type;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class Goods {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 }

@@ -9,8 +9,9 @@ public interface ExamService  extends BaseServiceMybatis<Examination, String> {
 	/**
 	 * 获取模考列表
 	 * @param cid	课程id
+	 * @param type 	1-题库，2-真题
 	 * @return
 	 */
-	List<Examination> getListByCour(String cid);
+	List<Examination> getListByCour(String cid, String type);
 
 }

@@ -8,17 +8,19 @@
     <result column="target" property="target" jdbcType="DECIMAL" />
     <result column="degree" property="degree" jdbcType="INTEGER" />
     <result column="coverPoint" property="coverpoint" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    t.id, t.cid, t.name, t.target, t.degree, t.coverPoint
+    t.id, t.cid, t.name, t.target, t.degree, t.coverPoint, t.type
   </sql>
   
   <!-- 根据课程获取模考列表 -->
-  <select id="getListByCour" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="getListByCour" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     FROM `examination` t
 	WHERE t.cid = #{cid,jdbcType=VARCHAR}
+		and t.type = #{type,jdbcType=VARCHAR}
   </select>
   
   <select id="findAll" resultMap="BaseResultMap" >
@@ -37,10 +39,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.kzsrm.model.Examination" >
-    insert into `examination` (id, cid, name, target, 
-      degree, coverPoint)
-    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{target,jdbcType=DECIMAL}, 
-      #{degree,jdbcType=INTEGER}, #{coverPoint,jdbcType=INTEGER})
+    insert into examination (id, cid, name, 
+      target, degree, coverPoint, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{target,jdbcType=DECIMAL}, #{degree,jdbcType=INTEGER}, #{coverpoint,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kzsrm.model.Examination" >
     insert into `examination`
@@ -63,6 +67,9 @@
       <if test="coverpoint != null" >
         coverPoint,
       </if>
+      <if test="type != null" >
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -82,6 +89,9 @@
       </if>
       <if test="coverpoint != null" >
         #{coverpoint,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -103,6 +113,9 @@
       <if test="coverpoint != null" >
         coverPoint = #{coverpoint,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -112,7 +125,8 @@
       name = #{name,jdbcType=VARCHAR},
       target = #{target,jdbcType=DECIMAL},
       degree = #{degree,jdbcType=INTEGER},
-      coverPoint = #{coverpoint,jdbcType=INTEGER}
+      coverPoint = #{coverpoint,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

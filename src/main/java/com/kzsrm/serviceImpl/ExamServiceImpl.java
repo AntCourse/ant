@@ -1,6 +1,8 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -30,8 +32,11 @@ public class ExamServiceImpl extends BaseServiceMybatisImpl<Examination, String>
 	 * @return
 	 */
 	@Override
-	public List<Examination> getListByCour(String cid) {
-		return examinationDao.getListByCour(cid);
+	public List<Examination> getListByCour(String cid, String type) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cid", cid);
+		map.put("type", type);
+		return examinationDao.getListByCour(map);
 	}
 
 }

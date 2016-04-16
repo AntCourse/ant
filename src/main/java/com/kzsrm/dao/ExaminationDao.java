@@ -1,6 +1,7 @@
 package com.kzsrm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,8 @@ public class ExaminationDao<E> extends BaseMybatisDao<Examination, String> {
 		return "com.kzsrm.model.ExaminationMapper";
 	}
 
-	public List<Examination> getListByCour(String cid) {
-		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getListByCour", cid);
+	public List<Examination> getListByCour(Map<String, Object> map) {
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getListByCour", map);
 	}
+
 }

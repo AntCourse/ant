@@ -57,7 +57,7 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 	 */
 	@Override
 	@SuppressWarnings({ "static-access", "rawtypes" })
-	public JSONArray checkAnswer(String userId, String answer) {
+	public JSONArray checkAnswer(String userId, String answer, String type) {
 		JSONArray ret = new JSONArray();
 		JSONArray _jAnswerList = new JSONArray().fromObject(answer);
 		Iterator iter = _jAnswerList.iterator();

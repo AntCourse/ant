@@ -19,9 +19,10 @@ public interface SubjectService  extends BaseServiceMybatis<Subject, String> {
 	 * 校验测试题的答案
 	 * @param userId
 	 * @param answer
+	 * @param type 
 	 * @return
 	 */
-	JSONArray checkAnswer(String userId, String answer);
+	JSONArray checkAnswer(String userId, String answer, String type);
 	/**
 	 * 获取知识点对应的测试题
 	 * @param videoId
