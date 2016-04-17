@@ -58,7 +58,7 @@ public class CourseNewController {
 			JSONObject course = new JSONObject();
 			Course cour = courseService.getById(pid);
 			if (cour != null){
-				course.put("courId", cour.getId());
+				course.put("id", cour.getId());
 				course.put("name", cour.getName());
 				course.put("profile", cour.getProfile());
 			}
@@ -68,7 +68,7 @@ public class CourseNewController {
 			JSONArray children = new JSONArray();
 			for (Course child : courseList){
 				JSONObject ch = new JSONObject();
-				ch.put("courId", child.getId());
+				ch.put("id", child.getId());
 				ch.put("name", child.getName());
 				ch.put("pid", child.getPid());
 				ch.put("profile", child.getProfile());
