@@ -161,7 +161,7 @@ public class AlipayCore {
 	 * create the order info. 创建订单信息
 	 * 
 	 */
-	public static String getOrderInfo(String subject, String body, String price) {
+	public static String getOrderInfo(String subject, String body, String price,String out_trade_no) {
 		// 合作者身份ID
 		String orderInfo = "partner=" + "\"" + AlipayConfig.partner + "\"";
 
@@ -169,7 +169,7 @@ public class AlipayCore {
 		orderInfo += "&seller_id=" + "\"" + AlipayConfig.seller + "\"";
 
 		// 商户网站唯一订单号
-		orderInfo += "&out_trade_no=" + "\"" + UtilDate.getOrderNum() + "\"";
+		orderInfo += "&out_trade_no=" + "\"" + out_trade_no + "\"";
 
 		// 商品名称
 		orderInfo += "&subject=" + "\"" + subject + "\"";

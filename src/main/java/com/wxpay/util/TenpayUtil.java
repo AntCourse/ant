@@ -1,4 +1,8 @@
-package com.tenpay.util;
+package com.wxpay.util;
+
+
+
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class TenpayUtil {
 	
+	private static Object Server;
+	private static String QRfromGoogle;
+
 	/**
 	 * 把对象转换成字符串
 	 * @param obj
@@ -86,6 +93,7 @@ public class TenpayUtil {
 	 * @param response
 	 * @return String
 	 */
+
 	public static String getCharacterEncoding(HttpServletRequest request,
 			HttpServletResponse response) {
 		
@@ -105,6 +113,19 @@ public class TenpayUtil {
 		return enc;
 	}
 	
+	public  static String URLencode(String content){
+		
+		String URLencode;
+		
+		URLencode= replace(Server.equals(content), "+", "%20");
+		
+		return URLencode;
+	}
+	private static String replace(boolean equals, String string, String string2) {
+		
+		return null;
+	}
+
 	/**
 	 * 获取unix时间，从1970-01-01 00:00:00开始的秒数
 	 * @param date
@@ -117,7 +138,20 @@ public class TenpayUtil {
 		
 		return date.getTime()/1000;
 	}
-		
+	
+	 public static String QRfromGoogle(String chl)
+	    {
+	        int widhtHeight = 300;
+	        String EC_level = "L";
+	        int margin = 0;
+	        String QRfromGoogle;
+	        chl = URLencode(chl);
+	        
+	        QRfromGoogle = "http://chart.apis.google.com/chart?chs=" + widhtHeight + "x" + widhtHeight + "&cht=qr&chld=" + EC_level + "|" + margin + "&chl=" + chl;
+	       
+	        return QRfromGoogle;
+	    }
+
 	/**
 	 * 时间转换成字符串
 	 * @param date 时间
@@ -128,5 +162,17 @@ public class TenpayUtil {
 		SimpleDateFormat sdf = new SimpleDateFormat(formatType);
 		return sdf.format(date);
 	}
-
+	
 }
+	
+	
+
+
+
+
+
+
+
+
+
+

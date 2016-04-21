@@ -1,25 +1,20 @@
-package com.tenpay.util;
+package com.wxpay.util;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.io.ByteArrayInputStream;
 
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
-/**
- * xml工具类
- * @author miklchen
- *
- */
-public class XMLUtil {
 
+public class XMLUtil {
 	/**
 	 * 解析xml,返回第一级元素键值对。如果第一级元素有子节点，则此节点的值是子节点的xml数据。
 	 * @param strxml
@@ -87,21 +82,5 @@ public class XMLUtil {
 		
 		return sb.toString();
 	}
-	
-	/**
-	 * 获取xml编码字符集
-	 * @param strxml
-	 * @return
-	 * @throws IOException 
-	 * @throws JDOMException 
-	 */
-	public static String getXMLEncoding(String strxml) throws JDOMException, IOException {
-		InputStream in = HttpClientUtil.String2Inputstream(strxml);
-		SAXBuilder builder = new SAXBuilder();
-		Document doc = builder.build(in);
-		in.close();
-		return (String)doc.getProperty("encoding");
-	}
-	
 	
 }
