@@ -203,4 +203,22 @@ public class CourseNewController {
 			return MapResult.failMap();
 		}
 	}
+	/**
+	 * 刷新知识点下的题目总数
+	 * @param type
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/refreshSubAllNum")
+	public Map<String, Object> refreshSubAllNum(@RequestParam(required = true) String type) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			courseService.refreshSubAllNum("0", type);
+			ret.put("result", "成功！");
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.CourseDao;
+import com.kzsrm.dao.SubjectDao;
 import com.kzsrm.model.Course;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.CourseService;
@@ -25,8 +26,8 @@ import net.sf.json.JsonConfig;
 @Service
 @Transactional
 public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> implements CourseService {
-	@Resource
-	private CourseDao<?> courseDao;
+	@Resource private CourseDao<?> courseDao;
+	@Resource private SubjectDao<?> subjectDao;
 
 	@Override
 	protected EntityDao<Course, String> getEntityDao() {
@@ -110,6 +111,26 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> im
 		map.put("cid", cid);
 		map.put("userid", userid);
 		return courseDao.getHasDoneSubNum(map);
+	}
+
+	/**
+	 * 刷新知识点下的题目总数
+	 */
+	@Override
+	public int refreshSubAllNum(String pid, String type) {
+		int num = 0;
+		List<Course> courseList = getchildrenCour(pid, null);// 暂不考虑type
+		if (courseList != null && courseList.size() > 0) {
+			for (Course course : courseList) {
+				int tmp = refreshSubAllNum(course.getId()+"", type);
+				course.setSubAllNum(tmp);
+				update(course);
+				num += tmp;
+			}
+		} else {
+			num = subjectDao.getSubNumByPoint(pid);
+		}
+		return num;
 	}
 
 }

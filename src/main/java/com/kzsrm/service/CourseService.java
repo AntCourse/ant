@@ -40,5 +40,11 @@ public interface CourseService  extends BaseServiceMybatis<Course, String> {
      * @return
      */
 	JSONObject getMultilevelCour(Course course, String userid, String type);
+	/**
+	 * 刷新知识点下的题目总数
+	 * @param pid 
+	 * @param type 
+	 */
+	int refreshSubAllNum(String pid, String type);
 
 }
