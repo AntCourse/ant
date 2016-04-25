@@ -63,7 +63,7 @@ public class PayController {
 			Map<String, Object> ret = MapResult.initMap();
 			
 			Map<String, String> infoMap = new HashMap<String, String>();
-			infoMap.put("orderInfo", orderInfo);
+			infoMap.put("orderInfo", orderString);
 			infoMap.put("orderNo", out_trade_no);
 			
 			ret.put("result", infoMap);

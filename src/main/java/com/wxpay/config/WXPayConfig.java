@@ -4,11 +4,11 @@ public class WXPayConfig {
 	/**
 	 * 服务号相关信息
 	 */
-	 public final static String APPID = "wxbb88b0b8e23e130f";//服务号的应用号
-	 public final static String APP_SECRECT = "995fb3da51ae42c5abe4e3ea07f3ea7c";//服务号的应用密码
+	 public final static String APPID = "wxc60b8fd5de5f874e";//服务号的应用号
+	 public final static String APP_SECRECT = "f309138a94cb8f3948fdf7b1082bcd29";//服务号的应用密码
 	 public final static String TOKEN = "weixinCourse";//服务号的配置token
-	 public final static String MCH_ID = "1315757101";//商户号
-	 public final static String API_KEY = "5tAS8IcojhHdnLjTYHLwysNlfi7asCoA";//API密钥
+	 public final static String MCH_ID = "1336425101";//商户号
+	 public final static String API_KEY = "di06U47zKP7vAvIF3PQQ14PScAWWIoO1";//API密钥
 	 public final static String SIGN_TYPE = "MD5";//签名加密方式
 	//微信支付统一接口的回调action
 	 public final static String NOTIFY_URL = "http://localhost:8080/SD/reward/paySuccessCallBack";
