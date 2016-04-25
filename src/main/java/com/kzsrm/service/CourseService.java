@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Course;
-import com.kzsrm.model.Video;
-import com.kzsrm.utils.ComUtils;
 import com.kzsrm.utils.CustomException;
+
+import net.sf.json.JSONObject;
 
 public interface CourseService  extends BaseServiceMybatis<Course, String> {
 
@@ -32,5 +32,13 @@ public interface CourseService  extends BaseServiceMybatis<Course, String> {
 	 * @throws CustomException 
 	 */
     void updateCourseInfo(String courseId) throws CustomException;
+    /**
+     * 钻取多级课程
+     * @param pid
+     * @param userid 
+     * @param type 
+     * @return
+     */
+	JSONObject getMultilevelCour(Course course, String userid, String type);
 
 }

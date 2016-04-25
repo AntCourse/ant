@@ -14,6 +14,8 @@ public class Course {
     private String pid;
     
     private Integer playcount;
+    
+    private Integer subAllNum;
 
     public Integer getId() {
         return id;
@@ -70,4 +72,13 @@ public class Course {
 	public void setPlaycount(Integer playcount) {
 		this.playcount = playcount;
 	}
+
+	public Integer getSubAllNum() {
+		return subAllNum;
+	}
+
+	public void setSubAllNum(Integer subAllNum) {
+		this.subAllNum = subAllNum;
+	}
+
 }

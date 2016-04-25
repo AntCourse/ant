@@ -34,7 +34,7 @@ import net.sf.json.JsonConfig;
 @RequestMapping("/cour")
 public class CourseNewController {
 	private static Logger logger = LoggerFactory.getLogger(CourseNewController.class);
-	JsonConfig courCf = ComUtils.jsonConfig(new String[]{"id","reDate"});
+	JsonConfig courCf = ComUtils.jsonConfig(new String[]{"playcount"});
 
 	@Resource private CourseService courseService;
 	@Resource private VideoService videoService;
@@ -45,6 +45,7 @@ public class CourseNewController {
 	/**
 	 * 课程列表-三层
 	 * @param pid		课程id，返回本级及其子集信息
+	 * @param userid	用户id
 	 * @param type		预留字段
 	 * @return
 	 */
@@ -52,34 +53,13 @@ public class CourseNewController {
 	@RequestMapping(value = "/getCourList")
 	public Map<String, Object> getCourList(
 			@RequestParam(required = true) String pid,
+			@RequestParam(required = false) String userid,
 			@RequestParam(required = false) String type) {
 		try{
 			Map<String, Object> ret = MapResult.initMap();
-			JSONObject course = new JSONObject();
-			Course cour = courseService.getById(pid);
-			if (cour != null){
-				course.put("id", cour.getId());
-				course.put("name", cour.getName());
-				course.put("profile", cour.getProfile());
-			}
-			
-			List<Course> courseList = courseService.getchildrenCour(pid, type);
-			
-			JSONArray children = new JSONArray();
-			for (Course child : courseList){
-				JSONObject ch = new JSONObject();
-				ch.put("id", child.getId());
-				ch.put("name", child.getName());
-				ch.put("pid", child.getPid());
-				ch.put("profile", child.getProfile());
-				ch.put("type", child.getType());
-				ch.put("address", child.getAddress());
-				ch.put("subList", courseService.getchildrenCour(child.getId()+"", type));
-				children.add(ch);
-			}
-			course.put("child", children);
-			
-			ret.put("result", course);
+			Course course = courseService.getById(pid);
+			JSONObject _course = courseService.getMultilevelCour(course, userid, type);
+			ret.put("result", _course);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
