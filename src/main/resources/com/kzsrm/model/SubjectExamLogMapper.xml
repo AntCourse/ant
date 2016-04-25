@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kzsrm.model.SubjectLogMapper" >
-  <resultMap id="BaseResultMap" type="com.kzsrm.model.SubjectLog" >
+<mapper namespace="com.kzsrm.model.SubjectExamLogMapper" >
+  <resultMap id="BaseResultMap" type="com.kzsrm.model.SubjectExamLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="sid" property="sid" jdbcType="VARCHAR" />
     <result column="userid" property="userid" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
   <select id="getByParam" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
-    from subjectLog
+    from subjectExamLog
     <where>
     	<if test="pid != null and pid != ''">
     		t.sid = #{sid,jdbcType=VARCHAR}
@@ -30,23 +30,23 @@
   <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from subjectLog
+    from subjectExamLog
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteById" parameterType="java.lang.String" >
-    delete from subjectLog
+    delete from subjectExamLog
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.kzsrm.model.SubjectLog" >
-    insert into subjectLog (id, sid, userid, 
+  <insert id="insert" parameterType="com.kzsrm.model.SubjectExamLog" >
+    insert into subjectExamLog (id, sid, userid, 
       isright, oid, createTime
       )
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
       #{isright,jdbcType=VARCHAR}, #{oid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kzsrm.model.SubjectLog" >
-    insert into subjectLog
+  <insert id="insertSelective" parameterType="com.kzsrm.model.SubjectExamLog" >
+    insert into subjectExamLog
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -88,8 +88,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kzsrm.model.SubjectLog" >
-    update subjectLog
+  <update id="updateByPrimaryKeySelective" parameterType="com.kzsrm.model.SubjectExamLog" >
+    update subjectExamLog
     <set >
       <if test="sid != null" >
         sid = #{sid,jdbcType=VARCHAR},
@@ -109,8 +109,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateById" parameterType="com.kzsrm.model.SubjectLog" >
-    update subjectLog
+  <update id="updateById" parameterType="com.kzsrm.model.SubjectExamLog" >
+    update subjectExamLog
     set sid = #{sid,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=VARCHAR},
       isright = #{isright,jdbcType=VARCHAR},

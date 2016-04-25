@@ -3,9 +3,9 @@ package com.kzsrm.service;
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Subject;
-import com.kzsrm.model.SubjectLog;
+import com.kzsrm.model.SubjectExamLog;
 
-public interface SubjectLogService  extends BaseServiceMybatis<SubjectLog, String> {
+public interface SubjectExamLogService  extends BaseServiceMybatis<SubjectExamLog, String> {
 	/**
 	 * 更新或保存答题记录
 	 * @param opt

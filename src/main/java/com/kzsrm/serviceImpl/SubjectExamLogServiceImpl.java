@@ -11,22 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
-import com.kzsrm.dao.SubjectLogDao;
+import com.kzsrm.dao.SubjectExamLogDao;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Subject;
-import com.kzsrm.model.SubjectLog;
+import com.kzsrm.model.SubjectExamLog;
 import com.kzsrm.mybatis.EntityDao;
-import com.kzsrm.service.SubjectLogService;
+import com.kzsrm.service.SubjectExamLogService;
 
 @Service
 @Transactional
-public class SubjectLogServiceImpl extends BaseServiceMybatisImpl<SubjectLog, String> implements SubjectLogService {
+public class SubjectExamLogServiceImpl extends BaseServiceMybatisImpl<SubjectExamLog, String> implements SubjectExamLogService {
 	@Resource
-	private SubjectLogDao<?> subjectLogDao;
+	private SubjectExamLogDao<?> subjectExamLogDao;
 	
 	@Override
-	protected EntityDao<SubjectLog, String> getEntityDao() {
-		return subjectLogDao;
+	protected EntityDao<SubjectExamLog, String> getEntityDao() {
+		return subjectExamLogDao;
 	}
 
 	/**
@@ -39,20 +39,20 @@ public class SubjectLogServiceImpl extends BaseServiceMybatisImpl<SubjectLog, St
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sid", sub.getId());
 		map.put("userid", userId);
-		List<SubjectLog> logList = subjectLogDao.getByParam(map);
+		List<SubjectExamLog> logList = subjectExamLogDao.getByParam(map);
 		if (logList != null && logList.size() > 0 ) {
-			SubjectLog slog = logList.get(0);
+			SubjectExamLog slog = logList.get(0);
 			slog.setIsright(opt.getIsanswer());
 			slog.setOid(opt.getId()+"");
-			subjectLogDao.update(slog);
+			subjectExamLogDao.update(slog);
 		} else {
-			SubjectLog slog = new SubjectLog();
+			SubjectExamLog slog = new SubjectExamLog();
 			slog.setCreatetime(new Date());
 			slog.setIsright(opt.getIsanswer());
 			slog.setOid(opt.getId()+"");
 			slog.setSid(sub.getId()+"");
 			slog.setUserid(userId);
-			subjectLogDao.save(slog);
+			subjectExamLogDao.save(slog);
 		}
 	}
 	

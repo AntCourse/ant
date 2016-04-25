@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kzsrm.model.PointLog" alias="PointLog" />
 		<typeAlias type="com.kzsrm.model.Subject" alias="Subject" />
 		<typeAlias type="com.kzsrm.model.SubjectLog" alias="SubjectLog" />
+		<typeAlias type="com.kzsrm.model.SubjectExamLog" alias="SubjectExamLog" />
 		<typeAlias type="com.kzsrm.model.Video" alias="Video" />
 		<typeAlias type="com.kzsrm.model.Keyword" alias="Keyword" />
 		<typeAlias type="com.kzsrm.model.Organization" alias="Organization" />

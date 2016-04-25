@@ -157,7 +157,7 @@ public class CourseNewController {
 	 * 提交测试题的答案
 	 * @param userId		用户id，用于记录做题日志
 	 * @param answer		答案，json格式[{"no":"序号","optId":"选项id","timeSpan":"秒"},{},...]
-	 * @param type			试题类型
+	 * @param type			试题类型，1-课程，2-模考
 	 * @return
 	 */
 	@ResponseBody

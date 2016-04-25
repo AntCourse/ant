@@ -1,6 +1,5 @@
 package com.kzsrm.serviceImpl;
 
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.OptionDao;
 import com.kzsrm.dao.SubjectDao;
-import com.kzsrm.dao.SubjectLogDao;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Subject;
-import com.kzsrm.model.SubjectLog;
 import com.kzsrm.mybatis.EntityDao;
+import com.kzsrm.service.SubjectExamLogService;
+import com.kzsrm.service.SubjectLogService;
 import com.kzsrm.service.SubjectService;
 
 import net.sf.json.JSONArray;
@@ -26,12 +25,11 @@ import net.sf.json.JSONObject;
 @Service
 @Transactional
 public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> implements SubjectService {
-	@Resource
-	private SubjectDao<?> subjectDao;
-	@Resource
-	private OptionDao<?> optionDao;
-	@Resource
-	private SubjectLogDao<?> subjectLogDao;
+	@Resource private SubjectDao<?> subjectDao;
+	@Resource private OptionDao<?> optionDao;
+	
+	@Resource private SubjectLogService subjectLogService;
+	@Resource private SubjectExamLogService subjectExamLogService;
 
 	@Override
 	protected EntityDao<Subject, String> getEntityDao() {
@@ -66,8 +64,6 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			JSONObject _jAnswer = new JSONObject().fromObject(iter.next());
 			String no = _jAnswer.get("no") + "";
 			String optId = _jAnswer.get("optId") + "";
-//			String timeSpan = _jAnswer.get("timeSpan") + "";
-//			int _timeSpan = ComUtils.parseInt(timeSpan);
 			
 			Option opt = optionDao.getById(optId);
 			Subject sub = subjectDao.getById(opt.getSid() + "");
@@ -76,35 +72,20 @@ public class SubjectServiceImpl extends BaseServiceMybatisImpl<Subject, String> 
 			sub.setAllcount(ac + 1);
 			if ("1".equals(opt.getIsanswer()))
 				sub.setRightcount(sub.getRightcount() + 1);
-//			sub.setAvgtime((sub.getAvgtime() * ac + _timeSpan) / (ac + 1));
 			subjectDao.update(sub);
 			
 			ele.put("no", no);
 			ele.put("isRight", opt.getIsanswer());
 			ele.put("degree", sub.getDegree());
 			ele.put("avgAcc", (sub.getRightcount() * 100 / sub.getAllcount()) + "%");
-//			ele.put("avgTime", sub.getAvgtime());
-//			JSONArray pois = new JSONArray();
-//			for (Point point : pointDao.getPoisBySub(sub.getId() + "")){
-//				JSONObject poi = new JSONObject();
-//				poi.put("content", point.getContent());
-//				poi.put("id", point.getId());
-//				pois.add(poi);
-//			}
-//			ele.put("points", pois);
 			
 			ret.add(ele);
-			if (StringUtils.isNotBlank(userId)){
+			if (StringUtils.isNotBlank(userId))
 				// 记录做题日志
-				SubjectLog slog = new SubjectLog();
-				slog.setCreatetime(new Date());
-				slog.setIsright(opt.getIsanswer());
-				slog.setOid(opt.getId()+"");
-				slog.setSid(sub.getId()+"");
-				slog.setUserid(userId);
-				subjectLogDao.save(slog);
-			}
-			
+				if ("1".equals(type))
+					subjectLogService.saveOrUpdate(opt, sub, userId);
+				else if ("2".equals(type))
+					subjectExamLogService.saveOrUpdate(opt, sub, userId);
 		}
 		return ret;
 	}
