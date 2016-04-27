@@ -67,6 +67,34 @@ public class CourseNewController {
 		}
 	}
 	/**
+	 * 课程列表-第二级
+	 * @param userid	用户id
+	 * @param type		预留字段
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getSecCourList")
+	public Map<String, Object> getSecCourList(
+			@RequestParam(required = false) String userid,
+			@RequestParam(required = false) String type) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			List<Course> courseList = courseService.getSecLevelCour(type);
+			JSONArray jsonList = new JSONArray();
+			for (Course course : courseList) {
+				JSONObject jsonobj = JSONObject.fromObject(course, courCf);
+				if (StringUtils.isNotBlank(userid))
+					jsonobj.put("subNum", courseService.getHasDoneRightSubNum(course.getId(), userid, type));
+				jsonList.add(jsonobj);
+			}
+			ret.put("result", jsonList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
 	 * 获取知识点对应的测试题
 	 * @param pointId		知识点id
 	 * @return

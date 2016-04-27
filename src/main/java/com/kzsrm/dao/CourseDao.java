@@ -22,8 +22,9 @@ public class CourseDao<E> extends BaseMybatisDao<Course, String> {
 	public Course getCourseById(Map<String, Object> param) {
 		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getById", param);
 	}
-	public Integer getHasDoneSubNum(Map<String, Object> param) {
-		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getHasDoneSubNum", param);
+	
+	public List<Course> getSecLevelCour(String type) {
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getSecLevelCour", type);
 	}
 
 }

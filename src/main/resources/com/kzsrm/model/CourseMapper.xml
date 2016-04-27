@@ -14,13 +14,14 @@
   <sql id="Base_Column_List" >
     t.id, t.type, t.name, t.profile, t.address, t.pid, t.playcount, t.subAllNum
   </sql>
-  <!-- 获取已做题数量 -->
-  <select id="getHasDoneSubNum" resultType="java.lang.Integer" parameterType="map" >
-    select count(distinct sl.sid)
-	from subjectLog sl ,course_subject cs, course c
-	where sl.sid = cs.sid and cs.cid = c.id
-		and sl.userid =#{userid,jdbcType=VARCHAR}
-		and c.id = #{cid,jdbcType=INTEGER}
+  <!-- 获取所有二级的课程 -->
+  <select id="getSecLevelCour" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+	from course t ,course s
+	where t.pid = s.id 
+	and s.pid='0'
+	and t.type= #{type,jdbcType=VARCHAR}
   </select>
   
   <select id="findAll" resultMap="BaseResultMap" >

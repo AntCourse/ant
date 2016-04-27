@@ -110,11 +110,35 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> im
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cid", cid);
 		map.put("userid", userid);
-		return courseDao.getHasDoneSubNum(map);
+		return subjectDao.getHasDoneSubNum(map);
+	}
+	/**
+	 * 获取用户已做对题数
+	 * @param id
+	 * @param userid
+	 * @param type 
+	 * @return
+	 */
+	@Override
+	public Integer getHasDoneRightSubNum(Integer cid, String userid, String type) {
+		List<Course> courseList = getchildrenCour(cid + "", type);
+		if (courseList != null && courseList.size() > 0) {
+			int i = 0;
+			for (Course course : courseList)
+				i += getHasDoneRightSubNum(course.getId(), userid, type);
+			return i;
+		} else {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("cid", cid);
+			map.put("userid", userid);
+			return subjectDao.getHasRightDoneSubNum(map);
+		}
 	}
 
 	/**
 	 * 刷新知识点下的题目总数
+	 * @param pid 
+	 * @param type 
 	 */
 	@Override
 	public int refreshSubAllNum(String pid, String type) {
@@ -131,6 +155,16 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> im
 			num = subjectDao.getSubNumByPoint(pid);
 		}
 		return num;
+	}
+
+	/**
+	 * 获取所有二级的课程
+	 * @param type
+	 * @return
+	 */
+	@Override
+	public List<Course> getSecLevelCour(String type) {
+		return courseDao.getSecLevelCour(type);
 	}
 
 }

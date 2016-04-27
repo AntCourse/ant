@@ -46,5 +46,19 @@ public interface CourseService  extends BaseServiceMybatis<Course, String> {
 	 * @param type 
 	 */
 	int refreshSubAllNum(String pid, String type);
+	/**
+	 * 获取所有二级的课程
+	 * @param type
+	 * @return
+	 */
+	List<Course> getSecLevelCour(String type);
+	/**
+	 * 获取用户已做对题数
+	 * @param id
+	 * @param userid
+	 * @param type 
+	 * @return
+	 */
+	Integer getHasDoneRightSubNum(Integer cid, String userid, String type);
 
 }
