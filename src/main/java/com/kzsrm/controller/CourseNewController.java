@@ -17,10 +17,12 @@ import com.kzsrm.model.Course;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Subject;
 import com.kzsrm.model.Video;
+import com.kzsrm.model.VideoLog;
 import com.kzsrm.service.CourseService;
 import com.kzsrm.service.OptionService;
 import com.kzsrm.service.PointLogService;
 import com.kzsrm.service.SubjectService;
+import com.kzsrm.service.VideoLogService;
 import com.kzsrm.service.VideoService;
 import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.ComUtils;
@@ -38,6 +40,7 @@ public class CourseNewController {
 
 	@Resource private CourseService courseService;
 	@Resource private VideoService videoService;
+	@Resource private VideoLogService videoLogService;
 	@Resource private SubjectService subjectService;
 	@Resource private PointLogService pointLogService;
 	@Resource private OptionService optionService;
@@ -243,6 +246,48 @@ public class CourseNewController {
 			Map<String, Object> ret = MapResult.initMap();
 			courseService.refreshSubAllNum("0", type);
 			ret.put("result", "成功！");
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 记录视频观看记录
+	 * @param videoId
+	 * @param timeSpan
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/setVideoLog")
+	public Map<String, Object> setVideoLog(
+			@RequestParam(required = true) String userId,
+			@RequestParam(required = true) String videoId,
+			@RequestParam(required = true) Integer timeSpan) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			videoLogService.setVideoLog(userId, videoId, timeSpan);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 查看视频观看记录
+	 * @param videoId
+	 * @param timeSpan
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getVideoLog")
+	public Map<String, Object> getVideoLog(
+			@RequestParam(required = true) String userId,
+			@RequestParam(required = true) String videoId) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			VideoLog vlog = videoLogService.getVideoLog(userId, videoId);
+			ret.put("result", vlog);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

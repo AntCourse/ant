@@ -64,6 +64,7 @@
 				<value>classpath:/com/kzsrm/model/SubjectLogMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/SubjectExamLogMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/VideoMapper.xml</value>
+				<value>classpath:/com/kzsrm/model/VideoLogMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/KeywordMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/OrganizationMapper.xml</value>
 				<value>classpath:/com/kzsrm/model/TeacherOrgMapper.xml</value>
