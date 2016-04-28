@@ -39,7 +39,8 @@ public class PayController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getAliOrderInfo")
-	public Map<String, Object> getAliOrderInfo(@RequestParam(required = true) String price,
+	public Map<String, Object> getAliOrderInfo(@RequestParam(required = true) String body,
+			@RequestParam(required = true) String price,
 			@RequestParam(required = true) String userId) throws Exception {
 		
 		if (StringUtils.isBlank(price))
@@ -51,7 +52,7 @@ public class PayController {
 
 		try {
 
-			String orderInfo = AlipayCore.getOrderInfo("打赏", "订单号："
+			String orderInfo = AlipayCore.getOrderInfo(body, "订单号："
 					+ out_trade_no, price, out_trade_no);
 			String sign = AlipayCore.sign(orderInfo, AlipayConfig.private_key);
 			// 仅需对sign 做URL编码
@@ -81,7 +82,8 @@ public class PayController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getWXPayReq")
-	public  Map<String, Object> getWXPayReq(@RequestParam(required = true) String price,
+	public  Map<String, Object> getWXPayReq(@RequestParam(required = true) String body,
+			@RequestParam(required = true) String price,
 			@RequestParam(required = true) String userId) throws Exception {
 		
 		if (StringUtils.isBlank(price))
@@ -99,7 +101,7 @@ public class PayController {
 		parameters.put("appid", WXPayConfig.APPID);
 		parameters.put("mch_id", WXPayConfig.MCH_ID);
 		parameters.put("nonce_str", noncestr);
-		parameters.put("body", "test");
+		parameters.put("body", body);
 		parameters.put("out_trade_no", out_trade_no);
 		parameters.put("total_fee", price);
 		parameters.put("spbill_create_ip", InetAddress.getLocalHost().getHostAddress());
@@ -128,10 +130,9 @@ public class PayController {
 			params.put("noncestr", noncestr);
 			params.put("package", "Sign=WXPay");
 			params.put("sign", PayCommonUtil.createSign("UTF-8", params));
-			String json = JSONObject.fromObject(params).toString();
 
 			Map<String, Object> ret = MapResult.initMap();
-			ret.put("result", json);
+			ret.put("result", JSONObject.fromObject(params));
 			return ret;
 		} else {
 			return MapResult.failMap();

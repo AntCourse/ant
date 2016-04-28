@@ -35,7 +35,7 @@ public class AlipayConfig {
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 	public static final String SIGN_ALGORITHMS = "SHA1WithRSA";
 	
-	public static String seller = "finance@olaxueyuan.com";
+	public static String seller = "developer@olaxueyuan.com";
 
 	// 调试用，创建TXT日志文件夹路径
 	public static String log_path = "D:\\";
