@@ -53,4 +53,10 @@ public interface VideoService  extends BaseServiceMybatis<Video, String> {
 	 * @return
 	 */
 	List<Video> getHomeVideoList();
+	/**
+	 * 获取视频集下的视频
+	 * @param gid
+	 * @return
+	 */
+	List<Video> getVideosByGoods(String gid);
 }

@@ -38,4 +38,8 @@ public class VideoDao<E> extends BaseMybatisDao<Video, String> {
 		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getBannerVideo");
 	}
 
+	public List<Video> getVideosByGoods(String gid) {
+		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getVideosByGoods", gid);
+	}
+
 }

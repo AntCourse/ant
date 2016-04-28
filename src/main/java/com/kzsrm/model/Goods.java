@@ -17,6 +17,20 @@ public class Goods {
 
     private String type;
 
+    private String url;
+
+    private String image;
+
+    private String org;
+
+    private String suitto;
+
+    private String leanstage;
+
+    private Integer videonum;
+
+    private Integer totaltime;
+
     public Integer getId() {
         return id;
     }
@@ -79,5 +93,61 @@ public class Goods {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    public void setOrg(String org) {
+        this.org = org == null ? null : org.trim();
+    }
+
+    public String getSuitto() {
+        return suitto;
+    }
+
+    public void setSuitto(String suitto) {
+        this.suitto = suitto == null ? null : suitto.trim();
+    }
+
+    public String getLeanstage() {
+        return leanstage;
+    }
+
+    public void setLeanstage(String leanstage) {
+        this.leanstage = leanstage == null ? null : leanstage.trim();
+    }
+
+    public Integer getVideonum() {
+        return videonum;
+    }
+
+    public void setVideonum(Integer videonum) {
+        this.videonum = videonum;
+    }
+
+    public Integer getTotaltime() {
+        return totaltime;
+    }
+
+    public void setTotaltime(Integer totaltime) {
+        this.totaltime = totaltime;
     }
 }

@@ -1,5 +1,6 @@
 package com.kzsrm.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kzsrm.baseservice.BaseServiceMybatisImpl;
 import com.kzsrm.dao.CourseDao;
 import com.kzsrm.dao.SubjectDao;
+import com.kzsrm.dao.SubjectLogDao;
 import com.kzsrm.model.Course;
+import com.kzsrm.model.Subject;
 import com.kzsrm.mybatis.EntityDao;
 import com.kzsrm.service.CourseService;
 import com.kzsrm.utils.ComUtils;
@@ -28,6 +31,7 @@ import net.sf.json.JsonConfig;
 public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> implements CourseService {
 	@Resource private CourseDao<?> courseDao;
 	@Resource private SubjectDao<?> subjectDao;
+	@Resource private SubjectLogDao<?> subjectLogDao;
 
 	@Override
 	protected EntityDao<Course, String> getEntityDao() {
@@ -110,7 +114,7 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> im
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cid", cid);
 		map.put("userid", userid);
-		return subjectDao.getHasDoneSubNum(map);
+		return subjectLogDao.getHasDoneSubNum(map);
 	}
 	/**
 	 * 获取用户已做对题数
@@ -131,7 +135,7 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> im
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("cid", cid);
 			map.put("userid", userid);
-			return subjectDao.getHasRightDoneSubNum(map);
+			return subjectLogDao.getHasRightDoneSubNum(map);
 		}
 	}
 
@@ -165,6 +169,30 @@ public class CourseServiceImpl extends BaseServiceMybatisImpl<Course, String> im
 	@Override
 	public List<Course> getSecLevelCour(String type) {
 		return courseDao.getSecLevelCour(type);
+	}
+
+	/**
+	 * 错题集
+	 * @param userid
+	 * @param cid
+	 * @param type
+	 * @return
+	 */
+	@Override
+	public List<Subject> getWrongSubSet(String userid, String cid, String type) {
+		List<Course> courseList = getchildrenCour(cid, type);
+		if (courseList != null && courseList.size() > 0) {
+			List<Subject> ret = new ArrayList<Subject>();
+			for (Course course : courseList) {
+				ret.addAll(getWrongSubSet(userid, course.getId()+"", type));
+			}
+			return ret;
+		} else {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userid", userid);
+			map.put("cid", userid);
+			return subjectDao.getWrongSubSet(map);
+		}
 	}
 
 }

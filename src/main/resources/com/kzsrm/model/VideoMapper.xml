@@ -17,6 +17,14 @@
   <sql id="Base_Column_List" >
     t.id, t.name, t.content, t.address, t.playcount, t.timespan, t.orgname, t.tname, t.pic, t.isBanner
   </sql>
+  <!-- 获取视频集下的视频 -->
+  <select id="getVideosByGoods" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from video t, goods_video gv
+    where t.id = gv.vid
+    	and gv.gid = #{gid,jdbcType=VARCHAR}
+  </select>
   
   <select id="getVideoBySubject" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

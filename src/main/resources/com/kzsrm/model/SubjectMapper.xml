@@ -15,22 +15,15 @@
     t.id, t.question, t.type, t.degree, t.hint, t.allcount, t.rightcount, t.avgtime
   </sql>
   
-  <!-- 获取已做对的题数量 -->
-  <select id="getHasRightDoneSubNum" resultType="java.lang.Integer" parameterType="map" >
-    select count(distinct sl.sid)
-	from subjectLog sl ,course_subject cs, course c
-	where sl.sid = cs.sid and cs.cid = c.id
-		and sl.isright ='1'
+  <!-- 获取做错的题列表 -->
+  <select id="getWrongSubSet" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+	from subjectLog sl ,course_subject cs, `subject` t
+	where sl.sid = cs.sid and t.id = sl.sid
+		and sl.isright ='0'
 		and sl.userid =#{userid,jdbcType=VARCHAR}
-		and c.id = #{cid,jdbcType=INTEGER}
-  </select>
-  <!-- 获取已做题数量 -->
-  <select id="getHasDoneSubNum" resultType="java.lang.Integer" parameterType="map" >
-    select count(distinct sl.sid)
-	from subjectLog sl ,course_subject cs, course c
-	where sl.sid = cs.sid and cs.cid = c.id
-		and sl.userid =#{userid,jdbcType=VARCHAR}
-		and c.id = #{cid,jdbcType=INTEGER}
+		and cs.cid = #{cid,jdbcType=INTEGER}
   </select>
   <!-- 知识点中试题的数量 -->
   <select id="getSubNumByPoint" resultType="java.lang.Integer" parameterType="java.lang.String" >

@@ -36,6 +36,7 @@ public class GoodsServiceImpl extends BaseServiceMybatisImpl<Goods, String> impl
 	public List<Goods> getList(String type, int pageIndex, int pageSize) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("type", type);
+		map.put("status", 1);
 		map.put("pageIndex", (pageIndex-1)*pageSize);
 		map.put("pageSize", pageSize);
 		return goodsDao.getList(map);

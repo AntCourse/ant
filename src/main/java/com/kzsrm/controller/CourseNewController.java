@@ -294,4 +294,27 @@ public class CourseNewController {
 			return MapResult.failMap();
 		}
 	}
+	/**
+	 * 错题集
+	 * @param userid	用户id
+	 * @param cid		课程id(第二级)
+	 * @param type		
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getWrongSubSet")
+	public Map<String, Object> getWrongSubSet(
+			@RequestParam(required = true) String userid,
+			@RequestParam(required = true) String cid,
+			@RequestParam(required = false) String type) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			List<Subject> SubjectList = courseService.getWrongSubSet(userid, cid, type);
+			ret.put("result", SubjectList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
 }

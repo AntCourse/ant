@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kzsrm.baseservice.BaseServiceMybatis;
 import com.kzsrm.model.Course;
+import com.kzsrm.model.Subject;
 import com.kzsrm.utils.CustomException;
 
 import net.sf.json.JSONObject;
@@ -60,5 +61,13 @@ public interface CourseService  extends BaseServiceMybatis<Course, String> {
 	 * @return
 	 */
 	Integer getHasDoneRightSubNum(Integer cid, String userid, String type);
+	/**
+	 * 错题集
+	 * @param userid
+	 * @param cid
+	 * @param type
+	 * @return
+	 */
+	List<Subject> getWrongSubSet(String userid, String cid, String type);
 
 }

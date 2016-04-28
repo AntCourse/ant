@@ -126,4 +126,14 @@ public class VideoServiceImpl extends BaseServiceMybatisImpl<Video, String> impl
 		return videoDao.getBannerVideo();
 	}
 
+	/**
+	 * 获取视频集下的视频
+	 * @param gid
+	 * @return
+	 */
+	@Override
+	public List<Video> getVideosByGoods(String gid) {
+		return videoDao.getVideosByGoods(gid);
+	}
+
 }

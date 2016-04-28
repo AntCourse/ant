@@ -18,5 +18,13 @@ public class SubjectLogDao<E> extends BaseMybatisDao<SubjectLog, String> {
 	public List<SubjectLog> getByParam(Map<String, Object> param) {
 		return this.getSqlSession().selectList(this.getMybatisMapperNamesapce() + ".getByParam", param);
 	}
+	
+	public Integer getHasDoneSubNum(Map<String, Object> param) {
+		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getHasDoneSubNum", param);
+	}
+	
+	public Integer getHasRightDoneSubNum(Map<String, Object> param) {
+		return this.getSqlSession().selectOne(this.getMybatisMapperNamesapce() + ".getHasRightDoneSubNum", param);
+	}
 
 }
