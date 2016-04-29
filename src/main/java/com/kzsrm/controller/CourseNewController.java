@@ -1,5 +1,7 @@
 package com.kzsrm.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kzsrm.model.Course;
 import com.kzsrm.model.Option;
 import com.kzsrm.model.Subject;
+import com.kzsrm.model.User;
 import com.kzsrm.model.Video;
 import com.kzsrm.model.VideoLog;
 import com.kzsrm.service.CourseService;
 import com.kzsrm.service.OptionService;
 import com.kzsrm.service.PointLogService;
 import com.kzsrm.service.SubjectService;
+import com.kzsrm.service.UserService;
 import com.kzsrm.service.VideoLogService;
 import com.kzsrm.service.VideoService;
 import com.kzsrm.utils.ApiCode;
@@ -44,6 +48,7 @@ public class CourseNewController {
 	@Resource private SubjectService subjectService;
 	@Resource private PointLogService pointLogService;
 	@Resource private OptionService optionService;
+	@Resource private UserService userService;
 
 	/**
 	 * 课程列表-三层
@@ -288,6 +293,38 @@ public class CourseNewController {
 			Map<String, Object> ret = MapResult.initMap();
 			VideoLog vlog = videoLogService.getVideoLog(userId, videoId);
 			ret.put("result", vlog);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 查看视频观看记录
+	 * @param videoId
+	 * @param timeSpan
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getHistoryList")
+	public Map<String, Object> getHistoryList() {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			List<VideoLog> vlogList = videoLogService.getVideoList();
+			JSONArray recordList = new JSONArray();
+			for(VideoLog log :vlogList){
+				User user = userService.selectUser(Integer.parseInt(log.getUserid()));
+				Video video = videoService.getById(log.getVid());
+				JSONObject jsonObj = new JSONObject();
+				jsonObj.put("userName", user.getName());
+				jsonObj.put("userAvatar", user.getAvator());
+				jsonObj.put("videoId", video.getId());
+				jsonObj.put("videoName", video.getName());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				jsonObj.put("time", sdf.format(log.getCreatetime()));
+				recordList.add(jsonObj);
+			}
+			ret.put("result", recordList);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

@@ -2,6 +2,7 @@ package com.kzsrm.serviceImpl;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -61,6 +62,16 @@ public class VideoLogServiceImpl extends BaseServiceMybatisImpl<VideoLog, String
 		map.put("userId", userId);
 		map.put("videoId", videoId);
 		return videoLogDao.getVideoLog(map);
+	}
+	
+	/**
+	 * 获取视频观看记录
+	 * @return
+	 */
+	@Override
+	public List<VideoLog> getVideoList(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		return videoLogDao.getVideoList(map);
 	}
 	
 }
