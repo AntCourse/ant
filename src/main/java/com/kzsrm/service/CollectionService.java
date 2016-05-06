@@ -40,7 +40,7 @@ public interface CollectionService {
 	 *            id
 	 * @return
 	 */
-	Collection getByUserIdAndVideoId(Integer userId,Integer videoId, Integer type);
+	Collection getByUserIdAndVideoId(Integer userId,Integer videoId);
 	
 	/**
 	 * 删除收藏
@@ -49,7 +49,7 @@ public interface CollectionService {
 	 *            
 	 * @return
 	 */
-	int deleteByUserIdAndVideoId(Integer userId,Integer videoId,Integer type);
+	int deleteByUserIdAndVideoId(Integer userId,Integer videoId);
 	
 	/**
 	 * 删除该用户的所有收藏

@@ -5,7 +5,7 @@ public class Collection {
 	private Integer id;
 	private Integer userId;
 	private Integer videoId;
-	private Integer type;
+	private Integer courseId;
 	
 	public Integer getId() {
 		return id;
@@ -25,11 +25,11 @@ public class Collection {
 	public void setVideoId(Integer videoId) {
 		this.videoId = videoId;
 	}
-	public Integer getType() {
-		return type;
+	public Integer getCourseId() {
+		return courseId;
 	}
-	public void setType(Integer type) {
-		this.type = type;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
 
 }

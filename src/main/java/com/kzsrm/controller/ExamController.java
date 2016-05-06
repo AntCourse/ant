@@ -50,8 +50,8 @@ public class ExamController {
 			
 			Map<String, Object> ret = MapResult.initMap();
 			List<Examination> examList = examService.getListByCour(courseId, type);
-			
-			ret.put("result", JSONArray.fromObject(examList, examCf));
+			//ret.put("result", JSONArray.fromObject(examList, examCf));
+			ret.put("result", examList);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);

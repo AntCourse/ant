@@ -16,7 +16,7 @@
   </sql>
   
   <select id="getOptionBySubject" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select t.id, t.type, t.content
+    select t.id, t.type, t.content, t.isanswer
     from `option` t
     where t.sid = #{subjectId,jdbcType=INTEGER}
   </select>

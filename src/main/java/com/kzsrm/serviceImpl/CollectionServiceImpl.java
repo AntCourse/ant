@@ -46,11 +46,10 @@ public class CollectionServiceImpl extends BaseServiceMybatisImpl<Collection, St
 	 * @return
 	 */
 	@Override
-	public int deleteByUserIdAndVideoId(Integer userId,Integer videoId, Integer type){
+	public int deleteByUserIdAndVideoId(Integer userId,Integer videoId){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("videoId", videoId);
-		map.put("type", type);
 		return colletionDao.deleteByUserIdAndVideoId(map);
 	}
 	
@@ -100,11 +99,10 @@ public class CollectionServiceImpl extends BaseServiceMybatisImpl<Collection, St
 	 * @return
 	 */
 	@Override
-	public Collection getByUserIdAndVideoId(Integer userId,Integer videoId, Integer type){
+	public Collection getByUserIdAndVideoId(Integer userId,Integer videoId){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("videoId", videoId);
-		map.put("type", type);
 		return colletionDao.getByUserIdAndVideoId(map);
 	}
 

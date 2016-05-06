@@ -1,11 +1,14 @@
 package com.kzsrm.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -31,10 +34,6 @@ import com.kzsrm.service.VideoService;
 import com.kzsrm.utils.ApiCode;
 import com.kzsrm.utils.ComUtils;
 import com.kzsrm.utils.MapResult;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
 
 @Controller
 @RequestMapping("/cour")
@@ -96,6 +95,44 @@ public class CourseNewController {
 				jsonList.add(jsonobj);
 			}
 			ret.put("result", jsonList);
+			return ret;
+		} catch (Exception e) {
+			logger.error("", e);
+			return MapResult.failMap();
+		}
+	}
+	/**
+	 * 知识型谱 （统计做题结果）
+	 * @param userid	用户id
+	 * @param type		
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getStatisticsList")
+	public Map<String, Object> getStatisticsList(
+			@RequestParam(required = false) String userid,
+			@RequestParam(required = true) String type) {
+		try{
+			Map<String, Object> ret = MapResult.initMap();
+			List<Course> topCourseList = courseService.getchildrenCour("0", type);
+			JSONArray statisticsList = new JSONArray();
+			for(Course topCourse : topCourseList){
+				JSONObject statisticsObj = new JSONObject();
+				List<Course> courseList = courseService.getchildrenCour(topCourse.getId().toString(), type);
+				JSONArray jsonList = new JSONArray();
+				for (Course course : courseList) {
+					JSONObject jsonobj = JSONObject.fromObject(course, courCf);
+					if (StringUtils.isNotBlank(userid))
+						jsonobj.put("subNum", courseService.getHasDoneRightSubNum(course.getId(), userid, type));
+					jsonList.add(jsonobj);
+				}
+				statisticsObj.put("id", topCourse.getId());
+				statisticsObj.put("name", topCourse.getName());
+				statisticsObj.put("child", jsonList);
+				statisticsList.add(statisticsObj);
+				
+			}
+			ret.put("result", statisticsList);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
@@ -301,8 +338,7 @@ public class CourseNewController {
 	}
 	/**
 	 * 查看视频观看记录
-	 * @param videoId
-	 * @param timeSpan
+	 * 
 	 * @return
 	 */
 	@ResponseBody
@@ -320,6 +356,7 @@ public class CourseNewController {
 				jsonObj.put("userAvatar", user.getAvator());
 				jsonObj.put("videoId", video.getId());
 				jsonObj.put("videoName", video.getName());
+				jsonObj.put("courseId", log.getCourseId());
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				jsonObj.put("time", sdf.format(log.getCreatetime()));
 				recordList.add(jsonObj);

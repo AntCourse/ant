@@ -1,0 +1,341 @@
+/* YUI 3.8.1 (build 5795) Copyright 2013 Yahoo! Inc. http://yuilibrary.com/license/ */
+/*
+	TODO will need to remove settings on HTML since we can't namespace it.
+	TODO with the prefix, should I group by selector or property for weight savings?
+*/
+html {
+  color: #000;
+  background: #FFF;
+}
+/*
+	TODO remove settings on BODY since we can't namespace it.
+*/
+/*
+	TODO test putting a class on HEAD.
+		- Fails on FF.
+*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: 0;
+}
+/*
+	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+*/
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+q:before,
+q:after {
+  content: '';
+}
+abbr,
+acronym {
+  border: 0;
+  font-variant: normal;
+}
+/* to preserve line-height and selector appearance */
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+/*to enable resizing for IE*/
+input,
+textarea,
+select {
+  *font-size: 100%;
+}
+/*because legend doesn't inherit in IE */
+legend {
+  color: #000;
+}
+/* YUI CSS Detection Stamp */
+#yui3-css-stamp.cssreset {
+  display: none;
+}
+body {
+  font-family: tahoma, arial, 'Hiragino Sans GB', sans-serif;
+}
+.wrap {
+  min-width: 960px;
+  font-size: 14px;
+  font-family: 'é»‘ä½“', Helvetica, Arial, sans-serif;
+}
+.wrap a {
+  color: #000;
+  text-decoration: none;
+}
+.header {
+  *zoom: 1;
+  height: 64px;
+  padding: 0 60px;
+}
+.header:before,
+.header:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.header:after {
+  clear: both;
+}
+.header .logo {
+  float: left;
+  margin: 16px 0;
+  height: 32px;
+}
+.header .logo img {
+  height: 40px;
+}
+.header .brothers {
+  float: right;
+  height: 64px;
+  line-height: 64px;
+}
+.header .brothers .right-title {
+  display: inline-block;
+  height: 64px;
+  padding-right: 34px;
+  color: #999;
+}
+.header .brothers .brother-block {
+  display: inline-block;
+  height: 64px;
+  line-height: 64px;
+  color: #333;
+  text-decoration: none;
+}
+.header .brothers .brother-block .brother-icon {
+  display: inline-block;
+  vertical-align: top;
+}
+.header .brothers .brother-block .tutor-icon {
+  width: 22px;
+  height: 22px;
+  margin: 21px 10px 21px 0;
+}
+.header .brothers .brother-block .souti-icon {
+  width: 20px;
+  height: 20px;
+  margin: 22px 10px 22px 0;
+}
+.header .brothers .brother-block span {
+  display: inline-block;
+  height: 64px;
+  line-height: 64px;
+}
+.header .brothers .spliter {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  margin: 22px 18px;
+  vertical-align: top;
+  background-color: #999;
+}
+.main {
+  padding: 50px 0;
+  background-color: #0099ff;
+  background: -webkit-linear-gradient(top, #0099ff, #008bec);
+  background: -moz-linear-gradient(top, #0099ff, #008bec);
+  background: -o-linear-gradient(top, #0099ff, #008bec);
+  background: linear-gradient(to bottom, #0099ff, #008bec);
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#0099ff, endcolorstr=#008bec, gradientType=0);
+}
+.main .main-content {
+  *zoom: 1;
+  width: 845px;
+  margin: 0 auto;
+}
+.main .main-content:before,
+.main .main-content:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.main .main-content:after {
+  clear: both;
+}
+.main .main-content .left {
+  float: left;
+  width: 277px;
+  height: 568px;
+  margin-right: 226px;
+}
+.main .main-content .left img.mobile {
+  width: 274px;
+  height: 561px;
+}
+.main .main-content .right {
+  position: relative;
+  float: right;
+  width: 342px;
+  height: 568px;
+}
+.main .main-content .right .subtitle {
+  margin: 94px 0 40px 0;
+  font-size: 42px;
+  color: #fff;
+}
+.main .main-content .right .subtitle img.slogan {
+  width: 342px;
+  height: 55px;
+}
+.main .main-content .right .download-wrap {
+  *zoom: 1;
+}
+.main .main-content .right .download-wrap:before,
+.main .main-content .right .download-wrap:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.main .main-content .right .download-wrap:after {
+  clear: both;
+}
+.main .main-content .right .download-wrap .barcode {
+  float: left;
+  width: 132px;
+  height: 132px;
+}
+.main .main-content .right .download-wrap .barcode img {
+  width: 132px;
+  height: 132px;
+}
+.main .main-content .right .download-wrap .download-list {
+  float: right;
+  width: 175px;
+  height: 132px;
+}
+.main .main-content .right .download-wrap .download-list .download-item {
+  display: block;
+  height: 50px;
+  border: 2px solid #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  line-height: 50px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 21px;
+}
+.main .main-content .right .download-wrap .download-list .download-item:hover,
+.main .main-content .right .download-wrap .download-list .download-item:active {
+  background-color: #0186e1;
+}
+.main .main-content .right .teacher-wrap {
+  position: absolute;
+  bottom: 0;
+  margin: 16px 0 26px 0;
+}
+.main .main-content .right .teacher-wrap img.ape {
+  width: 342px;
+  height: 135px;
+}
+.main .main-content .right .teacher-wrap .teacher-site-link {
+  position: relative;
+  display: inline-block;
+  top: -35px;
+  border: 2px solid #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+.footer {
+  background: #FFFFFF;
+  height: 61px;
+}
+.footer .footer-content {
+  width: 960px;
+  margin: 0 auto;
+  padding-top: 23px;
+  font-size: 12px;
+  color: #A2A2A2;
+  text-align: center;
+}
+.footer .footer-content a {
+  color: #A2A2A2;
+}
+.footer .footer-content a.text-primary {
+  color: #4d4d4d;
+}
+.footer .footer-content p {
+  margin-bottom: 10px;
+}
+.footer .footer-content img {
+  vertical-align: baseline;
+  margin-bottom: -2px;
+}

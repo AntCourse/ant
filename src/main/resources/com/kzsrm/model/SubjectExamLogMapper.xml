@@ -18,11 +18,11 @@
     <include refid="Base_Column_List" />
     from subjectExamLog
     <where>
-    	<if test="pid != null and pid != ''">
-    		t.sid = #{sid,jdbcType=VARCHAR}
+    	<if test="sid != null and sid != ''">
+    		sid = #{sid,jdbcType=VARCHAR}
     	</if>
-    	<if test="type != null and type != ''">
-    		and t.userid = #{userid,jdbcType=VARCHAR}
+    	<if test="userid != null and userid != ''">
+    		and userid = #{userid,jdbcType=VARCHAR}
     	</if>
     </where>
   </select>

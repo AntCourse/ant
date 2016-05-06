@@ -6,6 +6,8 @@ public class VideoLog {
     private Integer id;
 
     private String vid;
+    
+    private String courseId;
 
     private String userid;
 
@@ -29,7 +31,15 @@ public class VideoLog {
         this.vid = vid == null ? null : vid.trim();
     }
 
-    public String getUserid() {
+    public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public String getUserid() {
         return userid;
     }
 

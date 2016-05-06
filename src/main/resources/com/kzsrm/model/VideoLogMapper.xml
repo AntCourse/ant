@@ -4,12 +4,13 @@
   <resultMap id="BaseResultMap" type="com.kzsrm.model.VideoLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="vid" property="vid" jdbcType="VARCHAR" />
+    <result column="courseId" property="courseId" jdbcType="VARCHAR" />
     <result column="userid" property="userid" jdbcType="VARCHAR" />
     <result column="timespan" property="timespan" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, vid, userid, timespan, createTime
+    id, vid, courseId, userid, timespan, createTime
   </sql>
   <!-- 获取视频观看记录 -->
   <select id="getVideoLog" resultMap="BaseResultMap" parameterType="map" >

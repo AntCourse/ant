@@ -1,11 +1,13 @@
 package com.kzsrm.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -38,10 +40,10 @@ public class CollectionController {
 	 * 
 	 * @param userId
 	 *            userId
-	 * @param collectionId
-	 *             课程 或 视频 ID
-	 * @param type
-	 *            1 课程 2 视频
+	 * @param videoId
+	 *             视频 ID
+	 * @param courseId
+	 *            1 课程 ID
 	 * @param state
 	 *            0 删除 1 收藏
 	 * @return
@@ -49,28 +51,26 @@ public class CollectionController {
 	@ResponseBody
 	@RequestMapping(value = "/collectionVideo")
 	public Map<String, Object> collectionVideo(@RequestParam(required = true) String userId,
-			@RequestParam(required = true) String collectionId,
-			@RequestParam(required = true) String type,
+			@RequestParam(required = true) String videoId,
+			@RequestParam(required = true) String courseId,
 			@RequestParam(required = true) String state) {
 		try {
 			if(Integer.parseInt(state)==1){
-				Collection c = collectionService.getByUserIdAndVideoId(Integer.parseInt(userId), Integer.parseInt(collectionId),
-						Integer.parseInt(type));
+				Collection c = collectionService.getByUserIdAndVideoId(Integer.parseInt(userId), Integer.parseInt(videoId));
 				if(c!=null){
 					return MapResult.initMap();
 				}
 				Collection collection = new Collection();
-				collection.setVideoId(Integer.parseInt(collectionId));
+				collection.setVideoId(Integer.parseInt(videoId));
 				collection.setUserId(Integer.parseInt(userId));
-				collection.setType(Integer.parseInt(type));
+				collection.setCourseId(Integer.parseInt(courseId));
 				if(collectionService.insert(collection)==1){
 					return MapResult.initMap();
 				}else{
 					return MapResult.initMap(-1, "数据存储错误");
 				}
 			}else{
-				if(collectionService.deleteByUserIdAndVideoId(Integer.parseInt(userId), Integer.parseInt(collectionId),
-						Integer.parseInt(type))==1){
+				if(collectionService.deleteByUserIdAndVideoId(Integer.parseInt(userId), Integer.parseInt(videoId))==1){
 					return MapResult.initMap();
 				}else{
 					return MapResult.initMap(-1, "删除错误");
@@ -89,34 +89,31 @@ public class CollectionController {
 	 * @param userId	userId
 	 * @return
 	 */
-	@RequestMapping(value = "/getColletionByUserId")
+	@RequestMapping(value = "/getCollectionByUserId")
 	@ResponseBody
-	public Map<String, Object> getColletionByUserId(@RequestParam(required = true) String userId) {
+	public Map<String, Object> getCollectionByUserId(@RequestParam(required = true) String userId) {
 		try{
 			if (StringUtils.isBlank(userId))
 				return MapResult.initMap(ApiCode.PARG_ERR, "用户id为空");
 			
 			Map<String, Object> ret = MapResult.initMap();
 			List<Collection> collectionList = collectionService.getByUserId(Integer.parseInt(userId));
-			List<Course> courseList = new ArrayList<Course>();
-			List<Video> videoList = new ArrayList<Video>();
+			JSONArray result = new JSONArray();
 			for(Collection c:collectionList){
-				if(c.getType()==1){
-					Course course = courseService.getCourseById(c.getVideoId()+"");
-					if(course!=null){
-						courseList.add(course);
-					}
-				}else{
-					Video video = videoService.getVideoById(c.getVideoId());
-					if(video!=null){
-						videoList.add(video);
-					}
+				Video video = videoService.getVideoById(c.getVideoId());
+				Course course = courseService.getCourseById(c.getCourseId()+"");
+				if(video!=null&&course!=null){
+					JSONObject jsonObj = new JSONObject();
+					jsonObj.put("videoId", video.getId());
+					jsonObj.put("videoName", video.getName());
+					jsonObj.put("videoPic", video.getPic());
+					jsonObj.put("videoUrl", video.getAddress());
+					jsonObj.put("courseId", course.getId());
+					jsonObj.put("coursePic", course.getAddress());
+					result.add(jsonObj);
 				}
 			}
-			Map<String, Object> listMap =  new HashMap<String, Object>();
-			listMap.put("courseList", courseList);
-			listMap.put("videoList", videoList);
-			ret.put("result", listMap);
+			ret.put("result", result);
 			return ret;
 		} catch (Exception e) {
 			logger.error("", e);
@@ -140,7 +137,7 @@ public class CollectionController {
 			Map<String, Object> ret = MapResult.initMap();
 			int collectionState = 0;
 			if (!StringUtils.isBlank(userId)){
-				Collection collection = collectionService.getByUserIdAndVideoId(Integer.parseInt(userId), Integer.parseInt(collectionId),Integer.parseInt(type));
+				Collection collection = collectionService.getByUserIdAndVideoId(Integer.parseInt(userId), Integer.parseInt(collectionId));
 				if(collection!=null)
 					collectionState = 1;
 			}
